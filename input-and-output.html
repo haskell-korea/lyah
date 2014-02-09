@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0044)http://learnyouahaskell.com/input-and-output -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Input and Output - Learn You a Haskell for Great Good!</title>
+
+<!--<base href="http://learnyouahaskell.com/">--><base href=".">
+<style type="text/css">
+	@import url('reset.css');
+	@import url('style.css');
+</style>
+<link rel="shortcut icon" href="http://learnyouahaskell.com/favicon.png" type="image/png">
+        <link rel="prev" href="http://learnyouahaskell.com/making-our-own-types-and-typeclasses">
+        <link rel="next" href="http://learnyouahaskell.com/functionally-solving-problems">
+<link type="text/css" rel="stylesheet" href="./input-and-output_files/SyntaxHighlighter.css">
+<link href="http://learnyouahaskell.com/rss.php" rel="alternate" type="application/rss+xml" title="Learn You a Haskell for Great Good! feed">
+</head>
+<body class="introcontent">
+<div class="bgwrapper">
+    <div id="content">
+                <div class="footdiv" style="margin-bottom:25px;">
+                <ul>
+                    <li style="text-align:left">
+                                                        <a href="http://learnyouahaskell.com/making-our-own-types-and-typeclasses" class="prevlink">Making Our Own Types and Typeclasses</a>
+                                            </li>
+                    <li style="text-align:center">
+                        <a href="http://learnyouahaskell.com/chapters">Table of contents</a>
+                    </li>
+                    <li style="text-align:right">
+                                                        <a href="http://learnyouahaskell.com/functionally-solving-problems" class="nxtlink">Functionally Solving Problems</a>
+                                            </li>
+                </ul>
+            </div>
+        <h1>Input and Output</h1>
+<img src="./input-and-output_files/dognap.png" alt="poor dog" class="right" width="261" height="382">
+<p>We've mentioned that Haskell is a purely functional language. Whereas in imperative languages you usually get things done by giving the computer a series of steps to execute, functional programming is more of defining what stuff is. In Haskell, a function can't change some state, like changing the contents of a variable (when a function changes state, we say that the function has <i>side-effects</i>). The only thing a function can do in Haskell is give us back some result based on the parameters we gave it. If a function is called two times with the same parameters, it has to return the same result. While this may seem a bit limiting when you're coming from an imperative world, we've seen that it's actually really cool. In an imperative language, you have no guarantee that a simple function that should just crunch some numbers won't burn down your house, kidnap your dog and scratch your car with a potato while crunching those numbers. For instance, when we were making a binary search tree, we didn't insert an element into a tree by modifying some tree in place. Our function for inserting into a binary search tree actually returned a new tree, because it can't change the old one.</p>
+<p>While functions being unable to change state is good because it helps us reason about our programs, there's one problem with that. If a function can't change anything in the world, how is it supposed to tell us what it calculated? In order to tell us what it calculated, it has to change the state of an output device (usually the state of the screen), which then emits photons that travel to our brain and change the state of our mind, man.</p>
+<p>Do not despair, all is not lost. It turns out that Haskell actually has a really clever system for dealing with functions that have side-effects that neatly separates the part of our program that is pure and the part of our program that is impure, which does all the dirty work like talking to the keyboard and the screen. With those two parts separated, we can still reason about our pure program and take advantage of all the things that purity offers, like laziness, robustness and modularity while efficiently communicating with the outside world.</p>
+<a name="hello-world"></a><h2>Hello, world!</h2>
+<img src="./input-and-output_files/helloworld.png" alt="HELLO!" class="left" width="223" height="179">
+<p>Up until now, we've always loaded our functions into GHCI to test them out and play with them. We've also explored the standard library functions that way. But now, after eight or so chapters, we're finally going to write our first <i>real</i> Haskell program! Yay! And sure enough, we're going to do the good old <span class="fixed">"hello, world"</span> schtick.</p>
+<div class="hintbox"><em>Hey!</em> For the purposes of this chapter, I'm going to assume you're using a unix-y environment for learning Haskell. If you're in Windows, I'd suggest you download <a href="http://www.cygwin.com/">Cygwin</a>, which is a Linux-like environment for Windows, A.K.A. just what you need.</div>
+<p>So, for starters, punch in the following in your favorite text editor:</p>
+<pre name="code" class="haskell:hs">main = putStrLn "hello, world"
+</pre>
+<p>We just defined a name called <span class="fixed">main</span> and in it we call a function called <span class="fixed">putStrLn</span> with the parameter <span class="fixed">"hello, world"</span>. Looks pretty much run of the mill, but it isn't, as we'll see in just a few moments. Save that file as <span class="fixed">helloworld.hs</span>.</p>
+<p>And now, we're going to do something we've never done before. We're actually going to compile our program! I'm so excited! Open up your terminal and navigate to the directory where <span class="fixed">helloworld.hs</span> is located and do the following:</p>
+<pre name="code" class="plain">$ ghc --make helloworld
+[1 of 1] Compiling Main             ( helloworld.hs, helloworld.o )
+Linking helloworld ...
+</pre>
+<p>Okay! With any luck, you got something like this and now you can run your program by doing <span class="fixed">./helloworld</span>.</p> 
+<pre name="code" class="haskell:hs">$ ./helloworld
+hello, world
+</pre>
+<p>And there we go, our first compiled program that printed out something to the terminal. How extraordinarily boring!</p>
+<p>Let's examine what we wrote. First, let's look at the type of the function <span class="fixed">putStrLn</span>.</p>
+<pre name="code" class="haskell:hs">ghci&gt; :t putStrLn
+putStrLn :: String -&gt; IO ()
+ghci&gt; :t putStrLn "hello, world"
+putStrLn "hello, world" :: IO ()
+</pre>
+<p>We can read the type of <span class="fixed">putStrLn</span> like this: <span class="fixed">putStrLn</span> takes a string and returns an <em>I/O action</em> that has a result type of <span class="fixed">()</span> (i.e. the empty tuple, also know as unit). An I/O action is something that, when performed, will carry out an action with a side-effect (that's usually either reading from the input or printing stuff to the screen) and will also contain some kind of return value inside it. Printing a string to the terminal doesn't really have any kind of meaningful return value, so a dummy value of <span class="fixed">()</span> is used.</p>
+<div class="hintbox">The empty tuple is a value of <span class="fixed">()</span> and it also has a type of <span class="fixed">()</span>.</div>
+<p>So, when will an I/O action be performed? Well, this is where <span class="fixed">main</span> comes in. An I/O action will be performed when we give it a name of <span class="fixed">main</span> and then run our program.</p>
+<p>Having your whole program be just one I/O action seems kind of limiting. That's why we can use <i>do</i> syntax to glue together several I/O actions into one. Take a look at the following example:</p>
+<pre name="code" class="haskell:hs">main = do
+    putStrLn "Hello, what's your name?"
+    name &lt;- getLine
+    putStrLn ("Hey " ++ name ++ ", you rock!")
+</pre>
+<p>Ah, interesting, new syntax! And this reads pretty much like an imperative program. If you compile it and try it out, it will probably behave just like you expect it to. Notice that we said <i>do</i> and then we laid out a series of steps, like we would in an imperative program. Each of these steps is an I/O action. By putting them together with <i>do</i> syntax, we glued them into one I/O action. The action that we got has a type of <span class="fixed">IO ()</span>, because that's the type of the last I/O action inside.</p>
+<p>Because of that, <span class="fixed">main</span> always has a type signature of <span class="fixed">main :: IO <i>something</i></span>, where <span class="fixed"><i>something</i></span> is some concrete type. By convention, we don't usually specify a type declaration for <span class="fixed">main</span>.</p>
+<p>An interesting thing that we haven't met before is the third line, which states <span class="fixed">name &lt;- getLine</span>. It looks like it reads a line from the input and stores it into a variable called <span class="fixed">name</span>. Does it really? Well, let's examine the type of <span class="fixed">getLine</span>.</p>
+<pre name="code" class="haskell:hs">ghci&gt; :t getLine
+getLine :: IO String
+</pre>
+<img src="./input-and-output_files/luggage.png" alt="luggage" class="left" width="204" height="200">
+<p>Aha, o-kay. <span class="fixed">getLine</span> is an I/O action that contains a result type of <span class="fixed">String</span>. That makes sense, because it will wait for the user to input something at the terminal and then that something will be represented as a string. So what's up with <span class="fixed">name &lt;- getLine</span> then? You can read that piece of code like this: <em>perform the I/O action <span class="fixed">getLine</span> and then bind its result value to <span class="fixed">name</span></em>. <span class="fixed">getLine</span> has a type of <span class="fixed">IO String</span>, so <span class="fixed">name</span> will have a type of <span class="fixed">String</span>. You can think of an I/O action as a box with little feet that will go out into the real world and do something there (like write some graffiti on a wall) and maybe bring back some data. Once it's fetched that data for you, the only way to open the box and get the data inside it is to use the <span class="fixed">&lt;-</span> construct. And if we're taking data out of an I/O action, we can only take it out when we're inside another I/O action. This is how Haskell manages to neatly separate the pure and impure parts of our code. <span class="fixed">getLine</span> is in a sense impure because its result value is not guaranteed to be the same when performed twice. That's why it's sort of <i>tainted</i> with the <span class="fixed">IO</span> type constructor and we can only get that data out in I/O code. And because I/O code is tainted too, any computation that depends on tainted I/O data will have a tainted result.</p>
+<p>When I say <i>tainted</i>, I don't mean tainted in such a way that we can never use the result contained in an I/O action ever again in pure code. No, we temporarily <i>un-taint</i> the data inside an I/O action when we bind it to a name. When we do <span class="fixed">name &lt;- getLine</span>, <span class="fixed">name</span> is just a normal string, because it represents what's inside the box. We can have a really complicated function that, say, takes your name (a normal string) as a parameter and tells you your fortune and your whole life's future based on your name. We can do this:</p>
+<pre name="code" class="haskell:hs">main = do
+    putStrLn "Hello, what's your name?"
+    name &lt;- getLine
+    putStrLn $ "Read this carefully, because this is your future: " ++ tellFortune name
+</pre>
+<p>and <span class="fixed">tellFortune</span> (or any of the functions it passes <span class="fixed">name</span> to) doesn't have to know anything about I/O, it's just a normal <span class="fixed">String -&gt; String</span> function!</p>
+<p>Take a look at this piece of code. Is it valid?</p>
+<pre name="code" class="haskell:hs">nameTag = "Hello, my name is " ++ getLine
+</pre>
+<p>If you said no, go eat a cookie. If you said yes, drink a bowl of molten lava. Just kidding, don't! The reason that this doesn't work is that <span class="fixed">++</span> requires both its parameters to be lists over the same type. The left parameter has a type of <span class="fixed">String</span> (or <span class="fixed">[Char]</span> if you will), whilst <span class="fixed">getLine</span> has a type of <span class="fixed">IO String</span>. You can't concatenate a string and an I/O action. We first have to get the result out of the I/O action to get a value of type <span class="fixed">String</span> and the only way to do that is to say something like <span class="fixed">name &lt;- getLine</span> inside some other I/O action. If we want to deal with impure data, we have to do it in an impure environment. So the taint of impurity spreads around much like the undead scourge and it's in our best interest to keep the I/O parts of our code as small as possible.</p>
+<p>Every I/O action that gets performed has a result encapsulated within it. That's why our previous example program could also have been written like this:</p>
+<pre name="code" class="haskell:hs">main = do
+    foo &lt;- putStrLn "Hello, what's your name?"
+    name &lt;- getLine
+    putStrLn ("Hey " ++ name ++ ", you rock!")
+</pre>
+<p>However, <span class="fixed">foo</span> would just have a value of <span class="fixed">()</span>, so doing that would be kind of moot. Notice that we didn't bind the last <span class="fixed">putStrLn</span> to anything. That's because in a <i>do</i> block, <em>the last action cannot be bound to a name</em> like the first two were. We'll see exactly why that is so a bit later when we venture off into the world of monads. For now, you can think of it in the way that the <i>do</i> block automatically extracts the value from the last action and binds it to its own result.</p>
+<p>Except for the last line, every line in a <i>do</i> block that doesn't bind can also be written with a bind. So <span class="fixed">putStrLn "BLAH"</span> can be written as <span class="fixed">_ &lt;- putStrLn "BLAH"</span>. But that's useless, so we leave out the <span class="fixed">&lt;-</span> for I/O actions that don't contain an important result, like <span class="fixed">putStrLn <i>something</i></span>.</p>
+<p>Beginners sometimes think that doing</p>
+<pre name="code" class="haskell:hs">name = getLine
+</pre>
+<p>will read from the input and then bind the value of that to <span class="fixed">name</span>. Well, it won't, all this does is give the <span class="fixed">getLine</span> I/O action a different name called, well, <span class="fixed">name</span>. Remember, to get the value out of an I/O action, you have to perform it inside another I/O action by binding it to a name with <span class="fixed">&lt;-</span>.</p>
+<p>I/O actions will only be performed when they are given a name of <span class="fixed">main</span> or when they're inside a bigger I/O action that we composed with a <i>do</i> block. We can also use a <i>do</i> block to glue together a few I/O actions and then we can use that I/O action in another <i>do</i> block and so on. Either way, they'll be performed only if they eventually fall into <span class="fixed">main</span>.</p>
+<p>Oh, right, there's also one more case when I/O actions will be performed. When we type out an I/O action in GHCI and press return, it will be performed.</p>
+<pre name="code" class="haskell:hs">ghci&gt; putStrLn "HEEY"
+HEEY
+</pre>
+<p>Even when we just punch out a number or call a function in GHCI and press return, it will evaluate it (as much as it needs) and then call <span class="fixed">show</span> on it and then it will print that string to the terminal using <span class="fixed">putStrLn</span> implicitly.</p>
+<p>Remember <i>let</i> bindings? If you don't, refresh your memory on them by reading <a href="http://learnyouahaskell.com/syntax-in-functions#let-it-be">this section</a>. They have to be in the form of <span class="fixed">let <i>bindings</i> in <i>expression</i></span>, where <span class="fixed"><i>bindings</i></span> are names to be given to expressions and <span class="fixed"><i>expression</i></span> is the expression that is to be evaluated that sees them. We also said that in list comprehensions, the <i>in</i> part isn't needed. Well, you can use them in <i>do</i> blocks pretty much like you use them in list comprehensions. Check this out:</p>
+<pre name="code" class="haskell:hs">import Data.Char
+
+main = do
+    putStrLn "What's your first name?"
+    firstName &lt;- getLine
+    putStrLn "What's your last name?"
+    lastName &lt;- getLine
+    let bigFirstName = map toUpper firstName
+        bigLastName = map toUpper lastName
+    putStrLn $ "hey " ++ bigFirstName ++ " " ++ bigLastName ++ ", how are you?"
+</pre>
+<p>See how the I/O actions in the <i>do</i> block are lined up? Also notice how the <i>let</i> is lined up with the I/O actions and the names of the <i>let</i> are lined up with each other? That's good practice, because indentation is important in Haskell. Now, we did <span class="fixed">map toUpper firstName</span>, which turns something like <span class="fixed">"John"</span> into a much cooler string like <span class="fixed">"JOHN"</span>. We bound that uppercased string to a name and then used it in a string later on that we printed to the terminal.</p>
+<p>You may be wondering when to use <span class="fixed">&lt;-</span> and when to use <i>let</i> bindings? Well, remember, <span class="fixed">&lt;-</span> is (for now) for performing I/O actions and binding their results to names. <span class="fixed">map toUpper firstName</span>, however, isn't an I/O action. It's a pure expression in Haskell. So use <span class="fixed">&lt;-</span> when you want to bind results of I/O actions to names and you can use <i>let</i> bindings to bind pure expressions to names. Had we done something like <span class="fixed">let firstName = getLine</span>, we would have just called the <span class="fixed">getLine</span> I/O action a different name and we'd still have to run it through a <span class="fixed">&lt;-</span> to perform it.</p>
+<p>Now we're going to make a program that continuously reads a line and prints out the same line with the words reversed. The program's execution will stop when we input a blank line. This is the program:</p>
+<pre name="code" class="haskell:hs">main = do 
+    line &lt;- getLine
+    if null line
+        then return ()
+        else do
+            putStrLn $ reverseWords line
+            main
+
+reverseWords :: String -&gt; String
+reverseWords = unwords . map reverse . words
+</pre>
+<p>To get a feel of what it does, you can run it before we go over the code.</p>
+<div class="hintbox"><em>Protip</em>: To run a program you can either compile it and then run the produced executable file by doing <span class="fixed">ghc --make helloworld</span> and then <span class="fixed">./helloworld</span> or you can use the <span class="fixed">runhaskell</span> command like so: <span class="fixed">runhaskell helloworld.hs</span> and your program will be executed on the fly.</div>
+<p>First, let's take a look at the <span class="fixed">reverseWords</span> function. It's just a normal function that takes a string like <span class="fixed">"hey there man"</span> and then calls <span class="fixed">words</span> with it to produce a list of words like <span class="fixed">["hey","there","man"]</span>. Then we map <span class="fixed">reverse</span> on the list, getting <span class="fixed">["yeh","ereht","nam"]</span> and then we put that back into one string by using <span class="fixed">unwords</span> and the final result is <span class="fixed">"yeh ereht nam"</span>. See how we used function composition here. Without function composition, we'd have to write something like <span class="fixed">reverseWords st = unwords (map reverse (words st))</span>.</p>
+<p>What about <span class="fixed">main</span>? First, we get a line from the terminal by performing <span class="fixed">getLine</span> call that line <span class="fixed">line</span>. And now, we have a conditional expression. Remember that in Haskell, every <i>if</i> must have a corresponding <i>else</i> because every expression has to have some sort of value. We make the <i>if</i> so that when a condition is true (in our case, the line that we entered is blank), we perform one I/O action and when it isn't, the I/O action under the <i>else</i> is performed. That's why in an I/O <i>do</i> block, <i>if</i>s have to have a form of <span class="fixed">if <i>condition</i> then <i>I/O action</i> else <i>I/O action</i>.</span>
+</p><p>Let's first take a look at what happens under the <i>else</i> clause. Because, we have to have exactly one I/O action after the <i>else</i>, we use a <i>do</i> block to glue together two I/O actions into one. You could also write that part out as:</p>
+<pre name="code" class="haskell:hs">        else (do
+            putStrLn $ reverseWords line
+            main)
+</pre>
+<p>This makes it more explicit that the <i>do</i> block can be viewed as one I/O action, but it's uglier. Anyway, inside the <i>do</i> block, we call <span class="fixed">reverseWords</span> on the line that we got from <span class="fixed">getLine</span> and then print that out to the terminal. After that, we just perform <span class="fixed">main</span>. It's called recursively and that's okay, because <span class="fixed">main</span> is itself an I/O action. So in a sense, we go back to the start of the program.</p>
+<p>Now what happens when <span class="fixed">null line</span> holds true? What's after the <i>then</i> is performed in that case. If we look up, we'll see that it says <span class="fixed">then return ()</span>. If you've done imperative languages like C, Java or Python, you're probably thinking that you know what this <span class="fixed">return</span> does and chances are you've already skipped this really long paragraph. Well, here's the thing: <em>the <span class="fixed">return</span> in Haskell is really nothing like the <span class="fixed">return</span> in most other languages!</em> It has the same name, which confuses a lot of people, but in reality it's quite different. In imperative languages, <span class="fixed">return</span> usually ends the execution of a method or subroutine and makes it report some sort of value to whoever called it. In Haskell (in I/O actions specifically), it makes an I/O action out of a pure value. If you think about the box analogy from before, it takes a value and wraps it up in a box. The resulting I/O action doesn't actually do anything, it just has that value encapsulated as its result. So in an I/O context, <span class="fixed">return "haha"</span> will have a type of <span class="fixed">IO String</span>. What's the point of just transforming a pure value into an I/O action that doesn't do anything? Why taint our program with <span class="fixed">IO</span> more than it has to be? Well, we needed some I/O action to carry out in the case of an empty input line. That's why we just made a bogus I/O action that doesn't do anything by writing <span class="fixed">return ()</span>. </p>
+<p>Using <span class="fixed">return</span> doesn't cause the I/O <i>do</i> block to end in execution or anything like that. For instance, this program will quite happily carry out all the way to the last line:</p>
+<pre name="code" class="haskell:hs">main = do
+    return ()
+    return "HAHAHA"
+    line &lt;- getLine
+    return "BLAH BLAH BLAH"
+    return 4
+    putStrLn line
+</pre>
+<p>All these <span class="fixed">return</span>s do is that they make I/O actions that don't really do anything except have an encapsulated result and that result is thrown away because it isn't bound to a name. We can use <span class="fixed">return</span> in combination with <span class="fixed">&lt;-</span> to bind stuff to names.</p>
+<pre name="code" class="haskell:hs">main = do
+    a &lt;- return "hell"
+    b &lt;- return "yeah!"
+    putStrLn $ a ++ " " ++ b
+</pre>
+<p>So you see, <span class="fixed">return</span> is sort of the opposite to <span class="fixed">&lt;-</span>. While <span class="fixed">return</span> takes a value and wraps it up in a box, <span class="fixed">&lt;-</span> takes a box (and performs it) and takes the value out of it, binding it to a name. But doing this is kind of redundant, especially since you can use <i>let</i> bindings in <i>do</i> blocks to bind to names, like so: </p>
+<pre name="code" class="haskell:hs">main = do
+    let a = "hell"
+        b = "yeah"
+    putStrLn $ a ++ " " ++ b
+</pre>
+<p>When dealing with I/O <i>do</i> blocks, we mostly use <span class="fixed">return</span> either because we need to create an I/O action that doesn't do anything or because we don't want the I/O action that's made up from a <i>do</i> block to have the result value of its last action, but we want it to have a different result value, so we use <span class="fixed">return</span> to make an I/O action that always has our desired result contained and we put it at the end.</p>
+<div class="hintbox">A <i>do</i> block can also have just one I/O action. In that case, it's the same as just writing the I/O action. Some people would prefer writing <span class="fixed">then do return ()</span> in this case because the <i>else</i> also has a <i>do</i>.</div>
+<p>Before we move on to files, let's take a look at some functions that are useful when dealing with I/O.</p>
+<p><span class="label function">putStr</span> is much like <span class="fixed">putStrLn</span> in that it takes a string as a parameter and returns an I/O action that will print that string to the terminal, only <span class="fixed">putStr</span> doesn't jump into a new line after printing out the string while <span class="fixed">putStrLn</span> does.</p>
+<pre name="code" class="haskell:hs">main = do   putStr "Hey, "
+            putStr "I'm "
+            putStrLn "Andy!" 
+</pre>
+<pre name="code" class="plain">$ runhaskell putstr_test.hs
+Hey, I'm Andy!
+</pre>
+<p>Its type signature is <span class="fixed">putStr :: String -&gt; IO ()</span>, so the result encapsulated within the resulting I/O action is the unit. A dud value, so it doesn't make sense to bind it.</p>
+<p><span class="label function">putChar</span> takes a character and returns an I/O action that will print it out to the terminal.</p>
+<pre name="code" class="haskell:hs">main = do   putChar 't'
+            putChar 'e'
+            putChar 'h'
+</pre>
+<pre name="code" class="plain">$ runhaskell putchar_test.hs
+teh
+</pre>
+<p><span class="fixed">putStr</span> is actually defined recursively with the help of <span class="fixed">putChar</span>. The edge condition of <span class="fixed">putStr</span> is the empty string, so if we're printing an empty string, just return an I/O action that does nothing by using <span class="fixed">return ()</span>. If it's not empty, then print the first character of the string by doing <span class="fixed">putChar</span> and then print of them using <span class="fixed">putStr</span>.</p>
+<pre name="code" class="haskell:hs">putStr :: String -&gt; IO ()
+putStr [] = return ()
+putStr (x:xs) = do
+    putChar x
+    putStr xs
+</pre>
+<p>See how we can use recursion in I/O, just like we can use it in pure code. Just like in pure code, we define the edge case and then think wh</p></div></div></body></html>

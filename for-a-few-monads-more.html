@@ -1,0 +1,1494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0049)http://learnyouahaskell.com/for-a-few-monads-more -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>For a Few Monads More - Learn You a Haskell for Great Good!</title>
+
+<!--<base href="http://learnyouahaskell.com/">--><base href=".">
+<style type="text/css">
+	@import url('reset.css');
+	@import url('style.css');
+</style>
+<link rel="shortcut icon" href="http://learnyouahaskell.com/favicon.png" type="image/png">
+        <link rel="prev" href="http://learnyouahaskell.com/a-fistful-of-monads">
+        <link rel="next" href="http://learnyouahaskell.com/zippers">
+<link type="text/css" rel="stylesheet" href="./for-a-few-monads-more_files/SyntaxHighlighter.css">
+<link href="http://learnyouahaskell.com/rss.php" rel="alternate" type="application/rss+xml" title="Learn You a Haskell for Great Good! feed">
+</head>
+<body class="introcontent">
+<div class="bgwrapper">
+    <div id="content">
+                <div class="footdiv" style="margin-bottom:25px;">
+                <ul>
+                    <li style="text-align:left">
+                                                        <a href="http://learnyouahaskell.com/a-fistful-of-monads" class="prevlink">A Fistful of Monads</a>
+                                            </li>
+                    <li style="text-align:center">
+                        <a href="http://learnyouahaskell.com/chapters">Table of contents</a>
+                    </li>
+                    <li style="text-align:right">
+                                                        <a href="http://learnyouahaskell.com/zippers" class="nxtlink">Zippers</a>
+                                            </li>
+                </ul>
+            </div>
+        <h1>For a Few Monads More</h1>
+
+<img src="./for-a-few-monads-more_files/clint.png" alt="there are two kinds of people in the world, my friend. those who learn them a haskell and those who have the job of coding java" class="right" width="189" height="400">
+
+<p>
+We've seen how monads can be used to take values with contexts and apply them to 
+functions and how using <span class="fixed">&gt;&gt;=</span> or <span class="fixed">do</span> notation allows us to focus on the values themselves while the
+context gets handled for us. 
+</p>
+
+<p>
+We've met the <span class="fixed">Maybe</span> monad and seen how it adds a 
+context of possible failure to values. We've learned about the list monad and 
+saw how it lets us easily introduce non-determinism into our programs. We've also 
+learned how to work in the <span class="fixed">IO</span> monad, even before we 
+knew what a monad was!
+
+</p><p>
+In this chapter, we're going to learn about a few other monads. We'll see how 
+they can make our programs clearer by letting us treat all sorts of values as 
+monadic ones. Exploring a few monads more will also solidify our intuition for 
+monads.
+</p>
+
+<p>
+The monads that we'll be exploring are all part of the <span class="fixed">mtl</span> 
+package. A Haskell package is a collection of modules. The <span class="fixed">mtl</span> package comes with the Haskell Platform, so you 
+probably already have it. To check if you do, type <span class="fixed">ghc-pkg list</span> in the command-line. This will show which 
+Haskell packages you have installed and one of them should be <span class="fixed">mtl</span>, followed by a version number.
+</p>
+
+<a name="writer"></a>
+<h2>Writer? I hardly know her!</h2>
+
+<p>
+We've loaded our gun with the <span class="fixed">Maybe</span> monad, the list 
+monad and the <span class="fixed">IO</span> monad. Now let's put the <span class="fixed">Writer</span> monad in the chamber and see what happens when we 
+fire it!
+</p>
+
+<p>
+Whereas <span class="fixed">Maybe</span> is for values with an added context of 
+failure and the list is for non-deterministic values, the <span class="fixed">Writer</span> monad is for values that have another value attached 
+that acts as a sort of log value. <span class="fixed">Writer</span> allows us to 
+do computations while making sure that all the log values are combined into one 
+log value that then gets attached to the result.
+</p>
+
+<p>
+For instance, we might want to equip our values with strings that explain what's 
+going on, probably for debugging purposes. Consider a function that takes a 
+number of bandits in a gang and tells us if that's a big gang or not. That's a 
+very simple function:
+</p>
+
+<pre name="code" class="haskell:hs">isBigGang :: Int -&gt; Bool
+isBigGang x = x &gt; 9
+</pre>
+
+<p>
+Now, what if instead of just giving us a <span class="fixed">True</span> or
+<span class="fixed">False</span> value, we want it to also return a log string 
+that says what it did? Well, we just make that string and return it along side 
+our <span class="fixed">Bool</span>:
+</p>
+
+<pre name="code" class="haskell:hs">isBigGang :: Int -&gt; (Bool, String)
+isBigGang x = (x &gt; 9, "Compared gang size to 9.")
+</pre>
+
+<p>
+So now instead of just returning a <span class="fixed">Bool</span>, we return a 
+tuple where the first component of the tuple is the actual value and the second 
+component is the string that accompanies that value. There's some added context 
+to our value now. Let's give this a go:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; isBigGang 3
+(False,"Compared gang size to 9.")
+ghci&gt; isBigGang 30
+(True,"Compared gang size to 9.")
+</pre>
+
+<img src="./for-a-few-monads-more_files/tuco.png" alt="when you have to poop, poop, don&#39;t talk" class="left" width="196" height="280">
+
+<p>
+So far so good. <span class="fixed">isBigGang</span> takes a normal value and 
+returns a value with a context. As we've just seen, feeding it a normal value is 
+not a problem. Now what if we already have a value that has a log string 
+attached to it, such as <span class="fixed">(3, "Smallish gang.")</span>, 
+and we want to feed it to <span class="fixed">isBigGang</span>? It seems like 
+once again, we're faced with this question: if we have a function that takes a 
+normal value and returns a value with a context, how do we take a value with a 
+context and feed it to the function?
+</p>
+
+<p>
+When we were exploring the <span class="fixed">Maybe</span> monad, we made a 
+function <span class="fixed">applyMaybe</span>, which took a <span class="fixed">Maybe a</span> value and a function of type <span class="fixed">a -&gt; Maybe b</span> 
+and fed that <span class="fixed">Maybe a</span> value into the function, even 
+though the function takes a normal <span class="fixed">a</span> instead of a <span class="fixed">Maybe 
+a</span>. It did this by minding the context that comes with <span class="fixed">Maybe a</span> values, which is that they are values with possible 
+failure. But inside the <span class="fixed">a -&gt; Maybe b</span> function, we 
+were able to treat that value as just a normal value, because <span class="fixed">applyMaybe</span> (which later became <span class="fixed">&gt;&gt;=</span>) 
+took care of checking if it was a <span class="fixed">Nothing</span> or a <span class="fixed">Just</span> value.
+</p>
+
+<p>
+In the same vein, let's make a function that takes a value with an attached log, 
+that is, an <span class="fixed">(a,String)</span> value and a function of type 
+<span class="fixed">a -&gt; (b,String)</span> and feeds that value into the 
+function. We'll call it <span class="fixed">applyLog</span>. But because an 
+<span class="fixed">(a,String)</span> value doesn't carry with it a context of 
+possible failure, but rather a context of an additional log value, <span class="fixed">applyLog</span> is going to make sure that the log of the original 
+value isn't lost, but is joined together with the log of the value that results 
+from the function. Here's the implementation of <span class="fixed">applyLog</span>:
+</p>
+
+<pre name="code" class="haskell:hs">applyLog :: (a,String) -&gt; (a -&gt; (b,String)) -&gt; (b,String)
+applyLog (x,log) f = let (y,newLog) = f x in (y,log ++ newLog)
+</pre>
+
+<p>
+When we have a value with a context and we want to feed it to a function, we 
+usually try to separate the actual value from the context and then try to apply 
+the function to the value and then see that the context is taken care of. In the 
+<span class="fixed">Maybe</span> monad, we checked if the value was a <span class="fixed">Just x</span> and if it was, we took that <span class="fixed">x</span> and applied the function to it. In this case, 
+it's very easy to find the actual value, because we're dealing with a pair where 
+one component is the value and the other a log. So first we just take the value, 
+which is <span class="fixed">x</span> and we apply the function <span class="fixed">f</span> to it. We get a pair of <span class="fixed">(y,newLog)</span>, where
+<span class="fixed">y</span> is the new result and <span class="fixed">newLog</span> 
+the new log. But if we returned that as the result, the old log value wouldn't 
+be included in the result, so we return a pair of <span class="fixed">(y,log ++ 
+newLog)</span>. We use <span class="fixed">++</span> to append the new log to 
+the old one.
+</p>
+
+<p>
+Here's <span class="fixed">applyLog</span> in action:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; (3, "Smallish gang.") `applyLog` isBigGang
+(False,"Smallish gang.Compared gang size to 9")
+ghci&gt; (30, "A freaking platoon.") `applyLog` isBigGang
+(True,"A freaking platoon.Compared gang size to 9")
+</pre>
+
+<p>
+The results are similar to before, only now the number of people in the gang had 
+its accompanying log and it got included in the result log. Here are a few more 
+examples of using <span class="fixed">applyLog</span>:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; ("Tobin","Got outlaw name.") `applyLog` (\x -&gt; (length x, "Applied length."))
+(5,"Got outlaw name.Applied length.")
+ghci&gt; ("Bathcat","Got outlaw name.") `applyLog` (\x -&gt; (length x, "Applied length"))
+(7,"Got outlaw name.Applied length")
+</pre>
+
+<p>
+See how inside the lambda, <span class="fixed">x</span> is just a normal string 
+and not a tuple and how <span class="fixed">applyLog</span> takes care of 
+appending the logs.
+</p>
+
+<h3>Monoids to the rescue</h3>
+
+<div class="hintbox">
+Be sure you know what <a href="http://learnyouahaskell.com/functors-applicative-functors-and-monoids#monoids">monoids</a> are at this point! Cheers.
+</div>
+
+<p>
+Right now, <span class="fixed">applyLog</span> takes values of type <span class="fixed">(a,String)</span>, but is there a reason that the log has to be a 
+<span class="fixed">String</span>? It uses <span class="fixed">++</span> to append 
+the logs, so wouldn't this work on any kind of list, not just a list of 
+characters? Sure it would. We can go ahead and change its type to this:
+</p>
+
+<pre name="code" class="haskell:hs">applyLog :: (a,[c]) -&gt; (a -&gt; (b,[c])) -&gt; (b,[c])
+</pre>
+
+<p>
+Now, the log is a list. The type of values contained in the list has to be the 
+same for the original list as well as for the list that the function returns, 
+otherwise we wouldn't be able to use <span class="fixed">++</span> to stick them 
+together.
+</p>
+
+<p>
+Would this work for bytestrings? There's no reason it shouldn't. However, the 
+type we have now only works for lists. It seems like we'd have to make a 
+separate <span class="fixed">applyLog</span> for bytestrings. But wait! Both 
+lists and bytestrings are monoids. As such, they are both instances of the
+<span class="fixed">Monoid</span> type class, which means that they implement 
+the <span class="fixed">mappend</span> function. And for both lists and 
+bytestrings, <span class="fixed">mappend</span> is for appending. Watch:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; [1,2,3] `mappend` [4,5,6]
+[1,2,3,4,5,6]
+ghci&gt; B.pack [99,104,105] `mappend` B.pack [104,117,97,104,117,97]
+Chunk "chi" (Chunk "huahua" Empty)
+</pre>
+
+<p>
+Cool! Now our <span class="fixed">applyLog</span> can work for any monoid. We 
+have to change the type to reflect this, as well as the implementation, because 
+we have to change <span class="fixed">++</span> to <span class="fixed">mappend</span>:
+</p>
+
+<pre name="code" class="haskell:hs">applyLog :: (Monoid m) =&gt; (a,m) -&gt; (a -&gt; (b,m)) -&gt; (b,m)
+applyLog (x,log) f = let (y,newLog) = f x in (y,log `mappend` newLog)
+</pre>
+
+<p>
+Because the accompanying value can now be any monoid value, we no longer have to 
+think of the tuple as a value and a log, but now we can think of it as a value 
+with an accompanying monoid value. For instance, we can have a tuple that has an 
+item name and an item price as the monoid value. We just use the <span class="fixed">Sum</span> newtype to make sure that the prices get added as we 
+operate with the items. Here's a function that adds drink to some cowboy food:
+</p>
+
+<pre name="code" class="haskell:hs">import Data.Monoid
+
+type Food = String
+type Price = Sum Int
+
+addDrink :: Food -&gt; (Food,Price)
+addDrink "beans" = ("milk", Sum 25)
+addDrink "jerky" = ("whiskey", Sum 99)
+addDrink _ = ("beer", Sum 30)
+</pre>
+
+<p>
+We use strings to represent foods and an <span class="fixed">Int</span>
+in a <span class="fixed">Sum</span> <span class="fixed">newtype</span> wrapper to keep 
+track of how many cents something costs. Just a reminder, doing <span class="fixed">mappend</span> with <span class="fixed">Sum</span> results in the 
+wrapped values getting added together:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; Sum 3 `mappend` Sum 9
+Sum {getSum = 12}
+</pre>
+
+<p>
+The <span class="fixed">addDrink</span> function is pretty simple. If we're 
+eating beans, it returns <span class="fixed">"milk"</span> along with <span class="fixed">Sum 25</span>, so 25 cents wrapped in <span class="fixed">Sum</span>. If we're eating jerky we drink whiskey and if we're 
+eating anything else we drink beer. Just normally applying this function to a 
+food wouldn't be terribly interesting right now, but using <span class="fixed">applyLog</span> to feed a food that comes with a price itself into 
+this function is interesting:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; ("beans", Sum 10) `applyLog` addDrink
+("milk",Sum {getSum = 35})
+ghci&gt; ("jerky", Sum 25) `applyLog` addDrink
+("whiskey",Sum {getSum = 124})
+ghci&gt; ("dogmeat", Sum 5) `applyLog` addDrink
+("beer",Sum {getSum = 35})
+</pre>
+
+<p>
+Milk costs <span class="fixed">25</span> cents, but if we eat 
+it with beans that cost <span class="fixed">10</span> cents, we'll end up paying 
+<span class="fixed">35</span> cents. Now it's clear how the attached value 
+doesn't always have to be a log, it can be any monoid value and how two such 
+values are combined into one depends on the monoid. When we were doing logs, 
+they got appended, but now, the numbers are being added up.
+</p>
+
+<p>
+Because the value that <span class="fixed">addDrink</span> returns is a tuple of 
+type <span class="fixed">(Food,Price)</span>, we can feed that result to <span class="fixed">addDrink</span> again, so that it tells us what we should drink 
+along with our drink and how much that will cost us. Let's give it a shot:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; ("dogmeat", Sum 5) `applyLog` addDrink `applyLog` addDrink
+("beer",Sum {getSum = 65})
+</pre>
+
+<p>
+Adding a drink to some dog meat results in a beer and an additional 
+<span class="fixed">30</span> cents, so <span class="fixed">("beer", Sum 35)</span>.
+And if we use <span class="fixed">applyLog</span> to feed that to <span class="fixed">addDrink</span>, we get another beer and the result is
+<span class="fixed">("beer", Sum 65)</span>.
+</p>
+
+<h3>The Writer type</h3>
+
+<p>
+Now that we've seen that a value with an attached monoid acts like a monadic 
+value, let's examine the <span class="fixed">Monad</span> instance for types of 
+such values.  The <span class="fixed">Control.Monad.Writer</span> module exports 
+the <span class="fixed">Writer w a</span> type along with its <span class="fixed">Monad</span> instance and some useful functions for dealing with 
+values of this type.
+</p>
+
+<p>
+First, let's examine the type itself. To attach a monoid to a value, we just 
+need to put them together in a tuple. The <span class="fixed">Writer w a</span> 
+type is just a <span class="fixed">newtype</span> wrapper for this. Its 
+definition is very simple:
+</p>
+
+<pre name="code" class="haskell:hs">newtype Writer w a = Writer { runWriter :: (a, w) }
+</pre>
+
+<p>
+It's wrapped in a <span class="fixed">newtype</span> so that it can be made an 
+instance of <span class="fixed">Monad</span> and that its type is separate from 
+a normal tuple. The <span class="fixed">a</span> type parameter represents the type 
+of the value and the <span class="fixed">w</span> type parameter the type of the 
+attached monoid value.
+</p>
+
+<p>
+Its <span class="fixed">Monad</span> instance is defined like so:
+</p>
+
+<pre name="code" class="haskell:hs">instance (Monoid w) =&gt; Monad (Writer w) where
+    return x = Writer (x, mempty)
+    (Writer (x,v)) &gt;&gt;= f = let (Writer (y, v')) = f x in Writer (y, v `mappend` v')
+</pre>
+
+
+<img src="./for-a-few-monads-more_files/angeleyes.png" alt="when you have to poop, poop, don&#39;t talk" class="right" width="383" height="248">
+<p>
+First off, let's examine <span class="fixed">&gt;&gt;=</span>. Its 
+implementation is essentially the same as <span class="fixed">applyLog</span>, 
+only now that our tuple is wrapped in the <span class="fixed">Writer</span> 
+<span class="fixed">newtype</span>, we have to unwrap it when pattern matching.
+We take the value <span class="fixed">x</span> and apply the function <span class="fixed">f</span> to it. This gives us a <span class="fixed">Writer w a</span> value and we use a <span class="fixed">let</span> expression to pattern match on it. We present 
+<span class="fixed">y</span> as the new result and use <span class="fixed">mappend</span> to combine the old monoid value with the new one. 
+We pack that up with the result value in a tuple and then wrap that with the 
+<span class="fixed">Writer</span> constructor so that our result is a <span class="fixed">Writer</span> value instead of just an unwrapped tuple.
+</p>
+
+<p>
+So, what about <span class="fixed">return</span>? It has to take a value and put 
+it in a default minimal context that still presents that value as the result. So 
+what would such a context be for <span class="fixed">Writer</span> values? If we 
+want the accompanying monoid value to affect other monoid values as little as 
+possible, it makes sense to use <span class="fixed">mempty</span>. <span class="fixed">mempty</span> is used to present identity monoid values, such as 
+<span class="fixed">""</span> and <span class="fixed">Sum 0</span> and empty 
+bytestrings. Whenever we use <span class="fixed">mappend</span> between <span class="fixed">mempty</span> and some other monoid value, the result is that 
+other monoid value. So if we use <span class="fixed">return</span> to make a 
+<span class="fixed">Writer</span> value and then use <span class="fixed">&gt;&gt;=</span> 
+to feed that value to a function, the resulting monoid value will be only what 
+the function returns. Let's use <span class="fixed">return</span> on the number
+<span class="fixed">3</span> a bunch of times, only we'll pair it with a 
+different monoid every time:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runWriter (return 3 :: Writer String Int)
+(3,"")
+ghci&gt; runWriter (return 3 :: Writer (Sum Int) Int)
+(3,Sum {getSum = 0})
+ghci&gt; runWriter (return 3 :: Writer (Product Int) Int)
+(3,Product {getProduct = 1})
+</pre>
+
+<p>
+Because <span class="fixed">Writer</span> doesn't have a <span class="fixed">Show</span> instance, we had to use <span class="fixed">runWriter</span> to convert our <span class="fixed">Writer</span> 
+values to normal tuples that can be shown. For <span class="fixed">String</span>, the monoid value is the empty string. With <span class="fixed">Sum</span>, it's <span class="fixed">0</span>, because if we add 0 
+to something, that something stays the same. For <span class="fixed">Product</span>, 
+the identity is <span class="fixed">1</span>.
+</p>
+
+<p>
+The <span class="fixed">Writer</span> instance doesn't feature an implementation 
+for <span class="fixed">fail</span>, so if a pattern match fails in <span class="fixed">do</span> notation, <span class="fixed">error</span> is called. 
+</p>
+
+<h3>Using do notation with Writer</h3>
+
+<p>
+Now that we have a <span class="fixed">Monad</span> instance, we're free to use 
+<span class="fixed">do</span> notation for <span class="fixed">Writer</span> 
+values. It's handy for when we have a several <span class="fixed">Writer</span> 
+values and we want to do stuff with them. Like with other monads, we can treat 
+them as normal values and the context gets taken for us. In this case, 
+all the monoid values that come attached get <span class="fixed">mappend</span>ed 
+and so are reflected in the final result. Here's a simple example of using  
+<span class="fixed">do</span> notation with <span class="fixed">Writer</span> to 
+multiply two numbers:
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.Writer
+
+logNumber :: Int -&gt; Writer [String] Int
+logNumber x = Writer (x, ["Got number: " ++ show x])
+
+multWithLog :: Writer [String] Int
+multWithLog = do
+    a &lt;- logNumber 3
+    b &lt;- logNumber 5
+    return (a*b)
+</pre>
+
+<p>
+<span class="fixed">logNumber</span> takes a number and makes a <span class="fixed">Writer</span> value out of it. For the monoid, we use a list of 
+strings and we equip the number with a singleton list that just says that we 
+have that number. <span class="fixed">multWithLog</span> is a <span class="fixed">Writer</span> value which multiplies <span class="fixed">3</span>
+and <span class="fixed">5</span> and makes sure that their attached logs get 
+included in the final log. We use <span class="fixed">return</span> to present 
+<span class="fixed">a*b</span> as the result. Because <span class="fixed">return</span> just takes something and puts it in a minimal 
+context, we can be sure that it won't add anything to the log. Here's what we 
+see if we run this:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runWriter multWithLog
+(15,["Got number: 3","Got number: 5"])
+</pre>
+
+<p>
+Sometimes we just want some monoid value to be included at some particular 
+point. For this, the
+<span class="fixed">tell</span> function is useful. It's part of the
+<span class="fixed">MonadWriter</span> type class and in the case of
+<span class="fixed">Writer</span> it takes a monoid value, like <span class="fixed">["This is going on"]</span> and creates a <span class="fixed">Writer</span> value that presents the dummy value <span class="fixed">()</span> as its result but has our desired monoid value attached.
+When we have a monadic value that has <span class="fixed">()</span> as its 
+result, we don't bind it to a variable. Here's <span class="fixed">multWithLog</span>
+but with some extra reporting included:
+</p>
+
+<pre name="code" class="haskell:hs">multWithLog :: Writer [String] Int
+multWithLog = do
+    a &lt;- logNumber 3
+    b &lt;- logNumber 5
+    tell ["Gonna multiply these two"]
+    return (a*b)
+</pre>
+
+<p>
+It's important that <span class="fixed">return (a*b)</span> is the last line, 
+because the result of the last line in a <span class="fixed">do</span> expression
+is the result of the whole <span class="fixed">do</span> expression. Had we 
+put <span class="fixed">tell</span> as the last line, <span class="fixed">()</span> would have been the result of this <span class="fixed">do</span> expression. We'd lose the result of the multiplication. 
+However, the log would be the same. Here is this in action:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runWriter multWithLog
+(15,["Got number: 3","Got number: 5","Gonna multiply these two"])
+</pre>
+
+<h3>Adding logging to programs</h3>
+
+<p>
+Euclid's algorithm is an algorithm that takes two numbers and computes their 
+greatest common divisor. That is, the biggest number that still divides both of 
+them. Haskell already features the <span class="fixed">gcd</span> 
+function, which does exactly this, but let's implement our own and then equip it 
+with logging capabilities. Here's the normal algorithm:
+</p>
+
+
+
+<pre name="code" class="haskell:hs">gcd' :: Int -&gt; Int -&gt; Int
+gcd' a b 
+    | b == 0    = a
+    | otherwise = gcd' b (a `mod` b)
+</pre>
+
+<p>
+The algorithm is very simple. First, it checks if the second number is 0. If it 
+is, then the result is the first number. If it isn't, then the result is the 
+greatest common divisor of the second number and the remainder of dividing the 
+first number with the second one. For instance, if we want to know what the 
+greatest common divisor of 8 and 3 is, we just follow the algorithm outlined. 
+Because 3 isn't 0, we have to find the greatest common divisor of 3 and 2 
+(if we divide 8 by 3, the remainder is 2). Next, we find the greatest 
+common divisor of 3 and 2. 2 still isn't 0, so now we have have 2 and 1. The 
+second number isn't 0, so we run the algorithm again for 1 and 0, as 
+dividing 2 by 1 gives us a remainder of 0. And finally, because the second number 
+is now 0, the final result is 1. Let's see if our code agrees:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; gcd' 8 3
+1
+</pre>
+
+<p>
+It does. Very good! Now, we want to equip our result with a context, and the 
+context will be a monoid value that acts as a log. Like before, we'll use a list 
+of strings as our monoid. So the type of our new <span class="fixed">gcd'</span> 
+function should be:
+</p>
+
+<pre name="code" class="haskell:hs">gcd' :: Int -&gt; Int -&gt; Writer [String] Int
+</pre>
+
+<p>
+All that's left now is to equip our function with log values. Here's the code:
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.Writer
+
+gcd' :: Int -&gt; Int -&gt; Writer [String] Int
+gcd' a b
+    | b == 0 = do
+        tell ["Finished with " ++ show a]
+        return a
+    | otherwise = do
+        tell [show a ++ " mod " ++ show b ++ " = " ++ show (a `mod` b)]
+        gcd' b (a `mod` b)
+</pre>
+
+<p>
+This function takes two normal <span class="fixed">Int</span> values and returns 
+a <span class="fixed">Writer [String] Int</span>, that is, an <span class="fixed">Int</span> that has a log context. In the case where <span class="fixed">b</span> is <span class="fixed">0</span>, instead of just giving
+<span class="fixed">a</span> as the result, we use a <span class="fixed">do</span> expression
+to put together a <span class="fixed">Writer</span> value as a result. First we 
+use <span class="fixed">tell</span> to report that we're finished and then we 
+use <span class="fixed">return</span> to present <span class="fixed">a</span> as 
+the result of the <span class="fixed">do</span> expression. Instead of this 
+<span class="fixed">do</span> expression, we could have also written this:
+</p>
+
+<pre name="code" class="haskell:hs">Writer (a, ["Finished with " ++ show a])
+</pre>
+
+<p>
+However, I think the <span class="fixed">do</span> expression is easier to read. Next, 
+we have the case when <span class="fixed">b</span> isn't <span class="fixed">0</span>. In this case,
+we log that we're using <span class="fixed">mod</span> to figure out the 
+remainder of dividing <span class="fixed">a</span> and <span class="fixed">b</span>. Then, the second line of the <span class="fixed">do</span> expression
+just recursively calls <span class="fixed">gcd'</span>. Remember, <span class="fixed">gcd'</span> now ultimately returns a <span class="fixed">Writer</span> value,
+so it's perfectly valid that <span class="fixed">gcd' b (a `mod` b)</span> is a 
+line in a <span class="fixed">do</span> expression.
+</p>
+
+<p>
+While it may be kind of useful to trace the execution of this new <span class="fixed">gcd'</span> by hand to see how the logs get appended, I think it's 
+more insightful to just look at the big picture and view these as values with a 
+context and from that gain insight as to what the final result will be.
+</p>
+
+<p>
+Let's try our new <span class="fixed">gcd'</span> out. Its result is a
+<span class="fixed">Writer [String] Int</span> value and if we unwrap that from 
+its <span class="fixed">newtype</span>, we get a tuple. The first part of the 
+tuple is the result. Let's see if it's okay:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; fst $ runWriter (gcd' 8 3)
+1
+</pre>
+
+<p>
+Good! Now what about the log? Because the log is a list of strings, let's use
+<span class="fixed">mapM_ putStrLn</span> to print those strings to the screen:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; mapM_ putStrLn $ snd $ runWriter (gcd' 8 3)
+8 mod 3 = 2
+3 mod 2 = 1
+2 mod 1 = 0
+Finished with 1
+</pre>
+
+<p>
+I think it's awesome how we were able to change our ordinary algorithm to one 
+that reports what it does as it goes along just by changing normal values to 
+monadic values and letting the implementation of <span class="fixed">&gt;&gt;=</span>
+for <span class="fixed">Writer</span> take care of the logs for us. We can add a 
+logging mechanism to pretty much any function. We just replace normal values 
+with <span class="fixed">Writer</span> values where we want and change normal function
+application to <span class="fixed">&gt;&gt;=</span> (or <span class="fixed">do</span> expressions if it increases readability).
+</p>
+
+<h3>Inefficient list construction</h3>
+
+<p>
+When using the <span class="fixed">Writer</span> monad, you have to be careful
+which monoid to use, because using lists can sometimes turn out to be very
+slow. That's because lists use <span class="fixed">++</span> for <span class="fixed">mappend</span>
+and using <span class="fixed">++</span> to add something to the end of a list is
+slow if that list is really long.
+</p>
+
+<p>
+In our <span class="fixed">gcd'</span> function, the logging is fast because the list
+appending ends up looking like this:
+</p>
+
+<pre name="code" class="haskell:hs">a ++ (b ++ (c ++ (d ++ (e ++ f))))
+</pre>
+
+<p>
+Lists are a data structure that's constructed from left to right, and this is
+efficient because we first fully construct the left part of a list and only
+then add a longer list on the right. But if we're not careful, using the
+<span class="fixed">Writer</span> monad can produce list appending that looks like this:
+</p>
+
+<pre name="code" class="haskell:hs">((((a ++ b) ++ c) ++ d) ++ e) ++ f
+</pre>
+
+<p>
+This associates to the left instead of to the right. This is inefficient
+because every time it wants to add the right part to the left part, it has
+to construct the left part all the way from the beginning! 
+</p>
+
+<p>
+The following function works like <span class="fixed">gcd'</span>, only it logs stuff in
+reverse. First it produces the log for the rest of the procedure and then adds
+the current step to the end of the log. 
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.Writer
+
+gcdReverse :: Int -&gt; Int -&gt; Writer [String] Int
+gcdReverse a b
+    | b == 0 = do
+        tell ["Finished with " ++ show a]
+        return a
+    | otherwise = do
+        result &lt;- gcdReverse b (a `mod` b)
+        tell [show a ++ " mod " ++ show b ++ " = " ++ show (a `mod` b)]
+        return result
+</pre>
+
+<p>
+It does the recursion first, and binds its result value to <span class="fixed">result</span>.
+Then it adds the current step to the log, but the current step goes at the end
+of the log that was produced by the recursion. Finally, it presents the
+result of the recursion as the final result. Here it is in action:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; mapM_ putStrLn $ snd $ runWriter (gcdReverse 8 3)
+Finished with 1
+2 mod 1 = 0
+3 mod 2 = 1
+8 mod 3 = 2
+</pre>
+
+<p>
+It's inefficient because it ends up associating the use of <span class="fixed">++</span> to
+the left instead of to the right.
+</p>
+
+<h3>Difference lists</h3>
+
+<img src="./for-a-few-monads-more_files/cactus.png" alt="cactuses" class="left" width="147" height="300">
+
+<p>
+Because lists can sometimes be inefficient when repeatedly appended in this
+manner, it's best to use a data structure that always supports efficient
+appending. One such data structure is the difference list.  A difference list
+is similar to a list, only instead of being a normal list, it's a function that
+takes a list and prepends another list to it. The difference list equivalent of
+a list like <span class="fixed">[1,2,3]</span> would be the function <span class="fixed">\xs -&gt; [1,2,3] ++ xs</span>. 
+A normal empty list is <span class="fixed">[]</span>, whereas an empty difference list
+is the function <span class="fixed">\xs -&gt; [] ++ xs</span>.
+</p>
+
+<p>
+The cool thing about difference lists is that they support efficient appending. 
+When we append two normal lists with <span class="fixed">++</span>, it has to 
+walk all the way to the end of the list on the left of <span class="fixed">++</span> and then stick the other one there. But what if 
+we take the difference list approach and represent our lists as functions? Well 
+then, appending two difference lists can be done like so:
+</p>
+
+<pre name="code" class="haskell:hs">f `append` g = \xs -&gt; f (g xs)
+</pre>
+
+<p>
+Remember, <span class="fixed">f</span> and <span class="fixed">g</span> are 
+functions that take lists and prepend something to them. So, for instance, if 
+<span class="fixed">f</span> is the function <span class="fixed">("dog"++)</span> (just another
+way of writing <span class="fixed">\xs -&gt; "dog" ++ xs</span>) and <span class="fixed">g</span> the function <span class="fixed">("meat"++)</span>, then
+<span class="fixed">f `append` g</span> makes a new function that's equivalent 
+to the following:
+</p>
+
+<pre name="code" class="haskell:hs">\xs -&gt; "dog" ++ ("meat" ++ xs)
+</pre>
+
+<p>
+We've appended two difference lists just by making a new function that first 
+applies one difference list some list and then the other.
+</p>
+
+<p>
+Let's make a <span class="fixed">newtype</span> wrapper for difference lists so 
+that we can easily give them monoid instances:
+</p>
+
+<pre name="code" class="haskell:hs">newtype DiffList a = DiffList { getDiffList :: [a] -&gt; [a] }
+</pre>
+
+<p>
+The type that we wrap is <span class="fixed">[a] -&gt; [a]</span> because a 
+difference list is just a function that takes a list and returns another. 
+Converting normal lists to difference lists and vice versa is easy:
+</p>
+
+<pre name="code" class="haskell:hs">toDiffList :: [a] -&gt; DiffList a
+toDiffList xs = DiffList (xs++)
+
+fromDiffList :: DiffList a -&gt; [a]
+fromDiffList (DiffList f) = f []
+</pre>
+
+<p>
+To make a normal list into a difference list we just do what we did before and 
+make it a function that prepends it to another list. Because a difference list 
+is a function that prepends something to another list, if we just want that 
+something, we apply the function to an empty list!
+</p>
+
+<p>
+Here's the <span class="fixed">Monoid</span> instance:
+</p>
+
+<pre name="code" class="haskell:hs">instance Monoid (DiffList a) where
+    mempty = DiffList (\xs -&gt; [] ++ xs)
+    (DiffList f) `mappend` (DiffList g) = DiffList (\xs -&gt; f (g xs))
+</pre>
+
+<p>
+Notice how for lists, <span class="fixed">mempty</span> is just the
+<span class="fixed">id</span> function and <span class="fixed">mappend</span> is 
+actually just function composition. Let's see if this works:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; fromDiffList (toDiffList [1,2,3,4] `mappend` toDiffList [1,2,3])
+[1,2,3,4,1,2,3]
+</pre>
+
+<p>
+Tip top! Now we can increase the efficiency of our <span class="fixed">gcdReverse</span> function by making it use difference lists instead of normal 
+lists:
+</p>
+
+
+<pre name="code" class="haskell:hs">import Control.Monad.Writer
+
+gcd' :: Int -&gt; Int -&gt; Writer (DiffList String) Int
+gcd' a b
+    | b == 0 = do
+        tell (toDiffList ["Finished with " ++ show a])
+        return a
+    | otherwise = do
+        result &lt;- gcd' b (a `mod` b)
+        tell (toDiffList [show a ++ " mod " ++ show b ++ " = " ++ show (a `mod` b)])
+        return result
+</pre>
+
+<p>
+We only had to change the type of the monoid from <span class="fixed">[String]</span>
+to <span class="fixed">DiffList String</span> and then when using 
+<span class="fixed">tell</span>, convert our normal lists into difference lists 
+with <span class="fixed">toDiffList</span>. Let's see if the log gets assembled 
+properly:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; mapM_ putStrLn . fromDiffList . snd . runWriter $ gcdReverse 110 34
+Finished with 2
+8 mod 2 = 0
+34 mod 8 = 2
+110 mod 34 = 8
+</pre>
+
+<p>
+We do <span class="fixed">gcdReverse 110 34</span>, then use <span class="fixed">runWriter</span>
+to unwrap it from the <span class="fixed">newtype</span>, then apply <span class="fixed">snd</span> to that to just get the log, then apply <span class="fixed">fromDiffList</span> to convert it to a normal list and then 
+finally print its entries to the screen.
+</p>
+
+<h3>Comparing Performance</h3>
+
+<p>
+To get a feel for just how much difference lists may improve your performance,
+consider this function that just counts down from some number to zero, but
+produces its log in reverse, like <span class="fixed">gcdReverse</span>, so that the numbers
+in the log will actually be counted up:
+</p>
+
+<pre name="code" class="haskell:hs">finalCountDown :: Int -&gt; Writer (DiffList String) ()
+finalCountDown 0 = do
+    tell (toDiffList ["0"])
+finalCountDown x = do
+    finalCountDown (x-1)
+    tell (toDiffList [show x])
+</pre>
+
+<p>
+If we give it <span class="fixed">0</span>, it just logs it. For any other number, it
+first counts down its predecessor to <span class="fixed">0</span> and then appends
+that number to the log. So if we apply <span class="fixed">finalCountDown</span> to
+<span class="fixed">100</span>, the string <span class="fixed">"100"</span> will come last in the
+log.
+</p>
+
+<p>
+Anyway, if you load this function in GHCi and apply it to a big number,
+like <span class="fixed">500000</span>, you'll see that it quickly starts counting from
+<span class="fixed">0</span> onwards:
+
+</p><pre name="code" class="haskell:hs">ghci&gt; mapM_ putStrLn . fromDiffList . snd . runWriter $ finalCountDown 500000
+0
+1
+2
+...
+</pre>
+
+<p>
+However, if we change it to use normal lists instead of difference lists, like so:
+</p>
+
+<pre name="code" class="haskell:hs">finalCountDown :: Int -&gt; Writer [String] ()
+finalCountDown 0 = do
+    tell ["0"]
+finalCountDown x = do
+    finalCountDown (x-1)
+    tell [show x]
+</pre>
+
+<p>
+And then tell GHCi to start counting:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; mapM_ putStrLn . snd . runWriter $ finalCountDown 500000
+</pre>
+
+<p>
+We'll see that the counting is really slow.
+</p>
+
+<p>
+Of course, this is not the proper and scientific way to test how fast our
+programs are, but we were able to see that in this case, using difference lists
+starts producing results right away whereas normal lists take forever.
+</p>
+
+<p>
+Oh, by the way, the song Final Countdown by Europe is now stuck in your head.
+Enjoy!
+</p>
+
+<a name="reader"></a>
+<h2>Reader? Ugh, not this joke again.</h2>
+
+<img src="./for-a-few-monads-more_files/revolver.png" alt="bang youre dead" class="left" width="280" height="106">
+
+<p>
+In the <a href="http://learnyouahaskell.com/functors-applicative-functors-and-monoids">chapter about 
+applicatives</a>, we saw 
+that the function type, <span class="fixed">(-&gt;) r</span> is an instance of 
+<span class="fixed">Functor</span>. Mapping a function <span class="fixed">f</span> over a function <span class="fixed">g</span> will make a 
+function that takes the same thing as <span class="fixed">g</span>, applies 
+<span class="fixed">g</span> to it and then applies <span class="fixed">f</span> 
+to that result. So basically, we're making a new function that's like <span class="fixed">g</span>, only before returning its result, <span class="fixed">f</span> gets applied to that result as well. For instance:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; let f = (*5)
+ghci&gt; let g = (+3)
+ghci&gt; (fmap f g) 8
+55
+</pre>
+
+<p>
+We've also seen that functions are applicative functors. They allow us to 
+operate on the eventual results of functions as if we already had their results. 
+Here's an example: 
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; let f = (+) &lt;$&gt; (*2) &lt;*&gt; (+10)
+ghci&gt; f 3
+19
+</pre>
+
+<p>
+The expression <span class="fixed">(+) &lt;$&gt; (*2) &lt;*&gt; (+10)</span> 
+makes a function that takes a number, gives that number to <span class="fixed">(*2)</span> and <span class="fixed">(+10)</span> and then adds 
+together the results. For instance, if we apply this function to <span class="fixed">3</span>, it applies both <span class="fixed">(*2)</span> and 
+<span class="fixed">(+10)</span> to <span class="fixed">3</span>, giving 
+<span class="fixed">6</span> and <span class="fixed">13</span>. Then, it calls
+<span class="fixed">(+)</span> with <span class="fixed">6</span> and 
+<span class="fixed">13</span> and the result is <span class="fixed">19</span>.
+</p>
+
+<p>
+Not only is the function type <span class="fixed">(-&gt;) r</span> a functor 
+and an applicative functor, but it's also a monad. Just like other monadic 
+values that we've met so far, a function can also be considered a value with 
+a context. The context for functions is that that value is not present yet and 
+that we have to apply that function to something in order to get its result 
+value.
+</p>
+
+<p>
+Because we're already acquainted with how functions work as functors and 
+applicative functors, let's dive right in and see what their 
+<span class="fixed">Monad</span> instance looks like. It's located in
+<span class="fixed">Control.Monad.Instances</span> and it goes a little 
+something like this:
+</p>
+
+<pre name="code" class="haskell:hs">instance Monad ((-&gt;) r) where
+    return x = \_ -&gt; x
+    h &gt;&gt;= f = \w -&gt; f (h w) w
+</pre>
+
+<p>
+We've already seen how <span class="fixed">pure</span> is implemented for 
+functions, and <span class="fixed">return</span> is pretty much the same thing 
+as <span class="fixed">pure</span>. It takes a value and puts it in a minimal 
+context that always has that value as its result. And the only way to make a 
+function that always has a certain value as its result is to make it completely 
+ignore its parameter.
+</p>
+
+<p>
+The implementation for <span class="fixed">&gt;&gt;=</span> seems a bit cryptic, 
+but it's really not all that. When we use <span class="fixed">&gt;&gt;=</span> 
+to feed a monadic value to a function, the result is always a monadic value. So 
+in this case, when we feed a function to another function, the result is a 
+function as well. That's why the result starts off as a lambda. All of the 
+implementations of <span class="fixed">&gt;&gt;=</span> so far always somehow 
+isolated the result from the monadic value and then applied the function
+<span class="fixed">f</span> to that result. The same thing happens here. To get 
+the result from a function, we have to apply it to something, which is why we do
+<span class="fixed">(h w)</span> here to get the result from the function and 
+then we apply <span class="fixed">f</span> to that. <span class="fixed">f</span> 
+returns a monadic value, which is a function in our case, so we apply it to 
+<span class="fixed">w</span> as well.
+</p>
+
+<p>
+If don't get how <span class="fixed">&gt;&gt;=</span> works at this point, don't 
+worry, because with examples we'll see how this is a really simple monad. Here's 
+a <span class="fixed">do</span> expression that utilizes this monad:
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.Instances
+
+addStuff :: Int -&gt; Int
+addStuff = do
+    a &lt;- (*2)
+    b &lt;- (+10)
+    return (a+b)
+</pre>
+
+<p>
+This is the same thing as the applicative expression that we wrote earlier, only 
+now it relies on functions being monads. A <span class="fixed">do</span> 
+expression always results in a monadic value and this one is no different. The 
+result of this monadic value is a function. What happens here is that it takes a 
+number and then <span class="fixed">(*2)</span> gets applied to that number and 
+the result becomes <span class="fixed">a</span>. <span class="fixed">(+10)</span> is applied to the same number that
+<span class="fixed">(*2)</span> got applied to and the result becomes <span class="fixed">b</span>. <span class="fixed">return</span>, like in other monads, 
+doesn't have any other effect but to make a monadic value that presents some 
+result. This presents <span class="fixed">a+b</span> as the result of this 
+function. If we test it out, we get the same result as before:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; addStuff 3
+19
+</pre>
+
+<p>
+Both <span class="fixed">(*2)</span> and <span class="fixed">(+10)</span> get 
+applied to the number <span class="fixed">3</span> in this case. <span class="fixed">return (a+b)</span> does as well, but it ignores it and always 
+presents <span class="fixed">a+b</span> as the result. For this reason, the 
+function monad is also called the reader monad. All the functions read from a 
+common source. To illustrate this even better, we can rewrite 
+<span class="fixed">addStuff</span> like so:
+</p>
+
+<pre name="code" class="haskell:hs">addStuff :: Int -&gt; Int
+addStuff x = let
+    a = (*2) x
+    b = (+10) x
+    in a+b
+</pre>
+
+<p>
+We see that the reader monad allows us to treat functions as values with a 
+context. We can act as if we already know what the functions will return. It 
+does this by gluing functions together into one function and then giving that 
+function's parameter to all of the functions that it was glued from. So if we 
+have a lot of functions that are all just missing one parameter and they'd 
+eventually be applied to the same thing, we can use the reader monad to sort of 
+extract their future results and the <span class="fixed">&gt;&gt;=</span> 
+implementation will make sure that it all works out.
+</p>
+
+<a name="state"></a>
+<h2>Tasteful stateful computations</h2>
+<img src="./for-a-few-monads-more_files/texas.png" alt="don&#39;t jest with texas" class="left" width="244" height="230">
+
+<p>
+Haskell is a pure language and because of that, our programs are made of 
+functions that can't change any global state or variables,
+they can only do some computations and return them results. This restriction
+actually makes it easier to think about our programs, as it frees us from 
+worrying what every variable's value is at some point in time. However, some 
+problems are inherently stateful in that they rely on some state that changes 
+over time. While such problems aren't a problem for Haskell, they can be a bit 
+tedious to model sometimes. That's why Haskell features a thing called the state 
+monad, which makes dealing with stateful problems a breeze while still keeping 
+everything nice and pure.
+</p>
+
+<p>
+<a href="http://learnyouahaskell.com/input-and-output#randomness">When we were dealing with random numbers</a>, we dealt with functions that took a 
+random generator as a parameter and returned a random number and a new random 
+generator. If we wanted to generate several random numbers, we always had to use 
+the random generator that a previous function returned along with its result. 
+When making a function that takes a <span class="fixed">StdGen</span> and tosses 
+a coin three times based on that generator, we had to do this:
+</p>
+
+<pre name="code" class="haskell:hs">threeCoins :: StdGen -&gt; (Bool, Bool, Bool)
+threeCoins gen = 
+    let (firstCoin, newGen) = random gen
+        (secondCoin, newGen') = random newGen
+        (thirdCoin, newGen'') = random newGen'
+    in  (firstCoin, secondCoin, thirdCoin)
+</pre>
+
+<p>
+It took a generator <span class="fixed">gen</span> and then <span class="fixed">random gen</span> returned a <span class="fixed">Bool</span> value 
+along with a new generator. To throw the second coin, we used the new generator, 
+and so on. In most other languages, we wouldn't have to return a new generator 
+along with a random number. We could just modify the existing one! But since 
+Haskell is pure, we can't do that, so we had to take some state, make a result 
+from it and a new state and then use that new state to generate new results.
+</p>
+
+<p>
+You'd think that to avoid manually dealing with stateful computations in this 
+way, we'd have to give up the purity of Haskell. Well, we don't have to, since 
+there exist a special little monad called the state monad which handles all this 
+state business for us and without giving up any of the purity that makes Haskell 
+programming so cool.
+</p>
+
+<p>
+So, to help us understand this concept of stateful computations better, let's go 
+ahead and give them a type. We'll say that a stateful computation is a function 
+that takes some state and returns a value along with some new state. That 
+function would have the following type:
+</p>
+
+<pre name="code" class="haskell:hs">s -&gt; (a,s)
+</pre>
+
+<p>
+<span class="fixed">s</span> is the type of the state and <span class="fixed">a</span> the result of the stateful computations.
+</p>
+
+<div class="hintbox">
+Assignment in most other languages could be thought of as a stateful 
+computation. For instance, when we do <span class="fixed">x = 5</span> in an 
+imperative language, it will usually assign the value <span class="fixed">5</span> to the variable <span class="fixed">x</span> and it will 
+also have the value <span class="fixed">5</span> as an expression. If you look 
+at that functionally, you could look at it as a function that takes a state 
+(that is, all the variables that have been assigned previously) and returns a 
+result (in this case <span class="fixed">5</span>) and a new state, which would 
+be all the previous variable mappings plus the newly assigned variable.
+</div>
+
+<p>
+This stateful computation, a function that takes a state 
+and returns a result and a new state, can be thought of as a value with a 
+context as well. The actual value is the result, whereas the context is that we 
+have to provide some initial state to actually get that result and that apart 
+from getting a result we also get a new state.
+</p>
+
+<h3>Stacks and stones</h3>
+
+<p>
+Say we want to model operating a stack. You have a stack of things one on top 
+of another and you can either push stuff on top of that stack or you can take stuff 
+off the top of the stack. When you're putting an item on top of the stack we say 
+that you're pushing it to the stack and when you're taking stuff off the 
+top we say that you're popping it. If you want to something that's at the bottom 
+of the stack, you have to pop everything that's above it.
+</p>
+
+<p>
+We'll use a list to represent our stack and the head of the list will be the top 
+of the stack. To help us with our task, we'll make two functions: <span class="fixed">pop</span> and <span class="fixed">push</span>. <span class="fixed">pop</span> will take a stack, pop one item and return that item as 
+the result and also return a new stack, without that item. <span class="fixed">push</span> will take an item and a stack and then push that item 
+onto the stack. It will return <span class="fixed">()</span> as its result, 
+along with a new stack. Here goes:
+</p>
+
+<pre name="code" class="haskell:hs">type Stack = [Int]
+
+pop :: Stack -&gt; (Int,Stack)
+pop (x:xs) = (x,xs)
+
+push :: Int -&gt; Stack -&gt; ((),Stack)
+push a xs = ((),a:xs)
+</pre>
+
+<p>
+We used <span class="fixed">()</span> as the result when pushing to the stack 
+because pushing an item onto the stack doesn't have any important result value, 
+its main job is to change the stack. Notice how we just apply the first parameter of <span class="fixed">push</span>, we get a stateful 
+computation. <span class="fixed">pop</span> is already a stateful computation 
+because of its type.
+</p>
+
+<p>
+Let's write a small piece of code to simulate a stack using these functions. 
+We'll take a stack, push <span class="fixed">3</span> to it and then pop two 
+items, just for kicks. Here it is:
+</p>
+
+<pre name="code" class="haskell:hs">stackManip :: Stack -&gt; (Int, Stack)
+stackManip stack = let
+    ((),newStack1) = push 3 stack
+    (a ,newStack2) = pop newStack1
+    in pop newStack2
+</pre>
+
+<p>
+We take a <span class="fixed">stack</span> and then we do <span class="fixed">push 3 stack</span>, which results in a tuple. The first part of 
+the tuple is a <span class="fixed">()</span> and the second is a new stack and 
+we call it <span class="fixed">newStack1</span>. 
+Then, we pop a number from <span class="fixed">newStack1</span>, which results 
+in a number <span class="fixed">a</span> (which is the <span class="fixed">3</span>) that we pushed and a new stack which we call
+<span class="fixed">newStack2</span>. Then, we pop a number off 
+<span class="fixed">newStack2</span> and we get a number that's <span class="fixed">b</span> and a <span class="fixed">newStack3</span>. We return a 
+tuple with that number and that stack. Let's try it out:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; stackManip [5,8,2,1]
+(5,[8,2,1])
+</pre>
+
+<p>
+Cool, the result is <span class="fixed">5</span> and the new stack is 
+<span class="fixed">[8,2,1]</span>. Notice how <span class="fixed">stackManip</span> 
+is itself a stateful computation. We've taken a bunch of stateful computations 
+and we've sort of glued them together. Hmm, sounds familiar. 
+</p>
+<p>
+The above code for 
+<span class="fixed">stackManip</span> is kind of tedious since we're manually 
+giving the state to every stateful computation and storing it and then giving it 
+to the next one. Wouldn't it be cooler if, instead of giving the stack manually 
+to each function, we could write something like this:
+</p>
+
+<pre name="code" class="haskell:hs">stackManip = do
+    push 3
+    a &lt;- pop
+    pop
+</pre>
+
+<p>
+Well, using the state monad will allow us to do exactly this. With it, we will 
+be able to take stateful computations like these and use them without having to manage 
+the state manually.
+</p>
+
+<h3>The State monad</h3>
+
+<p>
+The <span class="fixed">Control.Monad.State</span> module provides a <span class="fixed">newtype</span> that wraps stateful computations. Here's its definition:
+</p>
+
+<pre name="code" class="haskell:hs">newtype State s a = State { runState :: s -&gt; (a,s) }
+</pre>
+
+<p>
+A <span class="fixed">State s a</span> is a stateful computation that 
+manipulates a state of type <span class="fixed">s</span> and has a result of 
+type <span class="fixed">a</span>.
+</p>
+
+<p>
+Now that we've seen what stateful computations are about and how they can even be 
+thought of as values with contexts, let's check out their <span class="fixed">Monad</span> instance:
+</p>
+
+<pre name="code" class="haskell:hs">instance Monad (State s) where
+    return x = State $ \s -&gt; (x,s)
+    (State h) &gt;&gt;= f = State $ \s -&gt; let (a, newState) = h s
+                                        (State g) = f a
+                                    in  g newState
+</pre>
+
+<p>
+Let's take a gander at <span class="fixed">return</span> first. Our aim 
+with <span class="fixed">return</span> is to take a value and make a stateful 
+computation that always has that value as its result. That's why we just make a 
+lambda <span class="fixed">\s -&gt; (x,s)</span>. We always present <span class="fixed">x</span> as the 
+result of the stateful computation and the state is kept unchanged, because 
+<span class="fixed">return</span> has to put a value in a minimal context. So
+<span class="fixed">return</span> will make a stateful computation that presents 
+a certain value as the result and keeps the state unchanged.
+</p>
+
+<img src="./for-a-few-monads-more_files/badge.png" alt="im a cop" class="right" width="182" height="160">
+
+<p>
+What about <span class="fixed">&gt;&gt;=</span>? Well, the result of feeding a 
+stateful computation to a function with <span class="fixed">&gt;&gt;=</span> has to be a 
+stateful computation, right? So we start off with the <span class="fixed">State</span>
+<span class="fixed">newtype</span> wrapper and then we type out a lambda. This 
+lambda will be our new stateful computation. But what goes on in it? Well, we 
+somehow have to extract the result value from the first stateful computation. 
+Because we're in a stateful computation right now, we can give the stateful 
+computation <span class="fixed">h</span> our current state <span class="fixed">s</span>, which results in a pair of result and a new state: 
+<span class="fixed">(a, newState)</span>. Every time so far when we were 
+implementing <span class="fixed">&gt;&gt;=</span>, once we had the extracted 
+the result from the monadic value, we applied the function 
+<span class="fixed">f</span> to it to get the new monadic value. In
+<span class="fixed">Writer</span>, after doing that and getting the new monadic 
+value, we still had to make sure that the context was taken care of by 
+<span class="fixed">mappend</span>ing the old monoid value with the new one. 
+Here, we do <span class="fixed">f a</span> and we get a new stateful computation
+<span class="fixed">g</span>. Now that we have a new stateful computation and a 
+new state (goes by the name of <span class="fixed">newState</span>) we just 
+apply that stateful computation <span class="fixed">g</span> to the <span class="fixed">newState</span>. The result is a tuple of final result and final 
+state!
+</p>
+
+<p>
+So with <span class="fixed">&gt;&gt;=</span>, we kind of glue two stateful 
+computations together, only the second one is hidden inside a function that 
+takes the previous one's result. Because <span class="fixed">pop</span> and
+<span class="fixed">push</span> are already stateful computations, it's easy to 
+wrap them into a <span class="fixed">State</span> wrapper. Watch:
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.State
+
+pop :: State Stack Int
+pop = State $ \(x:xs) -&gt; (x,xs)
+
+push :: Int -&gt; State Stack ()
+push a = State $ \xs -&gt; ((),a:xs)
+</pre>
+
+<p>
+<span class="fixed">pop</span> is already a stateful computation and
+<span class="fixed">push</span> takes an <span class="fixed">Int</span> and 
+returns a stateful computation. Now we can rewrite our previous example of 
+pushing <span class="fixed">3</span> onto the stack and then popping two numbers 
+off like this:
+</p>
+
+<pre name="code" class="haskell:hs">import Control.Monad.State
+
+stackManip :: State Stack Int
+stackManip = do
+    push 3
+    a &lt;- pop
+    pop
+</pre>
+
+<p>
+See how we've glued a push and two pops into one stateful computation? When we 
+unwrap it from its <span class="fixed">newtype</span> wrapper we get a function 
+to which we can provide some initial state:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runState stackManip [5,8,2,1]
+(5,[8,2,1])
+</pre>
+
+<p>
+We didn't have to bind the second <span class="fixed">pop</span> to <span class="fixed">a</span> because we didn't use that <span class="fixed">a</span> 
+at all. So we could have written it like this:
+</p>
+
+<pre name="code" class="haskell:hs">stackManip :: State Stack Int
+stackManip = do
+    push 3
+    pop
+    pop
+</pre>
+
+<p>
+Pretty cool. But what if we want to do this: pop one number off the stack and 
+then if that number is <span class="fixed">5</span> we just put it back onto the 
+stack and stop but if it isn't <span class="fixed">5</span>, we push <span class="fixed">3</span> and <span class="fixed">8</span> back on? Well, here's 
+the code:
+</p>
+
+<pre name="code" class="haskell:hs">stackStuff :: State Stack ()
+stackStuff = do
+    a &lt;- pop
+    if a == 5
+        then push 5
+        else do
+            push 3
+            push 8
+</pre>
+
+<p>
+This is quite straightforward. Let's run it with an initial stack.
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runState stackStuff [9,0,2,1,0]
+((),[8,3,0,2,1,0])
+</pre>
+
+<p>
+Remember, <span class="fixed">do</span> expressions result in monadic values and 
+with the <span class="fixed">State</span> monad, a single <span class="fixed">do</span> expression is also a stateful function. Because
+<span class="fixed">stackManip</span> and <span class="fixed">stackStuff</span>
+are ordinary stateful computations, we can glue them together to produce further 
+stateful computations.
+</p>
+
+<pre name="code" class="haskell:hs">moreStack :: State Stack ()
+moreStack = do
+    a &lt;- stackManip
+    if a == 100
+        then stackStuff
+        else return ()
+</pre>
+
+<p>
+If the result of <span class="fixed">stackManip</span> on the current stack
+is <span class="fixed">100</span>, we run <span class="fixed">stackStuff</span>, 
+otherwise we do nothing. <span class="fixed">return ()</span> just keeps the 
+state as it is and does nothing.
+</p>
+
+<p>
+The <span class="fixed">Control.Monad.State</span> module provides a type class 
+that's called <span class="fixed">MonadState</span> and it features two pretty 
+useful functions, namely <span class="fixed">get</span> and <span class="fixed">put</span>. For <span class="fixed">State</span>, the <span class="fixed">get</span> function is implemented like this:
+</p>
+
+<pre name="code" class="haskell:hs">get = State $ \s -&gt; (s,s)
+</pre>
+
+<p>
+So it just takes the current state and presents it as the result. The
+<span class="fixed">put</span> function takes some state and makes a stateful 
+function that replaces the current state with it:
+</p>
+
+<pre name="code" class="haskell:hs">put newState = State $ \s -&gt; ((),newState)
+</pre>
+
+<p>
+So with these, we can see what the current stack is or we can replace it with a 
+whole other stack. Like so:
+</p>
+
+<pre name="code" class="haskell:hs">stackyStack :: State Stack ()
+stackyStack = do
+    stackNow &lt;- get
+    if stackNow == [1,2,3]
+        then put [8,3,1]
+        else put [9,2,1]
+</pre>
+
+<p>
+It's worth examining what the type of <span class="fixed">&gt;&gt;=</span> would 
+be if it only worked for <span class="fixed">State</span> values:
+</p>
+
+<pre name="code" class="haskell:hs">(&gt;&gt;=) :: State s a -&gt; (a -&gt; State s b) -&gt; State s b
+</pre>
+
+<p>
+See how the type of the state <span class="fixed">s</span> stays the same but 
+the type of the result can change from <span class="fixed">a</span> to 
+<span class="fixed">b</span>? This means that we can glue together several 
+stateful computations whose results are of different types but the type of the 
+state has to stay the same. Now why is that? Well, for instance, for <span class="fixed">Maybe</span>, <span class="fixed">&gt;&gt;=</span> has this type:
+</p>
+
+<pre name="code" class="haskell:hs">(&gt;&gt;=) :: Maybe a -&gt; (a -&gt; Maybe b) -&gt; Maybe b
+</pre>
+
+<p>
+It makes sense that the monad itself, <span class="fixed">Maybe</span>, doesn't 
+change. It wouldn't make sense to use <span class="fixed">&gt;&gt;=</span> 
+between two different monads. Well, for the state monad, the monad is actually <span class="fixed">State s</span>, so if that <span class="fixed">s</span> was 
+different, we'd be using <span class="fixed">&gt;&gt;=</span> between two 
+different monads.
+</p>
+
+<h3>Randomness and the state monad</h3>
+
+<p>
+At the beginning of this section, we saw how generating numbers can sometimes be 
+awkward because every random function takes a generator and returns a random 
+number along with a new generator, which must then be used instead of the old 
+one if we want to generate another random number. The state monad makes dealing 
+with this a lot easier.
+</p>
+
+<p>
+The <span class="fixed">random</span> function from <span class="fixed">System.Random</span> 
+has the following type:
+</p>
+
+<pre name="code" class="haskell:hs">random :: (RandomGen g, Random a) =&gt; g -&gt; (a, g)
+</pre>
+
+<p>
+Meaning it takes a random generator and produces a random number along with a 
+new generator. We can see that it's a stateful computation, so we can wrap it in 
+the <span class="fixed">State</span> <span class="fixed">newtype</span> 
+constructor and then use it as a monadic value so that passing of the state gets 
+handled for us:
+</p>
+
+<pre name="code" class="haskell:hs">import System.Random
+import Control.Monad.State
+
+randomSt :: (RandomGen g, Random a) =&gt; State g a
+randomSt = State random
+</pre>
+
+<p>
+So now if we want to throw three coins (<span class="fixed">True</span> is 
+tails, <span class="fixed">False</span> is heads) we just do the following:
+</p>
+
+<pre name="code" class="haskell:hs">import System.Random
+import Control.Monad.State
+
+threeCoins :: State StdGen (Bool,Bool,Bool)
+threeCoins = do
+    a &lt;- randomSt
+    b &lt;- randomSt
+    c &lt;- randomSt
+    return (a,b,c)
+</pre>
+
+<p>
+<span class="fixed">threeCoins</span> is now a stateful computations and after 
+taking an initial random generator, it passes it to the first <span class="fixed">randomSt</span>, which produces a number and a new generator, 
+which gets passed to the next one and so on. We use <span class="fixed">return 
+(a,b,c)</span> to present <span class="fixed">(a,b,c)</span> as the result 
+without changing the most recent generator. Let's give this a go:
+</p>
+
+<pre name="code" class="haskell:hs">ghci&gt; runState threeCoins (mkStdGen 33)
+((True,False,True),680029187 2103410263)
+</pre>
+
+<p>
+Nice. Doing these sort of things that require some state to be kept in between 
+steps just became much less of a hassle!
+</p>
+
+<a name="error"></a>
+<h2>Error error on the wall</h2>
+
+<p>
+We know by now that <span class="fixed">Maybe</span> is used to add a 
+context of possible failure to values. A value can be a 
+</p></div></div></body></html>

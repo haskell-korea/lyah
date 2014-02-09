@@ -1,51 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <!-- saved from url=(0040)http://learnyouahaskell.com/starting-out -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Starting Out - Learn You a Haskell for Great Good!</title>
+    <title>Starting Out - Learn You a Haskell for Great Good!</title>
 
-<!--<base href="http://learnyouahaskell.com/">--><base href=".">
-<style type="text/css">
-	@import url('reset.css');
-	@import url('style.css');
-</style>
-<link rel="shortcut icon" href="http://learnyouahaskell.com/favicon.png" type="image/png">
-        <link rel="prev" href="http://learnyouahaskell.com/introduction">
-        <link rel="next" href="http://learnyouahaskell.com/types-and-typeclasses">
-<link type="text/css" rel="stylesheet" href="./starting-out_files/SyntaxHighlighter.css">
-<link href="http://learnyouahaskell.com/rss.php" rel="alternate" type="application/rss+xml" title="Learn You a Haskell for Great Good! feed">
-<style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style><style type="text/css">.dp-hs .syntax_operators { color: #8ac6f2; }.dp-hs .common_operators { color: #8ac6f2; }</style></head>
-<body class="introcontent">
-<div class="bgwrapper">
-    <div id="content">
-                <div class="footdiv" style="margin-bottom:25px;">
-                <ul>
-                    <li style="text-align:left">
-                                                        <a href="http://learnyouahaskell.com/introduction" class="prevlink">Introduction</a>
-                                            </li>
-                    <li style="text-align:center">
-                        <a href="http://learnyouahaskell.com/chapters">Table of contents</a>
-                    </li>
-                    <li style="text-align:right">
-                                                        <a href="http://learnyouahaskell.com/types-and-typeclasses" class="nxtlink">Types and Typeclasses</a>
-                                            </li>
-                </ul>
-            </div>
-        <h1 style="margin-left:-3px">Starting Out</h1>
-<a name="ready-set-go"></a><h2>Ready, set, go!</h2>
-<p>
-<img src="./starting-out_files/startingout.png" class="right" alt="egg" width="214" height="187">
-Alright, let's get started! If you're the sort of horrible person who doesn't read introductions to things and you skipped it, you might want to read the last section in the introduction anyway because it explains what you need to follow this tutorial and how we're going to load functions. The first thing we're going to do is run ghc's interactive mode and call some function to get a very basic feel for haskell. Open your terminal and type in <span class="fixed">ghci</span>. You will be greeted with something like this.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="type_constructors">GHCi</span><span>,&nbsp;version&nbsp;</span><span class="numbers">6.8</span><span>.</span><span class="numbers">2</span><span>:&nbsp;http://www.haskell.org/ghc/&nbsp;&nbsp;:?&nbsp;for&nbsp;help&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">Loading</span><span>&nbsp;package&nbsp;base&nbsp;...&nbsp;linking&nbsp;...&nbsp;done.&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">Prelude</span><span>&gt;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">GHCi, version 6.8.2: http://www.haskell.org/ghc/  :? for help
+    <!--<base href="http://learnyouahaskell.com/">--><base href=".">
+    <style type="text/css">
+      @import url('reset.css');
+      @import url('style.css');
+    </style>
+    <link rel="shortcut icon" href="http://haskell.or.kr/favicon.png" type="image/png">
+    <link rel="prev" href="http://haskell.or.kr/introduction">
+    <link rel="next" href="http://haskell.or.kr/types-and-typeclasses">
+    <link type="text/css" rel="stylesheet" href="./files/SyntaxHighlighter.css">
+    <body class="introcontent">
+      <div class="bgwrapper">
+	<div id="content">
+          <div class="footdiv" style="margin-bottom:25px;">
+            <ul>
+              <li style="text-align:left">
+                <a href="http://haskell.or.kr/introduction.html" class="prevlink">Introduction</a>
+              </li>
+              <li style="text-align:center">
+                <a href="http://haskell.or.kr/chapters.html">Table of contents</a>
+              </li>
+              <li style="text-align:right">
+                <a href="http://haskell.or.kr/types-and-typeclasses.html" class="nxtlink">Types and Typeclasses</a>
+              </li>
+            </ul>
+          </div>
+          <h1 style="margin-left:-3px">시작하기</h1>
+	  <a name="ready-set-go"></a><h2>준비, 시작!</h2>
+	  <p>
+	    <img src="./files/startingout.png" class="right" alt="egg" width="214" height="187">
+	    좋아요! 시작해 봅시다. 그럴 리 없겠지만 당신이 소개 따위 가볍게 무시하고 넘어가는 무서운 부류의 사람이라면(그래서 소개를 안 읽고 넘어왔다면), 다른건 몰라도 소개 챕터의 마지막 섹션은 지금이라도 읽고 오시기 바랍니다. 거기에 예제들을 따라하기 위해 필요한 것들과 어떻게 함수를 불러오는지 등이 설명되어 있으니까요. 가장 먼저 할 일은 ghc의 대화식(interactive) 모드를 켜고 함수를 좀 호출하면서 하스켈에 대한 기본적인 감을 익히는 것입니다. 우선 터미널을 켜고 <span class="fixed">ghci</span>를 입력하세요. 이런 환영 문구가 나옵니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">GHCi, version 6.8.2: http://www.haskell.org/ghc/  :? for help
 Loading package base ... linking ... done.
 Prelude&gt;</pre>
-<p>
-Congratulations, you're in GHCI! The prompt here is <span class="fixed">Prelude&gt;</span> but because it can get longer when you load stuff into the session, we're going to use <span class="fixed">ghci&gt;</span>. If you want to have the same prompt, just type in <span class="fixed">:set prompt "ghci&gt; "</span>. 
-</p>
-<p>
-Here's some simple arithmetic.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">2</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="numbers">15</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">17</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">49</span><span class="common_operators">&nbsp;*&nbsp;</span><span class="numbers">100</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">4900</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">1892</span><span class="common_operators">&nbsp;-&nbsp;</span><span class="numbers">1472</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">420</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;/&nbsp;</span><span class="numbers">2</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">2.5</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 2 + 15
+	  <p>
+	    이제 GHCI가 실행되었네요, 축하합니다! 일단은 프롬프트가 <span class="fixed">Prelude></span> 라고 나와 있지만, 잉크를 아끼기 위해 좀 더 짧은 ghci> 라는 프롬프트로 변경해서 사용할 것입니다. 꼭 따라할 필요는 없지만 위와 같은 프롬프트를 보고 싶다면 <span class="fixed">:set prompt "ghci> "</span> 라고 입력하면 됩니다.
+	  </p>
+	  <p>
+	    간단한 산수를 좀 해보겠습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 2 + 15
 17
 ghci&gt; 49 * 100
 4900
@@ -54,22 +52,24 @@ ghci&gt; 1892 - 1472
 ghci&gt; 5 / 2
 2.5
 ghci&gt;</pre>
-<p>
-This is pretty self-explanatory. We can also use several operators on one line and all the usual precedence rules are obeyed. We can use parentheses to make the precedence explicit or to change it.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;(</span><span class="numbers">50</span><span class="common_operators">&nbsp;*&nbsp;</span><span class="numbers">100</span><span>)</span><span class="common_operators">&nbsp;-&nbsp;</span><span class="numbers">4999</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">50</span><span class="common_operators">&nbsp;*&nbsp;</span><span class="numbers">100</span><span class="common_operators">&nbsp;-&nbsp;</span><span class="numbers">4999</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">50</span><span class="common_operators">&nbsp;*&nbsp;</span><span>(</span><span class="numbers">100</span><span class="common_operators">&nbsp;-&nbsp;</span><span class="numbers">4999</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>-<span class="numbers">244950</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; (50 * 100) - 4999
+	  <p>
+	    특별한 설명이 필요 없습니다. 한번에 여러 연산자를 쓸 수도 있고, 일반적인 연산자 우선순위도 모두 적용됩니다. 물론 우선순위를 명확히 하거나 바꾸기 위해 괄호도 쓸 수 있습니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; (50 * 100) - 4999
 1
 ghci&gt; 50 * 100 - 4999
 1
 ghci&gt; 50 * (100 - 4999)
 -244950</pre>
-<p>
-Pretty cool, huh? Yeah, I know it's not but bear with me. A little pitfall to watch out for here is negating numbers. If we want to have a negative number, it's always best to surround it with parentheses. Doing <span class="fixed">5 * -3</span> will make GHCI yell at you but doing <span class="fixed">5 * (-3)</span> will work just fine.
-</p>
-<p>
-Boolean algebra is also pretty straightforward. As you probably know, <span class="fixed">&amp;&amp;</span> means a boolean <i>and</i>, <span class="fixed">||</span> means a boolean <i>or</i>. <span class="fixed">not</span> negates a <span class="fixed">True</span> or a <span class="fixed">False</span>.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="type_constructors">True</span><span>&nbsp;&amp;&amp;&nbsp;</span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="type_constructors">True</span><span>&nbsp;&amp;&amp;&nbsp;</span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="type_constructors">False</span><span>&nbsp;||&nbsp;</span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;not&nbsp;</span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;not&nbsp;(</span><span class="type_constructors">True</span><span>&nbsp;&amp;&amp;&nbsp;</span><span class="type_constructors">True</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; True &amp;&amp; False
+	  <p>
+	    흠. 멋지죠? 사실 안 멋진거 저도 압니다. 다만 음수를 입력하실 때는 조금 주의를 기울이셔야 합니다. 하스켈에서 음수를 입력할 때는 무조건 괄호로 감싸는 것이 좋습니다. <span class="fixed">5 * -3</span> 라고 입력하면 GHCI가 짜증을 내지만 <span class="fixed">5 * (-3)</span> 는 잘 동작합니다(이유는 나중에 나옵니다).
+	  </p>
+	  <p>
+	    불리언 연산도 아주 직관적입니다. 아시다시피, <span class="fixed">&&</span> 는 and, <span class="fixed">||</span> 는 or, <span class="fixed">not</span> 은 말 그대로 not 연산입니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; True &amp;&amp; False
 False
 ghci&gt; True &amp;&amp; True
 True
@@ -79,10 +79,11 @@ ghci&gt; not False
 True
 ghci&gt; not (True &amp;&amp; True)
 False</pre>
-<p>
-Testing for equality is done like so.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;==&nbsp;</span><span class="numbers">5</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">1</span><span class="common_operators">&nbsp;==&nbsp;</span><span class="numbers">0</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;/=&nbsp;</span><span class="numbers">5</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;/=&nbsp;</span><span class="numbers">4</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="string">"hello"</span><span class="common_operators">&nbsp;==&nbsp;</span><span class="string">"hello"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 5 == 5
+	  <p>
+	    동일성 검사는 이렇게 합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 5 == 5
 True
 ghci&gt; 1 == 0
 False
@@ -92,153 +93,174 @@ ghci&gt; 5 /= 4
 True
 ghci&gt; "hello" == "hello"
 True </pre>
-<p>
-What about doing <span class="fixed">5 + "llama"</span> or <span class="fixed">5 == True</span>? Well, if we try the first snippet, we get a big scary error message!
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="type_constructors">No</span><span>&nbsp;</span><span class="keyword2">instance</span><span>&nbsp;for&nbsp;(</span><span class="type_constructors">Num</span><span>&nbsp;[</span><span class="type_constructors">Char</span><span>])&nbsp;&nbsp;</span></span></li><li class=""><span>arising&nbsp;from&nbsp;a&nbsp;use&nbsp;<span class="keyword">of</span><span>&nbsp;`+'&nbsp;at&nbsp;&lt;interactive&gt;:</span><span class="numbers">1</span><span>:</span><span class="numbers">0</span><span>-</span><span class="numbers">9</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">Possible</span><span>&nbsp;fix:&nbsp;add&nbsp;an&nbsp;</span><span class="keyword2">instance</span><span>&nbsp;declaration&nbsp;for&nbsp;(</span><span class="type_constructors">Num</span><span>&nbsp;[</span><span class="type_constructors">Char</span><span>])&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">In</span><span>&nbsp;the&nbsp;expression:&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="string">"llama"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">In</span><span>&nbsp;the&nbsp;definition&nbsp;</span><span class="keyword">of</span><span>&nbsp;`it':&nbsp;it</span><span class="common_operators">&nbsp;=&nbsp;</span><span class="numbers">5</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="string">"llama"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">No instance for (Num [Char])
+	  <p>
+	    <span class="fixed">5 + "llama"</span> 나 <span class="fixed">5 == True</span> 를 시도해 볼까요? 첫 번째 코드를 실행해 보면 엄청나게 무서운 에러 메시지가 나옵니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">No instance for (Num [Char])
 arising from a use of `+' at &lt;interactive&gt;:1:0-9
 Possible fix: add an instance declaration for (Num [Char])
 In the expression: 5 + "llama"
 In the definition of `it': it = 5 + "llama" </pre>
-<p>
-Yikes! What GHCI is telling us here is that <span class="fixed">"llama"</span> is not a number and so it doesn't know how to add it to 5. Even if it wasn't <span class="fixed">"llama"</span> but <span class="fixed">"four"</span> or <span class="fixed">"4"</span>, Haskell still wouldn't consider it to be a number. <span class="fixed">+</span> expects its left and right side to be numbers. If we tried to do <span class="fixed">True == 5</span>, GHCI would tell us that the types don't match. Whereas <span class="fixed">+</span> works only on things that are considered numbers, <span class="fixed">==</span> works on any two things that can be compared. But the catch is that they both have to be the same type of thing. You can't compare apples and oranges. We'll take a closer look at types a bit later. Note: you can do <span class="fixed">5 + 4.0</span> because <span class="fixed">5</span> is sneaky and can act like an integer or a floating-point number. <span class="fixed">4.0</span> can't act like an integer, so <span class="fixed">5</span> is the one that has to adapt.
-</p>
-<p>
-You may not have known it but we've been using functions now all along. For instance, <span class="fixed">*</span> is a function that takes two numbers and multiplies them. As you've seen, we call it by sandwiching it between them. This is what we call an <i>infix</i> function. Most functions that aren't used with numbers are <i>prefix</i> functions. Let's take a look at them. 
-</p>
-<p>
-<img src="./starting-out_files/ringring.png" alt="phoen" class="right" width="160" height="161">
-Functions are usually prefix so from now on we won't explicitly state that a function is of the prefix form, we'll just assume it. In most imperative languages functions are called by writing the function name and then writing its parameters in parentheses, usually separated by commas. In Haskell, functions are called by writing the function name, a space and then the parameters, separated by spaces. For a start, we'll try calling one of the most boring functions in Haskell.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;succ&nbsp;</span><span class="numbers">8</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">9</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; succ 8
+	  <p>
+	    으악! 사실 GHCI의 메시지는 별거 아니고 <span class="fixed">"llama"</span> 는 숫자가 아니라서 5랑 어떻게 더할 지 알지 못한다는 뜻입니다. <span class="fixed">"llama"</span> 뿐만 아니라 <span class="fixed">"four"</span> 이거나 <span class="fixed">"4"</span> 도 하스켈은 숫자로 보지 않고 문자열로 취급하기 때문에 동일한 문제가 발생합니다. <span class="fixed">+</span> 는 양 쪽에 숫자가 올 것을 기대하기 때문입니다. 한편 <span class="fixed">True == 5</span> 도 마찬가지로 타입이 맞지 않는다고 오류가 발생합니다. 하지만 <span class="fixed">+</span> 를 쓸 때는 양쪽에 숫자만 올 수 있는 것과 달리 <span class="fixed">==</span> 는 비교할 수 있는 것이면 어떤 것이든 괜찮습니다. 사과와 오렌지를 비교할 수는 없지요. 타입에 대해서는 나중에 좀 더 자세히 알아보겠습니다. Note: <span class="fixed">5 + 4.0</span> 는 문제 없이 동작합니다. <span class="fixed">5</span> 가 꽤나 능글맞은 녀석이라 정수처럼 동작하기도 하고 부동소수점 실수처럼 동작하기도 하기 때문이죠. <span class="fixed">4.0</span> 은 정수처럼 동작할 수 없습니다. 그래서 이 경우 <span class="fixed">5</span> 가 실수처럼 동작합니다.
+	  </p>
+	  <p>
+	    눈치 채셨을지 모르겠지만, 이미 우리는 여러 함수를 사용했습니다. 예를 들어 <span class="fixed">*</span> 는 숫자 두 개를 받아서 곱해주는 함수였습니다. 다만 두 인자 사이에 샌드위치해서 호출했었죠. 이런 함수를 <i>infix</i> 함수라고 부릅니다. 하지만 숫자를 사용하지 않는 대부분의 함수는 <i>prefix</i> 함수입니다. 조금 더 자세히 살펴볼까요?
+	  </p>
+	  <p>
+	    <img src="./files/ringring.png" alt="phoen" class="right" width="160" height="161">
+	    대부분의 함수는 prefix이기 때문에 앞으로는 특별한 언급이 없으면 prefix 형태라고 가정합시다. 대부분의 명령형 언어에서 함수를 호출할 때는 함수 이름을 쓰고 괄호 열고, 인자들을 콤마로 구분해서 하나씩 쓰고, 괄호를 닫는 형태로 쓰게 됩니다. 하지만 하스켈에서는 함수를 호출할 때 함수 이름을 쓰고, 공백으로 띄우고, 인자들을 공백으로 구분해서 하나씩 쓰게 됩니다. 순전히 이해를 쉽게 하기 위해서, 하스켈에서 제일 재미 없는 함수를 한 번 호출해 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; succ 8
 9 </pre>
-<p>
-The <span class="fixed">succ</span> function takes anything that has a defined successor and returns that successor. As you can see, we just separate the function name from the parameter with a space. Calling a function with several parameters is also simple. The functions <span class="fixed">min</span> and <span class="fixed">max</span> take two things that can be put in an order (like numbers!). <span class="fixed">min</span> returns the one that's lesser and <span class="fixed">max</span> returns the one that's greater. See for yourself:
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;min&nbsp;</span><span class="numbers">9</span><span>&nbsp;</span><span class="numbers">10</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">9</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;min&nbsp;</span><span class="numbers">3.4</span><span>&nbsp;</span><span class="numbers">3.2</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">3.2</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;max&nbsp;</span><span class="numbers">100</span><span>&nbsp;</span><span class="numbers">101</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">101</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; min 9 10
+	  <p>
+	    <span class="fixed">succ</span> 함수는 무엇이든 다음 값이 있는 값 하나를 인자로 받아 다음 값을 반환합니다. 보시다시피 함수 이름 뒤에 한 칸 띄고 인자를 썼을 뿐입니다. 인자를 여러개 쓸 때도 비슷합니다. 예를 들어, <span class="fixed">min</span> 함수와 <span class="fixed">max</span> 함수는 순서가 있는 타입의 값 두 개를 받아 <span class="fixed">min</span> 은 둘 중 작은 것, <span class="fixed">max</span> 는 둘 중 큰 것을 반환합니다. 보시죠.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; min 9 10
 9
 ghci&gt; min 3.4 3.2
 3.2
 ghci&gt; max 100 101
 101 </pre>
 
-<p>
-Function application (calling a function by putting a space after it and then typing out the parameters) has the highest precedence of them all. What that means for us is that these two statements are equivalent.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;succ&nbsp;</span><span class="numbers">9</span><span class="common_operators">&nbsp;+&nbsp;</span><span>max&nbsp;</span><span class="numbers">5</span><span>&nbsp;</span><span class="numbers">4</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">16</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;(succ&nbsp;</span><span class="numbers">9</span><span>)</span><span class="common_operators">&nbsp;+&nbsp;</span><span>(max&nbsp;</span><span class="numbers">5</span><span>&nbsp;</span><span class="numbers">4</span><span>)</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">16</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; succ 9 + max 5 4 + 1
+	  <p>
+	    함수 호출(인자를 공백으로 붙여서 함수를 부르는 것)은 가장 높은 우선순위를 갖습니다. 그래서 다음 두 식은 동일한 의미입니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; succ 9 + max 5 4 + 1
 16
 ghci&gt; (succ 9) + (max 5 4) + 1
-16
-</pre>
-<p>
-However, if we wanted to get the successor of the product of numbers 9 and 10, we couldn't write <span class="fixed">succ 9 * 10</span> because that would get the successor of 9, which would then be multiplied by 10. So 100. We'd have to write <span class="fixed">succ (9 * 10)</span> to get 91.
-</p>
-<p>If a function takes two parameters, we can also call it as an infix function by surrounding it with backticks. For instance, the <span class="fixed">div</span> function takes two integers and does integral division between them. Doing <span class="fixed">div 92 10</span> results in a 9. But when we call it like that, there may be some confusion as to which number is doing the division and which one is being divided. So we can call it as an infix function by doing <span class="fixed">92 `div` 10</span> and suddenly it's much clearer. </p>
-<p>Lots of people who come from imperative languages tend to stick to the notion that parentheses should denote function application. For example, in C, you use parentheses to call functions like <span class="fixed">foo()</span>, <span class="fixed">bar(1)</span> or <span class="fixed">baz(3, "haha")</span>. Like we said, spaces are used for function application in Haskell. So those functions in Haskell would be <span class="fixed">foo</span>, <span class="fixed">bar 1</span> and <span class="fixed">baz 3 "haha"</span>. So if you see something like <span class="fixed">bar (bar 3)</span>, it doesn't mean that <span class="fixed">bar</span> is called with <span class="fixed">bar</span> and <span class="fixed">3</span> as parameters. It means that we first call the function <span class="fixed">bar</span> with <span class="fixed">3</span> as the parameter to get some number and then we call <span class="fixed">bar</span> again with that number. In C, that would be something like <span class="fixed">bar(bar(3))</span>.</p>
-<a name="babys-first-functions"></a><h2>Baby's first functions</h2>
-<p>
-In the previous section we got a basic feel for calling functions. Now let's try making our own! Open up your favorite text editor and punch in this function that takes a number and multiplies it by two.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>doubleMe&nbsp;x</span><span class="common_operators">&nbsp;=&nbsp;</span><span>x</span><span class="common_operators">&nbsp;+&nbsp;</span><span>x&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">doubleMe x = x + x</pre>
-<p>
-Functions are defined in a similar way that they are called. The function name is followed by parameters seperated by spaces. But when defining functions, there's a <span class="fixed">=</span> and after that we define what the function does. Save this as <span class="fixed">baby.hs</span> or something. Now navigate to where it's saved and run <span class="fixed">ghci</span> from there. Once inside GHCI, do <span class="fixed">:l baby</span>. Now that our script is loaded, we can play with the function that we defined.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;:l&nbsp;baby&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>&nbsp;</span><span class="keyword">of</span><span>&nbsp;</span><span class="numbers">1</span><span>]&nbsp;</span><span class="type_constructors">Compiling</span><span>&nbsp;</span><span class="type_constructors">Main</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;baby.hs,&nbsp;interpreted&nbsp;)&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">Ok</span><span>,&nbsp;modules&nbsp;loaded:&nbsp;</span><span class="type_constructors">Main</span><span>.&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;doubleMe&nbsp;</span><span class="numbers">9</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="numbers">18</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;doubleMe&nbsp;</span><span class="numbers">8.3</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="numbers">16.6</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :l baby
+16 </pre>
+	  <p>
+	    그래서 9와 10의 곱의 다음 값인 91을 계산하려면 <span class="fixed">succ 9 * 10</span> 가 아니라 <span class="fixed">succ (9 * 10)</span> 라고 입력해야 합니다. <span class="fixed">succ 9 * 10</span> 는 9의 다음 값과 10을 곱한 값, 즉 100을 계산하게 됩니다.
+	  </p>
+	  <p>
+	    함수가 두 개의 인자를 받는다면, 함수를 backtick(`)으로 감싸서 infix 함수로 만들 수 있습니다. 예를 들어 <span class="fixed">div</span> 함수는 두 정수를 받아 정수 나눗셈을 수행 합니다. <span class="fixed">div 92 10</span>의 결과는 9가 되지요. 그러나 위와 같이 표현한다면, 둘 중 어떤 수로 나누고, 어떤 수가 나눠지는 건지 헷갈릴 수도 있습니다. 그래서 <span class="fixed">92 `div` 10</span>처럼 infix 함수로 만들어 훨씬 명확히 보이게 할 수 있습니다.  
+	  </p>
+	  <p>
+	    명령형 언어를 사용하던 분들은 괄호가 함수 호출을 의미 할거라 집착하는 경향이 있습니다. 예를 들어 C언어에서는 <span class="fixed">foo()</span> 나, <span class="fixed">bar(1)</span> 또는 <span class="fixed">baz(3, "haha")</span> 와 같은 형태로 함수를 호출합니다. 전에 말했던 것처럼 하스켈에서는 공백을 사용하지요. 그래서 C언어 예제에서의 함수들이 하스켈에서는  <span class="fixed">foo</span>, <span class="fixed">bar 1</span>, <span class="fixed">baz 3 "haha"</span>와 같은 형태로 사용됩니다. 따라서, <span class="fixed">bar (bar 3)</span>이라는 표현은 <span class="fixed">bar</span>와 <span class="fixed">3</span>이라는 인자로 <span class="fixed">bar</span> 함수를 호출하는 것이 아니라, <span class="fixed">bar</span> 함수를 인자 <span class="fixed">3</span> 으로 호출하여 나온 결과로 다시 <span class="fixed">bar</span> 를 호출하는 의미인 것입니다. C언어에서는 <span class="fixed">bar(bar(3))</span> 같은 형태를 보이겠지요.
+	  </p>
+	  <a name="babys-first-functions"></a><h2>함수 정의하기</h2>
+	  <p>
+	    이전 섹션에서 함수 호출의 기본적인 감을 배웠으니, 이젠 직접 만들어서 해봅시다! 텍스트 편집기를 열고, 숫자를 받아 2배를 시켜주는 아래 함수를 입력해보세요.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">doubleMe x = x + x</pre>
+	  <p>
+	    함수는 호출될 때와 비슷한 방식으로 정의됩니다. 정의할 때에도, 함수 이름 다음에 공백으로 구분된 인자들이 쓰입니다. 다만, 그 다음에 <span class="fixed">=</span> 이 온다는 점이 다릅니다. <span class="fixed">baby.hs</span>로 저장합시다. 다른 파일명도 괜찮습니다. 저장한 파일이 있는 곳으로 이동해서 <span class="fixed">ghci</span>를 실행시켜봅시다. GHCI 안으로 들어오면, <span class="fixed">:l baby</span>를 쳐보세요. 그럼 작성한 스크립트가 로드되고, 파일 안에 선언했던 함수들을 사용할 수 있게 됩니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :l baby
 [1 of 1] Compiling Main             ( baby.hs, interpreted )
 Ok, modules loaded: Main.
 ghci&gt; doubleMe 9
 18
 ghci&gt; doubleMe 8.3
 16.6 </pre>
-<p>
-Because <span class="fixed">+</span> works on integers as well as on floating-point numbers (anything that can be considered a number, really), our function also works on any number. Let's make a function that takes two numbers and multiplies each by two and then adds them together.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>doubleUs&nbsp;x&nbsp;y</span><span class="common_operators">&nbsp;=&nbsp;</span><span>x*</span><span class="numbers">2</span><span class="common_operators">&nbsp;+&nbsp;</span><span>y*</span><span class="numbers">2</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">doubleUs x y = x*2 + y*2 </pre>
-<p>
-Simple. We could have also defined it as <span class="fixed">doubleUs x y = x + x + y + y</span>. Testing it out produces pretty predictable results (remember to append this function to the <span class="fixed">baby.hs</span> file, save it and then do <span class="fixed">:l baby</span> inside GHCI).
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;doubleUs&nbsp;</span><span class="numbers">4</span><span>&nbsp;</span><span class="numbers">9</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">26</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;doubleUs&nbsp;</span><span class="numbers">2.3</span><span>&nbsp;</span><span class="numbers">34.2</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">73.0</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;doubleUs&nbsp;</span><span class="numbers">28</span><span>&nbsp;</span><span class="numbers">88</span><span class="common_operators">&nbsp;+&nbsp;</span><span>doubleMe&nbsp;</span><span class="numbers">123</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">478</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; doubleUs 4 9
+	  <p>
+	    <span class="fixed">+</span>가 정수 또는 부동소수점 실수 등 어떤 종류의 숫자에 대해서든 동작하기 때문에, 이 함수도 어떤 종류의 숫자든 받을 수 있습니다. 이번엔 숫자 두 개를 받아 각각 2를 곱한 후, 더하는 함수를 만들어 볼까요?
+	  </p>
+
+	  <pre name="code" class="haskell: hs" style="display: none;">doubleUs x y = x*2 + y*2 </pre>
+	  <p>
+	    간단하네요. 또는 <span class="fixed">doubleUs x y = x + x + y + y</span> 이런 식으로도 표현 할 수 있습니다. 예상한 결과가 나오는지 확인 해 보세요(<span class="fixed">baby.hs</span>에 이 함수를 추가하고 GHCI에서 <span class="fixed">:l baby</span> 를 입력하여 다시 로드하는 걸 잊지마세요).
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; doubleUs 4 9
 26
 ghci&gt; doubleUs 2.3 34.2
 73.0
 ghci&gt; doubleUs 28 88 + doubleMe 123
-478
-</pre>
-<p>
-As expected, you can call your own functions from other functions that you made. With that in mind, we could redefine <span class="fixed">doubleUs</span> like this:
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>doubleUs&nbsp;x&nbsp;y</span><span class="common_operators">&nbsp;=&nbsp;</span><span>doubleMe&nbsp;x</span><span class="common_operators">&nbsp;+&nbsp;</span><span>doubleMe&nbsp;y&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">doubleUs x y = doubleMe x + doubleMe y </pre>
-<p>
-This is a very simple example of a common pattern you will see throughout Haskell. Making basic functions that are obviously correct and then combining them into more complex functions. This way you also avoid repetition. What if some mathematicians figured out that 2 is actually 3 and you had to change your program? You could just redefine <span class="fixed">doubleMe</span> to be <span class="fixed">x + x + x</span> and since <span class="fixed">doubleUs</span> calls <span class="fixed">doubleMe</span>, it would automatically work in this strange new world where 2 is 3.
-</p>
-<p>Functions in Haskell don't have to be in any particular order, so it doesn't matter if you define <span class="fixed">doubleMe</span> first and then  <span class="fixed">doubleUs</span> or if you do it the other way around.</p>
-<p>Now we're going to make a function that multiplies a number by 2 but only if that number is smaller than or equal to 100 because numbers bigger than 100 are big enough as it is!
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>doubleSmallNumber&nbsp;x</span><span class="common_operators">&nbsp;=&nbsp;</span><span class="keyword">if</span><span>&nbsp;x</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span class="numbers">100</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">then</span><span>&nbsp;x&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;x*</span><span class="numbers">2</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">doubleSmallNumber x = if x &gt; 100
-                        then x
-                        else x*2 </pre>
-<img src="./starting-out_files/baby.png" alt="this is you" class="left" width="140" height="211">
-<p>
-Right here we introduced Haskell's if statement. You're probably familiar with if statements from other languages. The difference between Haskell's if statement and if statements in imperative languages is that the else part is mandatory in Haskell. In imperative languages you can just skip a couple of steps if the condition isn't satisfied but in Haskell every expression and function must return something. We could have also written that if statement in one line but I find this way more readable. Another thing about the if statement in Haskell is that it is an <i>expression</i>. An expression is basically a piece of code that returns a value. <span class="fixed">5</span> is an expression because it returns 5, <span class="fixed">4 + 8</span> is an expression, <span class="fixed">x + y</span> is an expression because it returns the sum of <span class="fixed">x</span> and <span class="fixed">y</span>. Because the else is mandatory, an if statement will always return something and that's why it's an expression. If we wanted to add one to every number that's produced in our previous function, we could have written its body like this.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>doubleSmallNumber'&nbsp;x</span><span class="common_operators">&nbsp;=&nbsp;</span><span>(</span><span class="keyword">if</span><span>&nbsp;x</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span class="numbers">100</span><span>&nbsp;</span><span class="keyword">then</span><span>&nbsp;x&nbsp;</span><span class="keyword">else</span><span>&nbsp;x*</span><span class="numbers">2</span><span>)</span><span class="common_operators">&nbsp;+&nbsp;</span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">doubleSmallNumber' x = (if x &gt; 100 then x else x*2) + 1
-</pre>
-<p>
-Had we omitted the parentheses, it would have added one only if <span class="fixed">x</span> wasn't greater than 100. Note the <span class="fixed">'</span> at the end of the function name. That apostrophe doesn't have any special meaning in Haskell's syntax. It's a valid character to use in a function name. We usually use <span class="fixed">'</span> to either denote a strict version of a function (one that isn't lazy) or a slightly modified version of a function or a variable. Because <span class="fixed">'</span> is a valid character in functions, we can make a function like this.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>conanO'</span><span class="type_constructors">Brien</span><span class="common_operators">&nbsp;=&nbsp;</span><span class="string">"It's&nbsp;a-me,&nbsp;Conan&nbsp;O'Brien!"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">conanO'Brien = "It's a-me, Conan O'Brien!" </pre>
-<p>
-There are two noteworthy things here. The first is that in the function name we didn't capitalize Conan's name. That's because functions can't begin with uppercase letters. We'll see why a bit later. The second thing is that this function doesn't take any parameters. When a function doesn't take any parameters, we usually say it's a <i>definition</i> (or a <i>name</i>). Because we can't change what names (and functions) mean once we've defined them, <span class="fixed">conanO'Brien</span> and the string <span class="fixed">"It's a-me, Conan O'Brien!"</span> can be used interchangeably.
-</p>
-<a name="an-intro-to-lists"></a><h2>An intro to lists</h2>
-<p>
-<img src="./starting-out_files/list.png" alt="BUY A DOG" class="left" width="150" height="103">
-Much like shopping lists in the real world, lists in Haskell are very useful. It's the most used data structure and it can be used in a multitude of different ways to model and solve a whole bunch of problems. Lists are SO awesome. In this section we'll look at the basics of lists, strings (which are lists) and list comprehensions.
-</p>
-<p>
-In Haskell, lists are a <em>homogenous</em> data structure. It stores several elements of the same type. That means that we can have a list of integers or a list of characters but we can't have a list that has a few integers and then a few characters. And now, a list!
-</p>
-<div class="hintbox"><em>Note</em>: We can use the <span class="fixed">let</span> keyword to define a name right in GHCI. Doing <span class="fixed">let a = 1</span> inside GHCI is the equivalent of writing <span class="fixed">a = 1</span> in a script and then loading it. </div>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;lostNumbers</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[</span><span class="numbers">4</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">15</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">23</span><span>,</span><span class="numbers">42</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;lostNumbers&nbsp;&nbsp;</span></span></li><li class="alt"><span>[<span class="numbers">4</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">15</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">23</span><span>,</span><span class="numbers">42</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let lostNumbers = [4,8,15,16,23,42]
+478</pre>
+	  <p>
+	    그리고 한 함수에서 다른 함수를 호출 할 수 있습니다. 그렇다면 <span class="fixed">doubleUs</span>는 아래처럼 다시 선언 할 수도 있겠네요.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">doubleUs x y = doubleMe x + doubleMe y </pre>
+	  <p>
+	    위 예제는 하스켈을 하면서 흔히 볼 수 있는 아주 단순한 패턴 중 하나입니다. 정확한 기본 함수들을 만들고, 그것들을 조합해서 더 복잡한 함수로 만듦으로써, 반복되는 작업을 피할 수 있습니다. 이런 상황은 어떨까요? 알고보니 <span class="fixed">double</span>이 수를 2배 한다는 뜻이 아니라 3배 한다는 뜻이었다면? 이런 경우 <span class="fixed">doubleUs</span>와 <span class="fixed">doubleMe</span>의 동작이 모두 바뀌지만,  <span class="fixed">doubleUs</span>가 <span class="fixed">doubleMe</span>를 이용해서 정의되고 있으니 <span class="fixed">doubleMe</span> 만 <span class="fixed">x + x + x</span> 라고 다시 정의하면 정상적으로 동작 하게 될 것입니다.
+	  </p>
+	  <p>
+	    하스켈에서는 함수를 어떤 순서로 정의하든 상관이 없습니다. 그래서, <span class="fixed">doubleMe</span> 를 먼저 정의하든, <span class="fixed">doubleUs</span> 를 먼저 정의하든 상관 없다는 것이지요.
+	  </p>
+	  <p>
+	    이제 100 이하의 숫자에만 2를 곱해주는 함수를 만들어 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">doubleSmallNumber x = if x &gt; 100
+then x
+else x*2 </pre>
+	  <img src="./files/baby.png" alt="this is you" class="left" width="140" height="211">
+	  <p>
+	    여기서 하스켈의 if 문을 소개하게 되네요. 아마도 다른 언어를 해보셨을테니 이미 if 문에 친숙하실 것 입니다. 다만 하스켈에서의 다른점은, else 문이 필수라는 것이지요. 명령형 언어에서는 조건이 충족되지 않는다면 그 if문을 그냥 넘어갈 수 있지만, 하스켈에서는 모든 문과 함수에서 반드시 뭔가를 돌려주어야 하기 때문입니다. 하스켈의 if문이 갖는 또다른 특징은, if문이 <i>수식(expression)</i>이라는 점입니다. 수식(expression)은 기본적으로 값을 반환하는 코드입니다. <span class="fixed">5</span> 는 5라는 값을 나타내므로 수식이고, <span class="fixed">4+8</span> 도 수식이고, <span class="fixed">x+y</span> 도  <span class="fixed">x</span> 와  <span class="fixed">y</span> 의 합을 반환하는 수식입니다. else가 필수이기 때문에, if문은 언제나 어떤 값이든 반환하게 되고, 그래서 if문이 아니라 if식이 됩니다. 이번엔 앞서 만든 함수에 1을 더하는 함수를 만들어 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">doubleSmallNumber' x = (if x &gt; 100 then x else x*2) + 1</pre>
+	  <p>
+	    Note: 앞의 함수에서는 if문을 여러 줄로 나누어 썼지만 여기서는 한 줄로 적어 보았습니다.
+	  </p>
+	  <p>
+	    만약 여기서 if문을 싸고 있는 괄호를 뺀다면 x가 100 이하일 때만 1이 더해질 것입니다. 여기서 함수 이름 뒤에 <span class="fixed">'</span> 가 붙어 있다는 점에 주목하세요. 이 작은 따옴표는 하스켈 문법에서 아무런 의미가 없습니다. 그저 함수 이름에 쓸 수 있는 평범할 문자일 뿐입니다. 하지만 보통 한 함수의 strict (게으르지 않은) 한 버전이나 조금 수정된 버전을 의미합니다. <span class="fixed">'</span> 문자가 함수 이름에 쓸 수 있는 평범한 문자이기 때문에, 이런 함수도 만들 수 있습니다. 
+	  </p>
+
+	  <pre name="code" class="haskell: hs" style="display: none;">conanO'Brien = "It's a-me, Conan O'Brien!" </pre>
+	  <p>
+	    이 함수 정의에는 두 가지 특징이 있습니다. 첫번째는 함수 이름의 첫 글자를 소문자로 썼다는 점입니다. 함수 이름을 대문자로 시작할 수 없기 때문인데, 그 이유는 조금 뒤에서 살펴보겠습니다. 두번째 특징은 이 함수는 인자를 전혀 받지 않는다는 점입니다. 인자를 받지 않는 함수는 보통 정의(definition) 혹은 이름(name)이라고 부릅니다. 한 번 정의된 함수나 이름(name)은 절대로 중간에 값이 바뀌지 않기 때문에 <span class="fixed">conanO'Brien</span> 라는 이름과 <span class="fixed">"It's a-me, Conan O'Brien!"</span> 라는 값은 동일한 의미가 됩니다.
+	  </p>
+	  <a name="an-intro-to-lists"></a><h2>리스트를 소개합니다</h2>
+	  <p>
+	    <img src="./files/list.png" alt="BUY A DOG" class="left" width="150" height="103">
+	    현실에서의 쇼핑 리스트처럼, 하스켈의 리스트는 대단히 유용합니다. 리스트는 하스켈에서 가장 많이 쓰이는 자료 구조이고, 대단히 다양한 방법으로 사용될 수 있기 때문에 대단히 많은 문제를 모델링하고 해결 할 때 유용하게 쓸 수 있습니다. 리스트는 정말 멋집니다. 이 섹션에서는 리스트의 기본과 리스트의 한 종류인 문자열, list comprehension을 알아볼 것입니다. 
+	  </p>
+	  <p>
+	    하스켈의 리스트는 동일한 타입의 값 여러 개를 저장하며, 동일한 타입의 값만 가질 수 있다 하여 <em>동질성(homogenous)</em> 자료 구조라고 불립니다. 그래서 정수들의 리스트나 문자들의 리스트는 쓸 수 있지만 정수와 문자가 섞인 리스트는 만들 수 없습니다.
+	  </p>
+	  <div class="hintbox">
+	    <em>Note:</em> GHCI에서 let 키워드를 사용하여 새로운 정의를 만들 수 있습니다. GHCI에서 <span class="fixed">let a = 1</span> 라고 쓰면 스크립트에 <span class="fixed">a = 1</span> 라고 쓰고 그 스크립트를 로드한 것과 동일한 효과를 냅니다.
+	  </div>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let lostNumbers = [4,8,15,16,23,42]
 ghci&gt; lostNumbers
-[4,8,15,16,23,42]
-</pre>
-<p>
-As you can see, lists are denoted by square brackets and the values in the lists are separated by commas. If we tried a list like <span class="fixed">[1,2,'a',3,'b','c',4]</span>, Haskell would complain that characters (which are, by the way, denoted as a character between single quotes) are not numbers. Speaking of characters, strings are just lists of characters. <span class="fixed">"hello"</span> is just syntactic sugar for <span class="fixed">['h','e','l','l','o']</span>. Because strings are lists, we can use list functions on them, which is really handy. 
-</p>
-<p>A common task is putting two lists together. This is done by using the <span class="fixed">++</span> operator. </p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]</span><span class="common_operators">&nbsp;++&nbsp;</span><span>[</span><span class="numbers">9</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>,</span><span class="numbers">12</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>,</span><span class="numbers">12</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="string">"hello"</span><span class="common_operators">&nbsp;++&nbsp;</span><span class="string">"&nbsp;"</span><span class="common_operators">&nbsp;++&nbsp;</span><span class="string">"world"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"hello&nbsp;world"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="char">'w'</span><span>,</span><span class="char">'o'</span><span>]</span><span class="common_operators">&nbsp;++&nbsp;</span><span>[</span><span class="char">'o'</span><span>,</span><span class="char">'t'</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"woot"</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [1,2,3,4] ++ [9,10,11,12]
+[4,8,15,16,23,42]</pre>
+	  <p>
+	    이처럼 리스트는 대괄호로 둘러 싸여 콤마로 구분된 일련의 값으로 표현됩니다. <span class="fixed">[1,2,'a',3,'b','c',4]</span> 같은 것들을 하려고 하면, 하스켈은 문자들은 정수가 아니라고 불평할 것입니다(문자도 실제로는 숫자이지만 여기서는 작은 따옴표로 묶여 있기 때문입니다). 문자열은 문자의 리스트에 불과합니다. <span class="fixed">"hello"</span> 는 그냥 <span class="fixed">['h','e','l','l','o']</span>를 보기 좋게 적은 것에 지나지 않죠. 문자열이 리스트이기 때문에, 리스트를 조작하는 함수를 문자열에 그대로 적용해서 아주 편리하게 사용할 수 있습니다.
+	  </p>
+	  <p>
+	    두 개의 리스트를 이어 붙이는 일은 아주 빈번하게 일어납니다. 하스켈에서 두 개의 리스트를 이어 붙이려면 <span class="fixed">++</span> 연산자를 이용합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [1,2,3,4] ++ [9,10,11,12]
 [1,2,3,4,9,10,11,12]
 ghci&gt; "hello" ++ " " ++ "world"
 "hello world"
 ghci&gt; ['w','o'] ++ ['o','t']
-"woot"
-</pre>
-<p>
-Watch out when repeatedly using the <span class="fixed">++</span> operator on long strings. When you put together two lists (even if you append a singleton list to a list, for instance: <span class="fixed">[1,2,3] ++ [4]</span>), internally, Haskell has to walk through the whole list on the left side of <span class="fixed">++</span>. That's not a problem when dealing with lists that aren't too big. But putting something at the end of a list that's fifty million entries long is going to take a while. However, putting something at the beginning of a list using the <span class="fixed">:</span> operator (also called the cons operator) is instantaneous.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="char">'A'</span><span>:</span><span class="string">"&nbsp;SMALL&nbsp;CAT"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"A&nbsp;SMALL&nbsp;CAT"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">5</span><span>:[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">5</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 'A':" SMALL CAT"
+"woot"</pre>
+	  <p>
+	    <span class="fixed">++</span> 연산자를 이용해 긴 문자열들을 반복적으로 이어 붙일 때는 주의하세요. 두 개의 리스트를 이어 붙일 때(<span class="fixed">[1,2,3] ++ [4]</span> 와 같이 내용이 값 하나뿐인 경우도 포함) 하스켈은 왼쪽 리스트의 모든 값을 모두 순회합니다. 리스트가 길지 않을 때는 이런 특징이 별 문제가 되지 않지만, 5000만개쯤 값이 들어있는 리스트의 마지막에 값을 이어 붙이려면 시간이 좀 걸릴 겁니다. 하지만 반대로 리스트의 맨 앞에 새로운 값을 이어 붙이는 <span class="fixed">:</span> 연산자는 어떤 경우에도 시간이 거의 걸리지 않습니다. 이 연산자는 cons 연산자라고 불리기도 합니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 'A':" SMALL CAT"
 "A SMALL CAT"
 ghci&gt; 5:[1,2,3,4,5]
-[5,1,2,3,4,5]
-</pre>
-<p>
-Notice how <span class="fixed">:</span> takes a number and a list of numbers or a character and a list of characters, whereas <span class="fixed">++</span> takes two lists. Even if you're adding an element to the end of a list with <span class="fixed">++</span>, you have to surround it with square brackets so it becomes a list. </p>
-<p>
-<span class="fixed">[1,2,3]</span> is actually just syntactic sugar for <span class="fixed">1:2:3:[]</span>. <span class="fixed">[]</span> is an empty list. If we prepend <span class="fixed">3</span> to it, it becomes <span class="fixed">[3]</span>. If we prepend <span class="fixed">2</span> to that, it becomes <span class="fixed">[2,3]</span>, and so on.
-</p>
-<p class="hintbox"><em>Note:</em> <span class="fixed">[]</span>, <span class="fixed">[[]]</span> and<span class="fixed">[[],[],[]]</span> are all different things. The first one is an empty list, the seconds one is a list that contains one empty list, the third one is a list that contains three empty lists.</p>
-<p>If you want to get an element out of a list by index, use <span class="fixed">!!</span>. The indices start at 0.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="string">"Steve&nbsp;Buscemi"</span><span>&nbsp;!!&nbsp;</span><span class="numbers">6</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="char">'B'</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">9.4</span><span>,</span><span class="numbers">33.2</span><span>,</span><span class="numbers">96.2</span><span>,</span><span class="numbers">11.2</span><span>,</span><span class="numbers">23.25</span><span>]&nbsp;!!&nbsp;</span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">33.2</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; "Steve Buscemi" !! 6
+[5,1,2,3,4,5]</pre>
+	  <p>
+	    <span class="fixed">:</span> 연산자는 숫자와 숫자 리스트 혹은 문자와 문자 리스트를 받아서 새로운 리스트를 반환하고, <span class="fixed">++</span> 는 두 개의 리스트를 받는다는 점을 유의하세요. 그래서 <span class="fixed">++</span> 연산자를 이용하는 경우에는, 값 하나만 추가하는 경우라도 그 값을 대괄호로 감싸서 리스트로 만들어 주어야 한다는 점을 잊지 마세요.
+	  </p>
+	  <p>
+	    사실 <span class="fixed">[1,2,3]</span> 는 <span class="fixed">1:2:3:[]</span>를 간단하게 쓴 형태입니다. <span class="fixed">[]</span> 는 빈 리스트이므로, 빈 리스트 앞에 <span class="fixed">3</span> 을 붙이면 <span class="fixed">[3]</span> 가 되고, 여기에 <span class="fixed">2</span> 를 붙이면 <span class="fixed">[2,3]</span> 이 되는 식입니다.
+	  </p>
+	  <p class="hintbox">
+	    <em>Note:</em> <span class="fixed">[]</span>, <span class="fixed">[[]]</span>, <span class="fixed">[[],[],[]]</span> 는 모두 다 다른 것들입니다. 첫번째 리스트는 그냥 빈 리스트이고, 두번째 리스트는 빈 리스트 하나를 값으로 가진 리스트이고, 세번째 리스트는 세 개의 빈 리스트를 값으로 가진 리스트입니다.
+	  </p>
+	  <p>
+	    리스트에서 특정 위치의 값을 얻어오려면 <span class="fixed">!!</span> 연산자를 이용합니다. 리스트의 인덱스는 0부터 시작합니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; "Steve Buscemi" !! 6
 'B'
 ghci&gt; [9.4,33.2,96.2,11.2,23.25] !! 1
-33.2
-</pre>
-<p>But if you try to get the sixth element from a list that only has four elements, you'll get an error so be careful!</p>
-<p>
-Lists can also contain lists. They can also contain lists that contain lists that contain lists …
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;b</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">5</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;b&nbsp;&nbsp;</span></span></li><li class="alt"><span>[[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">5</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;b</span><span class="common_operators">&nbsp;++&nbsp;</span><span>[[</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>]]&nbsp;&nbsp;</span></span></li><li class="alt"><span>[[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">5</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">1</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>]:b&nbsp;&nbsp;</span></span></li><li class="alt"><span>[[<span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">5</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">3</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;b&nbsp;!!&nbsp;</span><span class="numbers">2</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let b = [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]
+33.2</pre>
+	  <p>
+	    길이가 4인 리스트의 6번째 값을 얻어오는 등, 리스트의 길이를 넘어서는 위치의 값을 얻어오려고 하는 경우는 오류가 발생하니 주의하세요.
+	  </p>
+	  <p>
+	    리스트는 리스트를 값으로 가질 수 있습니다. 실은 리스트의 리스트 뿐만 아니라 리스트의 리스트의 리스트의 리스트의 리스트의 리스트 같은 것도 만들 수 있습니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let b = [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]
 ghci&gt; b
 [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]
 ghci&gt; b ++ [[1,1,1,1]]
@@ -247,9 +269,14 @@ ghci&gt; [6,6,6]:b
 [[6,6,6],[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]
 ghci&gt; b !! 2
 [1,2,2,3,4] </pre>
-<p>The lists within a list can be of different lengths but they can't be of different types. Just like you can't have a list that has some characters and some numbers, you can't have a list that has some lists of characters and some lists of numbers.</p>
-<p>Lists can be compared if the stuff they contain can be compared. When using <span class="fixed">&lt;</span>, <span class="fixed">&lt;=</span>, <span class="fixed">&gt;</span> and <span class="fixed">&gt;=</span> to compare lists, they are compared in lexicographical order. First the heads are compared. If they are equal then the second elements are compared, etc.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span>[</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">0</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span>[</span><span class="numbers">2</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">100</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>]</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span>[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>]</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span>[</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>]</span><span class="common_operators">&nbsp;==&nbsp;</span><span>[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [3,2,1] &gt; [2,1,0]
+	  <p>
+	    한 리스트의 값으로 포함되는 리스트들은 서로 길이가 다를 수는 있습니다. 하지만 타입이 달라서는 안됩니다. 숫자와 문자가 섞인 리스트를 만들 수 없는 것처럼, 숫자 리스트와 문자 리스트가 섞인 리스트는 만들 수 없습니다.
+	  </p>
+	  <p>
+	    <span class="fixed"><</span>, <span class="fixed"><=</span>, <span class="fixed">></span>, <span class="fixed">>=</span> 를 이용해서 두 리스트를 비교하면, 사전순으로 두 리스트를 비교한 결과를 반환합니다. 즉, 첫번째 값을 비교하고, 두 값이 다르지 않으면 다음 값을, 다음 값도 다르지 않으면 그 다음 값을 비교해서 작은 값이 먼저 등장하는 리스트가 작은 리스트로 판별되는 방식입니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [3,2,1] &gt; [2,1,0]
 True
 ghci&gt; [3,2,1] &gt; [2,10,100]
 True
@@ -258,43 +285,64 @@ True
 ghci&gt; [3,4,2] &gt; [2,4]
 True
 ghci&gt; [3,4,2] == [3,4,2]
-True
-</pre>
-<p>
-What else can you do with lists? Here are some basic functions that operate on lists.
-</p>
-<p><span class="label function">head</span> takes a list and returns its head. The head of a list is basically its first element.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;head&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">5</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; head [5,4,3,2,1]
+True</pre>
+	  <p>
+	    리스트를 조작하는 함수는 또 무엇이 있을까요? 이제부터 리스트를 조작하는 기본 함수들을 알아보겠습니다.
+	  </p>
+	  <p><span class="label function">head</span> 함수는 리스트를 받아 받은 리스트의 머리(head)를 반환합니다. 머리란 리스트의 첫번째 값을 의미합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; head [5,4,3,2,1]
 5 </pre>
-<p><span class="label function">tail</span> takes a list and returns its tail. In other words, it chops off a list's head.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;tail&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; tail [5,4,3,2,1]
+	  <p>
+	    <span class="label function">tail</span> 함수는 리스트를 받아 리스트의 머리를 제외한 리스트, 즉 리스트의 꼬리(tail)를 반환합니다. 받은 리스트에서 머리를 떼어낸 리스트를 반환한다고 할 수도 있습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; tail [5,4,3,2,1]
 [4,3,2,1] </pre>
-<p><span class="label function">last</span> takes a list and returns its last element.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;last&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">1</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; last [5,4,3,2,1]
+	  <p>
+	    <span class="label function">last</span> 함수는 리스트를 받아 리스트의 마지막 값을 반환합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; last [5,4,3,2,1]
 1 </pre>
-<p><span class="label function">init</span> takes a list and returns everything except its last element.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;init&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; init [5,4,3,2,1]
+	  <p>
+	    <span class="label function">init</span> 함수는 리스트를 받아 리스트의 마지막 값을 제외한 리스트를 반환합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; init [5,4,3,2,1]
 [5,4,3,2] </pre>
-<p>If we think of a list as a monster, here's what's what.</p>
-<img src="./starting-out_files/listmonster.png" alt="list monster" class="center" width="580" height="290">
-<p>But what happens if we try to get the head of an empty list?</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;head&nbsp;[]&nbsp;&nbsp;</span></span></li><li class=""><span>***&nbsp;<span class="type_constructors">Exception</span><span>:&nbsp;</span><span class="type_constructors">Prelude</span><span>.head:&nbsp;empty&nbsp;list&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; head []
+	  <p>
+	    리스트를 괴물에 비유하자면 이런 모양에 가깝습니다.
+	  </p>
+	  <img src="./files/listmonster.png" alt="list monster" class="center" width="580" height="290">
+	  <p>
+	    그런데 빈 리스트의 머리를 얻어오려고 하면 어떻게 될까요?
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; head []
 *** Exception: Prelude.head: empty list</pre>
-<p>Oh my! It all blows up in our face! If there's no monster, it doesn't have a head. When using <span class="fixed">head</span>, <span class="fixed">tail</span>, <span class="fixed">last</span> and <span class="fixed">init</span>, be careful not to use them on empty lists. This error cannot be caught at compile time so it's always good practice to take precautions against accidentally telling Haskell to give you some elements from an empty list.
-</p><p><span class="label function">length</span> takes a list and returns its length, obviously.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;length&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">5</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; length [5,4,3,2,1]
+	  <p>
+	    헐! 괴물이 없으면 괴물 머리(head)도 없습니다. 그러니까 <span class="fixed">head</span>, <span class="fixed">tail</span>, <span class="fixed">last</span>, <span class="fixed">init</span> 와 같은 함수를 사용할 때는 빈 리스트를 넘겨주지 않도록 주의하세요. 이 오류는 컴파일시에는 나오지 않으므로 실수라도 이런 함수들에 빈 리스트를 넘겨주지 않도록 언제나 예방책을 만들어 두는 것이 좋습니다.
+	  </p>
+	  <p>
+	    <span class="label function">length</span> 함수는 리스트를 받아 리스트의 길이를 반환합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; length [5,4,3,2,1]
 5</pre>
-<p><span class="label function">null</span> checks if a list is empty. If it is, it returns <span class="fixed">True</span>, otherwise it returns <span class="fixed">False</span>. Use this function instead of <span class="fixed">xs == []</span> (if you have a list called <span class="fixed">xs</span>)</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;null&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;null&nbsp;[]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; null [1,2,3]
+	  <p>
+	    <span class="label function">null</span> 함수는 리스트를 받아 받은 리스트가 비어있는지 확인합니다. 리스트가 비어 있으면 <span class="fixed">True</span>, 그렇지 않으면 <span class="fixed">False</span> 가 반환될 것입니다. <span class="fixed">xs</span> 라는 리스트가 비어있는지 확인할 때 <span class="fixed">xs == []</span> 대신 <span class="fixed">null xs</span> 를 사용할 수 있습니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; null [1,2,3]
 False
 ghci&gt; null []
 True</pre>
-<p><span class="label function">reverse</span> reverses a list.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;reverse&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; reverse [5,4,3,2,1]
+	  <p><span class="label function">reverse</span> 함수는 리스트를 받아 순서를 반대로 뒤집은 리스트를 반환합니다.</p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; reverse [5,4,3,2,1]
 [1,2,3,4,5]</pre>
-<p><span class="label function">take</span> takes number and a list. It extracts that many elements from the beginning of the list. Watch.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">3</span><span>&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">3</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">1</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">3</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">3</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">5</span><span>&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">0</span><span>&nbsp;[</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[]&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 3 [5,4,3,2,1]
+	  <p><span class="label function">take</span> 함수는 숫자와 리스트를 받습니다. 그리고 리스트의 앞에서부터, 받은 숫자만큼의 개수를 취한 리스트를 반환합니다.</p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 3 [5,4,3,2,1]
 [5,4,3]
 ghci&gt; take 1 [3,9,3]
 [3]
@@ -302,209 +350,284 @@ ghci&gt; take 5 [1,2]
 [1,2]
 ghci&gt; take 0 [6,6,6]
 []</pre>
-<p>See how if we try to take more elements than there are in the list, it just returns the list. If we try to take 0 elements, we get an empty list.</p>
-<p><span class="label function">drop</span> works in a similar way, only it drops the number of elements from the beginning of a list.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;drop&nbsp;</span><span class="numbers">3</span><span>&nbsp;[</span><span class="numbers">8</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;drop&nbsp;</span><span class="numbers">0</span><span>&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;drop&nbsp;</span><span class="numbers">100</span><span>&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[]&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; drop 3 [8,4,2,1,5,6]
+	  <p>
+	    리스트의 길이보다 큰 숫자를 넘겨 주는 경우에도 오류 없이 받은 리스트를 그대로 반환합니다. 숫자가 0이면 빈 리스트를 반환합니다.
+	  </p>
+	  <p><span class="label function">drop</span> 함수는 숫자와 리스트를 받아 받은 리스트의 앞에서부터 받은 숫자만큼의 개수를 덜어낸 리스트를 반환합니다.</p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; drop 3 [8,4,2,1,5,6]
 [1,5,6]
 ghci&gt; drop 0 [1,2,3,4]
 [1,2,3,4]
 ghci&gt; drop 100 [1,2,3,4]
 [] </pre>
-<p><span class="label function">maximum</span> takes a list of stuff that can be put in some kind of order and returns the biggest element.</p><p> <span class="label function">minimum</span> returns the smallest.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;minimum&nbsp;[</span><span class="numbers">8</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">1</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;maximum&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">9</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; minimum [8,4,2,1,5,6]
+	  <p><span class="label function">maximum</span> 함수는 순서가 있는 값들로 구성된 리스트를 받아 그 중 가장 큰 값을 반환합니다.
+	  </p>
+	  <p> <span class="label function">minimum</span> 함수는 가장 작은 값을 반환합니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; minimum [8,4,2,1,5,6]
 1
 ghci&gt; maximum [1,9,2,3,4]
 9 </pre>
-<p><span class="label function">sum</span> takes a list of numbers and returns their sum.</p><p><span class="label function">product</span> takes a list of numbers and returns their product.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;sum&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">7</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">31</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;product&nbsp;[</span><span class="numbers">6</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">24</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;product&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">7</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">0</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">0</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; sum [5,2,1,6,3,2,5,7]
+	  <p><span class="label function">sum</span> 함수는 숫자 리스트를 받아 리스트에 포함된 값들의 총합을 반환합니다.
+	  </p>
+	  <p><span class="label function">product</span> 함수는 숫자 리스트를 받아 리스트에 포함된 값들을 모두 곱한 값을 반환합니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; sum [5,2,1,6,3,2,5,7]
 31
 ghci&gt; product [6,2,1,2]
 24
 ghci&gt; product [1,2,5,6,7,9,2,0]
 0 </pre>
-<p><span class="label function">elem</span> takes a thing and a list of things and tells us if that thing is an element of the list. It's usually called as an infix function because it's easier to read that way.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">4</span><span>&nbsp;</span><span class="common_operators">`elem`</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">True</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="numbers">10</span><span>&nbsp;</span><span class="common_operators">`elem`</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 4 `elem` [3,4,5,6]
+	  <p><span class="label function">elem</span> 함수는 값과 리스트를 받아 리스트에 값이 포함되어 있는지 확인하여 반환합니다. 이 함수는 가독성을 위해 주로 infix 형태로 사용됩니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 4 `elem` [3,4,5,6]
 True
 ghci&gt; 10 `elem` [3,4,5,6]
-False
-</pre>
-<p>Those were a few basic functions that operate on lists. We'll take a look at more list functions <a href="http://learnyouahaskell.com/modules#data-list">later</a></p>
-<a name="texas-ranges"></a><h2>Texas ranges</h2>
-<p>
-<img src="./starting-out_files/cowboy.png" alt="draw" class="right" width="200" height="258">
-What if we want a list of all numbers between 1 and 20? Sure, we could just type them all out but obviously that's not a solution for gentlemen who demand excellence from their programming languages. Instead, we'll use ranges. Ranges are a way of making lists that are arithmetic sequences of elements that can be enumerated. Numbers can be enumerated. One, two, three, four, etc. Characters can also be enumerated. The alphabet is an enumeration of characters from A to Z. Names can't be enumerated. What comes after "John"? I don't know.
-</p>
-<p>To make a list containing all the natural numbers from 1 to 20, you just write <span class="fixed">[1..20]</span>. That is the equivalent of writing <span class="fixed">[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]</span> and there's no difference between writing one or the other except that writing out long enumeration sequences manually is stupid.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">1</span><span>..</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">7</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>,</span><span class="numbers">12</span><span>,</span><span class="numbers">13</span><span>,</span><span class="numbers">14</span><span>,</span><span class="numbers">15</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">17</span><span>,</span><span class="numbers">18</span><span>,</span><span class="numbers">19</span><span>,</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="char">'a'</span><span>..</span><span class="char">'z'</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"abcdefghijklmnopqrstuvwxyz"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="char">'K'</span><span>..</span><span class="char">'Z'</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"KLMNOPQRSTUVWXYZ"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [1..20]
+False</pre>
+	  <p>
+	    이상 리스트와 관련된 기본적인 함수 몇 개를 살펴보았습니다. <a href="http://learnyouahaskell.com/modules#data-list">추후</a>에 리스트와 관련된 더 복잡한 함수들을 다루게 될 것입니다.
+	  </p>
+	  <a name="texas-ranges"></a><h2>텍사스 &quot;레인지&quot;스</h2>
+	  <p>
+	    <img src="./files/cowboy.png" alt="draw" class="right" width="200" height="258">
+	    1 부터 20 사이에 포함된 모든 숫자들의 리스트를 만들려면 어떻게 해야 할까요? 물론 그냥 1 부터 20 까지의 숫자를 전부 다 나열할 수도 있겠지만 프로그래밍 언어를 능숙하게 쓰고자 하는 신사에겐 너무 야만적인 일입니다. 그러니 우리는 범위(range) 기능을 이용합시다. 범위는 열거 가능한(enumerable) 값들로 이루어진 arithmetic sequence를 만드는 방법입니다. 숫자는 하나, 둘, 셋, 넷, 처럼 열거가 가능합니다. 문자도 가능합니다. 누구나 A부터 Z까지 순서대로 읽을 수 있습니다. 하지만 이름은 열거가 불가능합니다. “준수” 다음에, 혹은 그 앞에 오는 이름은 무엇이 되어야 할까요? 저는 모르겠습니다.
+	  </p>
+	  <p>1 부터 20 사이의 모든 자연수를 포함하는 리스트를 만들려면 그냥 <span class="fixed">[1..20]</span> 라고 쓰면 됩니다. 그러면 <span class="fixed">[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]</span> 라고 쓴 것과 완전히 똑같은 효과가 납니다. 그러니 저 숫자를 전부 입력하는 건 바보짓이죠.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [1..20]
 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 ghci&gt; ['a'..'z']
 "abcdefghijklmnopqrstuvwxyz"
 ghci&gt; ['K'..'Z']
 "KLMNOPQRSTUVWXYZ" </pre>
-<p>
-Ranges are cool because you can also specify a step. What if we want all even numbers between 1 and 20? Or every third number between 1 and 20?
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>..</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">12</span><span>,</span><span class="numbers">14</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">18</span><span>,</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">3</span><span>,</span><span class="numbers">6</span><span>..</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">3</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">9</span><span>,</span><span class="numbers">12</span><span>,</span><span class="numbers">15</span><span>,</span><span class="numbers">18</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [2,4..20]
+	  <p>
+	    범위를 지정할 때 차이(step)도 지정할 수 있습니다. 1 부터 20 사이의 모든 짝수를 포함하는 리스트를 쓰려면 어떻게 할까요? 혹은 1 부터 20 사이의 모든 3의 배수 리스트는 어떻게 쓸까요?
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [2,4..20]
 [2,4,6,8,10,12,14,16,18,20]
 ghci&gt; [3,6..20]
 [3,6,9,12,15,18] </pre>
-<p>It's simply a matter of separating the first two elements with a comma and then specifying what the upper limit is. While pretty smart, ranges with steps aren't as smart as some people expect them to be. You can't do <span class="fixed">[1,2,4,8,16..100]</span> and expect to get all the powers of 2. Firstly because you can only specify one step. And secondly because some sequences that aren't arithmetic are ambiguous if given only by a few of their first terms.
-</p>
-<p>To make a list with all the numbers from 20 to 1, you can't just do <span class="fixed">[20..1]</span>, you have to do <span class="fixed">[20,19..1]</span>.</p>
-<p>Watch out when using floating point numbers in ranges! Because they are not completely precise (by definition), their use in ranges can yield some pretty funky results.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[</span><span class="numbers">0.1</span><span>,&nbsp;</span><span class="numbers">0.3</span><span>&nbsp;..&nbsp;</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">0.1</span><span>,</span><span class="numbers">0.3</span><span>,</span><span class="numbers">0.5</span><span>,</span><span class="numbers">0.7</span><span>,</span><span class="numbers">0.8999999999999999</span><span>,</span><span class="numbers">1.0999999999999999</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [0.1, 0.3 .. 1]
-[0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]
-</pre>
-<p>My advice is not to use them in list ranges.</p>
-<p>
-You can also use ranges to make infinite lists by just not specifying an upper limit. Later we'll go into more detail on infinite lists. For now, let's examine how you would get the first 24 multiples of 13. Sure, you could do <span class="fixed">[13,26..24*13]</span>. But there's a better way: <span class="fixed">take 24 [13,26..]</span>. Because Haskell is lazy, it won't try to evaluate the infinite list immediately because it would never finish. It'll wait to see what you want to get out of that infinite lists. And here it sees you just want the first 24 elements and it gladly obliges.
-</p>
-<p>A handful of functions that produce infinite lists:</p>
-<p><span class="label function">cycle</span> takes a list and cycles it into an infinite list. If you just try to display the result, it will go on forever so you have to slice it off somewhere.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">10</span><span>&nbsp;(cycle&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>])&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">1</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">12</span><span>&nbsp;(cycle&nbsp;</span><span class="string">"LOL&nbsp;"</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"LOL&nbsp;LOL&nbsp;LOL&nbsp;"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 10 (cycle [1,2,3])
+	  <p>
+	    단순히 원하는 리스트의 처음 두 값을 콤마로 구분해서 쓰고, 상한값(upper limit)을 입력하면 됩니다. 기능은 나름대로 쓸만하기는 하지만, 너무 많은 걸 기대하지는 마세요. 2의 제곱수들의 리스트를 계산하고 싶다고 <span class="fixed">[1,2,4,8,16..100]</span> 라고 써도 하스켈은 무슨 의미인지 알지 못합니다. 우선은 차이를 하나만 지정할 수 있기 때문이고, 처음 몇 개의 값만으로는 범위의 산술적 의미를 정확히 파악할 수 없기 때문입니다.
+	  </p>
+	  <p>
+	    20 부터 1 까지의 숫자를 가진 리스트를 만들려면 <span class="fixed">[20..1]</span> 라고 하면 안되고. <span class="fixed">[20,19..1]</span> 라고 써주어야 합니다.
+	  </p>
+	  <p>
+	    실수를 범위에서 이용할 때는 특히 더 주의하셔야 합니다. 부동 소수점은 정의상 완전히 정확한 값을 갖지 않기 때문에 범위에서 이용하면 끔찍한 결과가 종종 발생하기 때문입니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [0.1, 0.3 .. 1]
+[0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]</pre>
+	  <p>
+	    저는 이런 식으로 쓰지 마시기를 추천합니다.
+	  </p>
+	  <p>
+	    재미있게도 하스켈에서는 상한값(upper limit)을 지정하지 않고 무한한 리스트를 나타내는 범위를 만들 수 있습니다. 무한한 리스트에 대해서는 나중에 다시 다루기로 하고, 간단한 예를 한 가지만 들어보겠습니다. 13의 배수들을 작은 것부터 24개 얻어오고 싶다면 앞서 살펴본 범위 기능을 이용해 <span class="fixed">[13,26..24*13]</span> 라고 쓸 수도 있지만 무한한 리스트를 이용해서 <span class="fixed">take 24 [13,26..]</span> 라고 더 멋지게 쓸 수도 있습니다. 이것이 가능한 것은 하스켈의 게으른 특성 때문에 무한한 리스트를 당장 계산해서 무한 루프에 빠지는 일이 생기지 않기 때문입니다. 게으른 하스켈은 무한한 리스트에서 정말로 필요한 값만 계산하려고 하고, 이 경우에는 무한한 리스트의 첫 24개만 필요했던 것입니다.
+	  </p>
+	  <p>
+	    무한한 리스트를 만들어내는 편리한 함수 몇 개만 살펴보겠습니다.
+	  </p>
+	  <p><span class="label function">cycle</span> 함수는 리스트 하나를 받아 받은 리스트를 무한히 반복하는 무한한 리스트를 반환합니다. 무한한 리스트를 반환하기 때문에 이 함수의 실행 결과를 그냥 출력하려고 하면 강제로 멈추기 전까지 계속 출력됩니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 10 (cycle [1,2,3])
 [1,2,3,1,2,3,1,2,3,1]
 ghci&gt; take 12 (cycle "LOL ")
 "LOL LOL LOL " </pre>
-<p><span class="label function">repeat</span> takes an element and produces an infinite list of just that element. It's like cycling a list with only one element.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;take&nbsp;</span><span class="numbers">10</span><span>&nbsp;(repeat&nbsp;</span><span class="numbers">5</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 10 (repeat 5)
-[5,5,5,5,5,5,5,5,5,5]
-</pre>
-<p>Although it's simpler to just use the <span class="label function">replicate</span> function if you want some number of the same element in a list. <span class="fixed">replicate 3 10</span> returns <span class="fixed">[10,10,10]</span>.</p>
-<a name="im-a-list-comprehension"></a><h2>I'm a list comprehension</h2>
-<p>
-<img src="./starting-out_files/kermit.png" alt="frog" class="left" width="180" height="156">
-If you've ever taken a course in mathematics, you've probably run into <i>set comprehensions</i>. They're normally used for building more specific sets out of general sets. A basic comprehension for a set that contains the first ten even natural numbers is <img src="./starting-out_files/setnotation.png" alt="set notation">. The part before the pipe is called the output function, <span class="fixed">x</span> is the variable, <span class="fixed">N</span> is the input set and <span class="fixed">x &lt;= 10</span> is the predicate. That means that the set contains the doubles of all natural numbers that satisfy the predicate.
-</p>
-<p>If we wanted to write that in Haskell, we could do something like <span class="fixed">take 10 [2,4..]</span>. But what if we didn't want doubles of the first 10 natural numbers but some kind of more complex function applied on them? We could use a list comprehension for that. List comprehensions are very similar to set comprehensions. We'll stick to getting the first 10 even numbers for now. The list comprehension we could use is <span class="fixed">[x*2 | x &lt;- [1..10]]</span>. <span class="fixed">x</span> is drawn from <span class="fixed">[1..10]</span> and for every element in <span class="fixed">[1..10]</span> (which we have bound to <span class="fixed">x</span>), we get that element, only doubled. Here's that comprehension in action. </p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[x*</span><span class="numbers">2</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">12</span><span>,</span><span class="numbers">14</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">18</span><span>,</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [x*2 | x &lt;- [1..10]]
-[2,4,6,8,10,12,14,16,18,20]
-</pre>
-<p>As you can see, we get the desired results. Now let's add a condition (or a predicate) to that comprehension. Predicates go after the binding parts and are separated from them by a comma. Let's say we want only the elements which, doubled, are greater than or equal to 12.
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[x*</span><span class="numbers">2</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>],&nbsp;x*</span><span class="numbers">2</span><span class="common_operators">&nbsp;&gt;=&nbsp;</span><span class="numbers">12</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">12</span><span>,</span><span class="numbers">14</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">18</span><span>,</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [x*2 | x &lt;- [1..10], x*2 &gt;= 12]
-[12,14,16,18,20]
-</pre>
-<p>Cool, it works. How about if we wanted all numbers from 50 to 100 whose remainder when divided with the number 7 is 3? Easy.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[&nbsp;x</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">50</span><span>..</span><span class="numbers">100</span><span>],&nbsp;x&nbsp;</span><span class="common_operators">`mod`</span><span>&nbsp;</span><span class="numbers">7</span><span class="common_operators">&nbsp;==&nbsp;</span><span class="numbers">3</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">52</span><span>,</span><span class="numbers">59</span><span>,</span><span class="numbers">66</span><span>,</span><span class="numbers">73</span><span>,</span><span class="numbers">80</span><span>,</span><span class="numbers">87</span><span>,</span><span class="numbers">94</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x | x &lt;- [50..100], x `mod` 7 == 3]
+	  <p><span class="label function">repeat</span> 함수는 값을 하나 받아 받은 값을 무한개 포함한 리스트를 반환합니다. 값이 하나뿐인 리스트를 받은 cycle 함수와 유사합니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; take 10 (repeat 5)
+[5,5,5,5,5,5,5,5,5,5]</pre>
+	  <p>
+	    사실 이처럼 하나의 값을 특정 개수만큼 반복한 리스트를 원하는 경우엔 <span class="label function">replicate</span> 함수가 더 간편합니다. <span class="fixed">replicate 3 10</span> 는 <span class="fixed">[10,10,10]</span> 를 반환합니다.
+	  </p>
+	  <a name="im-a-list-comprehension"></a><h2>안녕하세요 list comprehension입니다</h2>
+	  <p>
+	    <img src="./files/kermit.png" alt="frog" class="left" width="180" height="156">
+	    수학 수업을 들을 때 <i>조건제시법(set comprehension)</i>으로 집합을 정의하는 방법에 대해 배운 적이 있으실 겁니다. 조건제시법은 일반적인 집합에 추가적인 조건을 붙여 보다 구체적인 집합을 만드는 방법입니다. 짝수인 자연수를 만들고자 하는 경우에는 조건제시법으로 <img src="./files/setnotation.png" alt="set notation"> 처럼 쓸 수 있습니다. 세로선(|) 앞부분을 output function, <span class="fixed">x</span>는 변수, <span class="fixed">N</span>은 input set, <span class="fixed">x <= 10</span> 은 술부(predicate)라고 부릅니다. 그래서 앞서 나온 집합은 모든 자연수 집합에서 주어진 조건(10 이하)을 만족하는 모든 수들을 각각 2배한 집합을 나타냅니다.
+																																																												      </p>
+	  <p>
+	    이런 함수를 쓰려면 <span class="fixed">take 10 [2,4..]</span> 라고 쓸 수 있기는 합니다. 하지만 10 이하의 자연수들을 2배한 집합처럼 단순한 집합이 아니라 더 복잡한 집합을 표현할 때는 어떻게 해야 할까요? 이 때 list comprehension을 사용할 수 있습니다. list comprehension은 집합 조건제시법(set comprehension)과 아주 유사합니다. 그래서 앞서 살펴본 가장 작은 짝수 10개를 하스켈에서는 <span class="fixed">[x*2 | x <- [1..10]]</span> 라고 쓸 수 있습니다. 이 식에서 <span class="fixed">x</span> 는 <span class="fixed">[1..10]</span> 에서 얻어오고, <span class="fixed">[1..10]</span> 로 한정된 <span class="fixed">x</span> 의 값을 2배한 값들을 갖는 리스트를 얻게 됩니다. 이 식을 GHCI에 입력해 보겠습니다.
+																																																				     </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [x*2 | x &lt;- [1..10]]
+[2,4,6,8,10,12,14,16,18,20] </pre>
+	  <p>
+	    보시다시피 원하던 결과가 나옵니다. 이제 좀 더 복잡한 조건을 추가해 보겠습니다. 조건은 변수의 범위를 한정시키는 부분 뒤에 콤마로 구분해서 추가합니다. 예를 들어, 앞의 식에서 <span class="fixed">[1..10]</span> 에서 2배했을 때 12 이상인 값들만 취해 그 값을 각각 2배한 값들로 이루어진 리스트는 다음과 같이 쓸 수 있습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [x*2 | x &lt;- [1..10], x*2 &gt;= 12]
+[12,14,16,18,20]</pre>
+	  <p>
+	    잘 되는군요. 50 부터 100 사이의 정수들 중 7로 나눈 나머지가 3인 값들로 이루어진 리스트는 어떻게 쓸 수 있을까요? 역시 아주 쉽습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x | x &lt;- [50..100], x `mod` 7 == 3]
 [52,59,66,73,80,87,94] </pre>
-<p>Success! Note that weeding out lists by predicates is also called <em>filtering</em>. We took a list of numbers and we filtered them by the predicate. Now for another example. Let's say we want a comprehension that replaces each odd number greater than 10 with <span class="fixed">"BANG!"</span> and each odd number that's less than 10 with <span class="fixed">"BOOM!"</span>. If a number isn't odd, we throw it out of our list. For convenience, we'll put that comprehension inside a function so we can easily reuse it.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>boomBangs&nbsp;xs</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[&nbsp;</span><span class="keyword">if</span><span>&nbsp;x</span><span class="common_operators">&nbsp;&lt;&nbsp;</span><span class="numbers">10</span><span>&nbsp;</span><span class="keyword">then</span><span>&nbsp;</span><span class="string">"BOOM!"</span><span>&nbsp;</span><span class="keyword">else</span><span>&nbsp;</span><span class="string">"BANG!"</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>xs,&nbsp;odd&nbsp;x]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">boomBangs xs = [ if x &lt; 10 then "BOOM!" else "BANG!" | x &lt;- xs, odd x] </pre>
-<p>The last part of the comprehension is the predicate. The function <span class="fixed">odd</span> returns <span class="fixed">True</span> on an odd number and <span class="fixed">False</span>  on an even one. The element is included in the list only if all the predicates evaluate to <span class="fixed">True</span>.
-</p><div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;boomBangs&nbsp;[</span><span class="numbers">7</span><span>..</span><span class="numbers">13</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="string">"BOOM!"</span><span>,</span><span class="string">"BOOM!"</span><span>,</span><span class="string">"BANG!"</span><span>,</span><span class="string">"BANG!"</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">ghci&gt; boomBangs [7..13]
+	  <p>
+	    아주 잘 됩니다. 리스트를 조건을 이용해 추리는 것을 <em>필터링(filtering)</em>이라고 합니다. 그래서 지금 우리는 숫자 리스트를 주어진 술부(predicate)로 필터링해서 사용하고 있는 것이죠. 숫자 리스트를 받아서 그 중 짝수는 버리고 홀수만 추려, 각 숫자가 10보다 작으면 <span class="fixed">&quot;BOOM!&quot;</span> 으로, 10 이상이면 <span class="fixed">&quot;BANG!&quot;</span> 이라고 치환하는 함수가 필요하다고 합시다. 이런 함수는 다음과 같이 쓸 수 있습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">boomBangs xs = [ if x &lt; 10 then "BOOM!" else "BANG!" | x &lt;- xs, odd x] </pre>
+	  <p>
+	    조건식의 마지막 부분이 술부(predicate)로, <span class="fixed">odd</span> 함수는 넘겨받은 숫자가 홀수이면 <span class="fixed">True</span> 를, 짝수이면 <span class="fixed">False</span> 를 반환하는 함수입니다.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">ghci&gt; boomBangs [7..13]
 ["BOOM!","BOOM!","BANG!","BANG!"] </pre>
-<p>We can include several predicates. If we wanted all numbers from 10 to 20 that are not 13, 15 or 19, we'd do:</p> <div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[&nbsp;x</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">10</span><span>..</span><span class="numbers">20</span><span>],&nbsp;x</span><span class="common_operators">&nbsp;/=&nbsp;</span><span class="numbers">13</span><span>,&nbsp;x</span><span class="common_operators">&nbsp;/=&nbsp;</span><span class="numbers">15</span><span>,&nbsp;x</span><span class="common_operators">&nbsp;/=&nbsp;</span><span class="numbers">19</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>,</span><span class="numbers">12</span><span>,</span><span class="numbers">14</span><span>,</span><span class="numbers">16</span><span>,</span><span class="numbers">17</span><span>,</span><span class="numbers">18</span><span>,</span><span class="numbers">20</span><span>]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x | x &lt;- [10..20], x /= 13, x /= 15, x /= 19]
+	  <p>
+	    조건을 여러개 추가할 수도 있습니다. 주어진 리스트의 값들 중 주어진 모든 조건식을 만족하는 값들만 최종 결과에 반영됩니다. 10에서 20 사이의 정수 중, 13, 15, 19는 제외한 리스트는 다음과 같이 쓸 수 있습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x | x &lt;- [10..20], x /= 13, x /= 15, x /= 19]
 [10,11,12,14,16,17,18,20]</pre>
-<p>Not only can we have multiple predicates in list comprehensions (an element must satisfy all the predicates to be included in the resulting list), we can also draw from several lists. When drawing from several lists, comprehensions produce all combinations of the given lists and then join them by the output function we supply. A list produced by a comprehension that draws from two lists of length 4 will have a length of 16, provided we don't filter them. If we have two lists, <span class="fixed">[2,5,10]</span> and <span class="fixed">[8,10,11]</span> and we want to get the products of all the possible combinations between numbers in those lists, here's what we'd do.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[&nbsp;x*y</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">10</span><span>],&nbsp;y</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">8</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">16</span><span>,</span><span class="numbers">20</span><span>,</span><span class="numbers">22</span><span>,</span><span class="numbers">40</span><span>,</span><span class="numbers">50</span><span>,</span><span class="numbers">55</span><span>,</span><span class="numbers">80</span><span>,</span><span class="numbers">100</span><span>,</span><span class="numbers">110</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x*y | x &lt;- [2,5,10], y &lt;- [8,10,11]]
+	  <p>
+	    조건만 여러개 쓸 수 있는 것이 아니라, 여러 개의 리스트로부터 값을 얻어올 수도 있습니다. 여러 개의 리스트로부터 값을 얻어오는 조건식을 쓰면, 주어진 리스트들의 값들로 만들 수 있는 모든 조합이 output function에 적용됩니다. 그래서 list comprehension에 길이가 4인 리스트 두 개를 필터링 없이 주면 길이가 16인 리스트가 만들어집니다. 예를 들어, 두 개의 리스트 <span class="fixed">[2,5,10]</span> 와 <span class="fixed">[8,10,11]</span> 에서 두 리스트의 숫자들로부터 만들 수 있는 모든 조합을 만들려면 이렇게 쓰면 됩니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x*y | x &lt;- [2,5,10], y &lt;- [8,10,11]]
 [16,20,22,40,50,55,80,100,110] </pre>
-<p>As expected, the length of the new list is 9. What if we wanted all possible products that are more than 50?</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[&nbsp;x*y</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">10</span><span>],&nbsp;y</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">8</span><span>,</span><span class="numbers">10</span><span>,</span><span class="numbers">11</span><span>],&nbsp;x*y</span><span class="common_operators">&nbsp;&gt;&nbsp;</span><span class="numbers">50</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="numbers">55</span><span>,</span><span class="numbers">80</span><span>,</span><span class="numbers">100</span><span>,</span><span class="numbers">110</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x*y | x &lt;- [2,5,10], y &lt;- [8,10,11], x*y &gt; 50]
+	  <p>
+	    예상한대로 만들어진 리스트의 길이는 9입니다. 이 중 50보다 큰 숫자들만 추리고 싶으면 어떻게 하면 될까요?
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; [ x*y | x &lt;- [2,5,10], y &lt;- [8,10,11], x*y &gt; 50]
 [55,80,100,110] </pre>
-<p>How about a list comprehension that combines a list of adjectives and a list of nouns … for epic hilarity.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;nouns</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[</span><span class="string">"hobo"</span><span>,</span><span class="string">"frog"</span><span>,</span><span class="string">"pope"</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;adjectives</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[</span><span class="string">"lazy"</span><span>,</span><span class="string">"grouchy"</span><span>,</span><span class="string">"scheming"</span><span>]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;[adjective</span><span class="common_operators">&nbsp;++&nbsp;</span><span class="string">"&nbsp;"</span><span class="common_operators">&nbsp;++&nbsp;</span><span>noun</span><span class="common_operators">&nbsp;|&nbsp;</span><span>adjective</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>adjectives,&nbsp;noun</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>nouns]&nbsp;&nbsp;</span></span></li><li class=""><span>[<span class="string">"lazy&nbsp;hobo"</span><span>,</span><span class="string">"lazy&nbsp;frog"</span><span>,</span><span class="string">"lazy&nbsp;pope"</span><span>,</span><span class="string">"grouchy&nbsp;hobo"</span><span>,</span><span class="string">"grouchy&nbsp;frog"</span><span>,&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="string">"grouchy&nbsp;pope"</span><span>,</span><span class="string">"scheming&nbsp;hobo"</span><span>,</span><span class="string">"scheming&nbsp;frog"</span><span>,</span><span class="string">"scheming&nbsp;pope"</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let nouns = ["hobo","frog","pope"]
+	  <p>
+	    숫자 말고 형용사들의 리스트와 명사들의 리스트를 조합해서 이상한 단어들을 만들어 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let nouns = ["hobo","frog","pope"]
 ghci&gt; let adjectives = ["lazy","grouchy","scheming"]
 ghci&gt; [adjective ++ " " ++ noun | adjective &lt;- adjectives, noun &lt;- nouns]
 ["lazy hobo","lazy frog","lazy pope","grouchy hobo","grouchy frog",
 "grouchy pope","scheming hobo","scheming frog","scheming pope"] </pre>
-<p>I know! Let's write our own version of <span class="fixed">length</span>! We'll call it <span class="fixed">length'</span>.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>length'&nbsp;xs</span><span class="common_operators">&nbsp;=&nbsp;</span><span>sum&nbsp;[</span><span class="numbers">1</span><span class="common_operators">&nbsp;|&nbsp;</span><span>_</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>xs]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">length' xs = sum [1 | _ &lt;- xs] </pre>
-<p><span class="fixed">_</span> means that we don't care what we'll draw from the list anyway so instead of writing a variable name that we'll never use, we just write <span class="fixed">_</span>. This function replaces every element of a list with <span class="fixed">1</span> and then sums that up. This means that the resulting sum will be the length of our list.</p>
-<p>Just a friendly reminder: because strings are lists, we can use list comprehensions to process and produce strings. Here's a function that takes a string and removes everything except uppercase letters from it.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span>removeNonUppercase&nbsp;st</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[&nbsp;c</span><span class="common_operators">&nbsp;|&nbsp;</span><span>c</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>st,&nbsp;c&nbsp;</span><span class="common_operators">`elem`</span><span>&nbsp;[</span><span class="char">'A'</span><span>..</span><span class="char">'Z'</span><span>]]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: hs" style="display: none;">removeNonUppercase st = [ c | c &lt;- st, c `elem` ['A'..'Z']] </pre>
-<p>
-Testing it out:
-</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;removeNonUppercase&nbsp;</span><span class="string">"Hahaha!&nbsp;Ahahaha!"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"HA"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;removeNonUppercase&nbsp;</span><span class="string">"IdontLIKEFROGS"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"ILIKEFROGS"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; removeNonUppercase "Hahaha! Ahahaha!"
+	  <p>
+	    이번엔 list comprehension을 이용해 <span class="fixed">length</span> 와 같은 기능을 하는 <span class="fixed">length'</span> 함수를 만들어 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">length' xs = sum [1 | _ &lt;- xs] </pre>
+	  <p>
+	    <span class="fixed">_</span> 는 리스트에서 나오는 값이 무엇이든 사용되지 않으므로 신경쓰지 않겠다는 의미로 사용되는 기호입니다. 이 함수는 리스트의 모든 값을 <span class="fixed">1</span> 로 치환하고 그 합을 구합니다. 그러면 리스트의 길이가 되겠지요.
+	  </p>
+	  <p>
+	    앞서 말씀드렸던 바대로 문자열도 리스트이기 때문에, list comprehension을 이용해 문자열도 만들 수 있습니다. 문자열을 하나 받아서 대문자만 추려내는 함수는 이렇게 쓸 수 있습니다.
+	  </p>
+	  <pre name="code" class="haskell: hs" style="display: none;">removeNonUppercase st = [ c | c &lt;- st, c `elem` ['A'..'Z']] </pre>
+	  <p>
+	    실행 결과는 다음과 같습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; removeNonUppercase "Hahaha! Ahahaha!"
 "HA"
 ghci&gt; removeNonUppercase "IdontLIKEFROGS"
 "ILIKEFROGS" </pre>
-<p>The predicate here does all the work. It says that the character will be included in the new list only if it's an element of the list <span class="fixed">['A'..'Z']</span>. Nested list comprehensions are also possible if you're operating on lists that contain lists. A list contains several lists of numbers. Let's remove all odd numbers without flattening the list.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;xxs</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[[</span><span class="numbers">1</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">7</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">9</span><span>],[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">1</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">6</span><span>]]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;[&nbsp;[&nbsp;x</span><span class="common_operators">&nbsp;|&nbsp;</span><span>x</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>xs,&nbsp;even&nbsp;x&nbsp;]</span><span class="common_operators">&nbsp;|&nbsp;</span><span>xs</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>xxs]&nbsp;&nbsp;</span></span></li><li class="alt"><span>[[<span class="numbers">2</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>],[</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">8</span><span>],[</span><span class="numbers">2</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">6</span><span>]]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]]
+	  <p>
+	    여기서는 list comprehension의 조건식이 중요합니다. 조건식은 새로운 리스트에는 주어진 리스트의 값들 중 <span class="fixed">['A'..'Z']</span> 에 속한 값들만 포함되어야 함을 나타냅니다. 만약 리스트를 값으로 갖는 리스트를 다루는 경우라면 중첩된(nested) list comprehension도 물론 가능합니다. 숫자 리스트들을 포함한 리스트에서 형태는 유지하되 홀수 값만 제거해 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]]
 ghci&gt; [ [ x | x &lt;- xs, even x ] | xs &lt;- xxs]
-[[2,2,4],[2,4,6,8],[2,4,2,6,2,6]]
-</pre>
-<p>You can write list comprehensions across several lines. So if you're not in GHCI, it's better to split longer list comprehensions across multiple lines, especially if they're nested.</p>
-<a name="tuples"></a><h2>Tuples</h2>
-<img src="./starting-out_files/tuple.png" alt="tuples" class="right" width="160" height="162">
-<p>In some ways, tuples are like lists — they are a way to store several values into a single value. However, there are a few fundamental differences. A list of numbers is a list of numbers. That's its type and it doesn't matter if it has only one number in it or an infinite amount of numbers. Tuples, however, are used when you know exactly how many values you want to combine and its type depends on how many components it has and the types of the components. They are denoted with parentheses and their components are separated by commas.</p>
-<p>Another key difference is that they don't have to be homogenous. Unlike a list, a tuple can contain a combination of several types.</p>
-<p>Think about how we'd represent a two-dimensional vector in Haskell. One way would be to use a list. That would kind of work. So what if we wanted to put a couple of vectors in a list to represent points of a shape on a two-dimensional plane? We could do something like <span class="fixed">[[1,2],[8,11],[4,5]]</span>. The problem with that method is that we could also do stuff like <span class="fixed">[[1,2],[8,11,5],[4,5]]</span>, which Haskell has no problem with since it's still a list of lists with numbers but it kind of doesn't make sense. But a tuple of size two (also called a pair) is its own type, which means that a list can't have a couple of pairs in it and then a triple (a tuple of size three), so let's use that instead. Instead of surrounding the vectors with square brackets, we use parentheses: <span class="fixed">[(1,2),(8,11),(4,5)]</span>. What if we tried to make a shape like <span class="fixed">[(1,2),(8,11,5),(4,5)]</span>? Well, we'd get this error:</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="type_constructors">Couldn</span><span>'t&nbsp;match&nbsp;expected&nbsp;</span><span class="keyword2">type</span><span>&nbsp;`(t,&nbsp;t1)'&nbsp;&nbsp;</span></span></li><li class=""><span>against&nbsp;inferred&nbsp;<span class="keyword2">type</span><span>&nbsp;`(t2,&nbsp;t3,&nbsp;t4)'&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">In</span><span>&nbsp;the&nbsp;expression:&nbsp;(</span><span class="numbers">8</span><span>,&nbsp;</span><span class="numbers">11</span><span>,&nbsp;</span><span class="numbers">5</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">In</span><span>&nbsp;the&nbsp;expression:&nbsp;[(</span><span class="numbers">1</span><span>,&nbsp;</span><span class="numbers">2</span><span>),&nbsp;(</span><span class="numbers">8</span><span>,&nbsp;</span><span class="numbers">11</span><span>,&nbsp;</span><span class="numbers">5</span><span>),&nbsp;(</span><span class="numbers">4</span><span>,&nbsp;</span><span class="numbers">5</span><span>)]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="type_constructors">In</span><span>&nbsp;the&nbsp;definition&nbsp;</span><span class="keyword">of</span><span>&nbsp;`it':&nbsp;it</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[(</span><span class="numbers">1</span><span>,&nbsp;</span><span class="numbers">2</span><span>),&nbsp;(</span><span class="numbers">8</span><span>,&nbsp;</span><span class="numbers">11</span><span>,&nbsp;</span><span class="numbers">5</span><span>),&nbsp;(</span><span class="numbers">4</span><span>,&nbsp;</span><span class="numbers">5</span><span>)]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">Couldn't match expected type `(t, t1)'
+[[2,2,4],[2,4,6,8],[2,4,2,6,2,6]]</pre>
+	  <p>
+	    list comprehension을 여러 줄로 나누어 쓰는 것도 가능합니다. 그러니 GHCI를 사용하는 경우가 아니라면 긴 list comprehension은 여러 줄로 나누어 쓰는 것이 좋습니다. 특히 중첩된 list comprehension은 더더욱 여러 줄로 나누어 쓰는 것이 좋습니다.
+	  </p>
+	  <a name="tuples"></a><h2>튜플</h2>
+	  <img src="./files/tuple.png" alt="tuples" class="right" width="160" height="162">
+	  <p>
+	    어떻게 보면 튜플은 여러 개의 값을 묶어 하나의 값으로 취급하게 한다는 점에서 리스트와 비슷합니다. 하지만 둘 사이에는 근본적인 차이가 있습니다. 숫자들의 리스트는 말 그대로 숫자들의 리스트입니다. 그래서 리스트에 포함된 숫자가 딱 한 개가 됐든 엄청나게 많든 상관 없이 모두 숫자들의 리스트입니다. 반면 튜플을 사용할 때는 정확히 몇 개의 값이 튜플에 포함되는지 알아야 하고, 포함된 값의 개수가 다른 튜플들은 모두 다른 타입으로 취급됩니다. 또 튜플은 포함된 값들을 콤마로 구분하고, 리스트와 달리 괄호로 감싸서 표현합니다.
+	  </p>
+	  <p>
+	    또다른 중요한 차이점은 튜플에 포함된 값들은 (리스트에서는 모두 같은 타입의 값들만 포함될 수 있었던 것과 달리) 타입이 다를 수 있다는 점입니다.
+	  </p>  
+	  <p>
+	    하스켈에서 2차원 벡터를 어떻게 나타낼 수 있을지 생각해 봅시다. 일단 리스트를 사용하는 방법이 있겠지요. 뭐, 그것도 방법은 방법입니다. 이런 방법으로 벡터를 나타내면서 2차원 평면 상의 도형의 꼭지점들을 리스트로 표현한다면 어떻게 될까요? <span class="fixed">[[1,2],[8,11],[4,5]]</span> 와 같이 쓰면 되겠죠. 여기서 문제는 실수로 <span class="fixed">[[1,2],[8,11,5],[4,5]]</span> 와 같은 리스트를 넘겨주더라도 여전히 숫자들의 리스트를 값으로 갖는 리스트이기 때문에 오류가 발생하지 않는다는 것입니다. 하지만 이런 리스트는 이치에 맞지 않죠. 하지만 2개의 값을 갖는 튜플(흔히 pair라고 부릅니다)은 그 자체로 고유한 타입이 되므로 pair의 리스트에는 3개의 값을 갖는 튜플(흔히 triple이라고 부릅니다)이 포함될 수 없습니다. 벡터를 리스트가 아닌 튜플로 만들기 위해서 각진 괄호 대신 둥근 괄호로 바꾸어 보면 <span class="fixed">[(1,2),(8,11),(4,5)]</span> 라고 쓸 수 있습니다. <span class="fixed">[(1,2),(8,11,5),(4,5)]</span> 라고 쓰면 어떻게 될까요? 이런 오류가 납니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">Couldn't match expected type `(t, t1)'
 against inferred type `(t2, t3, t4)'
 In the expression: (8, 11, 5)
 In the expression: [(1, 2), (8, 11, 5), (4, 5)]
-In the definition of `it': it = [(1, 2), (8, 11, 5), (4, 5)]
-</pre>
-<p>It's telling us that we tried to use a pair and a triple in the same list, which is not supposed to happen. You also couldn't make a list like <span class="fixed">[(1,2),("One",2)]</span> because the first element of the list is a pair of numbers and the second element is a pair consisting of a string and a number. Tuples can also be used to represent a wide variety of data. For instance, if we wanted to represent someone's name and age in Haskell, we could use a triple: <span class="fixed">("Christopher", "Walken", 55)</span>. As seen in this example, tuples can also contain lists.</p>
-<p>Use tuples when you know in advance how many components some piece of data should have. Tuples are much more rigid because each different size of tuple is its own type, so you can't write a general function to append an element to a tuple — you'd have to write a function for appending to a pair, one function for appending to a triple, one function for appending to a 4-tuple, etc.</p>
-<p>While there are singleton lists, there's no such thing as a singleton tuple. It doesn't really make much sense when you think about it. A singleton tuple would just be the value it contains and as such would have no benefit to us.</p>
-<p>Like lists, tuples can be compared with each other if their components can be compared. Only you can't compare two tuples of different sizes, whereas you can compare two lists of different sizes. Two useful functions that operate on pairs:</p>
-<p><span class="label function">fst</span> takes a pair and returns its first component.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;fst&nbsp;(</span><span class="numbers">8</span><span>,</span><span class="numbers">11</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">8</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;fst&nbsp;(</span><span class="string">"Wow"</span><span>,&nbsp;</span><span class="type_constructors">False</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="string">"Wow"</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; fst (8,11)
+In the definition of `it': it = [(1, 2), (8, 11, 5), (4, 5)]</pre>
+	  <p>
+	    이 오류 메시지는 pair와 triple을 한 리스트에 쓰려고 했는데, 그러면 안된다는 메시지입니다. <span class="fixed">[(1,2),("One",2)]</span> 같은 것도 역시 쓸 수 없습니다. 리스트의 첫번째 값은 숫자들의 pair였는데 두번째 값은 문자열과 숫자의 pair이므로 타입이 다르기 때문입니다. 튜플은 굉장히 다양한 자료를 나타내는 데 사용될 수 있습니다. 누군가의 이름과 나이를 하스켈에서 표현할 때 <span class="fixed">("Christopher", "Walken", 55)</span> 라고 할 수 있죠. 그리고 보시다시피 (문자열은 문자의 리스트이므로) 튜플은 리스트를 값으로 가질 수 있습니다.   
+	  </p>
+	  <p>
+	    일정한 개수의 값을 포함하는 자료를 쓰고자 할 때는 리스트 대신 튜플을 사용하시기 바랍니다. 길이가 다른 튜플은 서로 다른 타입이기 때문에 튜플은 리스트에 비해 훨씬 더 엄격합니다. 그래서 임의의 튜플에 새로운 값을 추가하는 함수는 만들 수 없습니다. 비슷한 기능을 구현하려면 pair에 값을 추가해서 triple을 반환하는 함수를 따로 만들고, triple에 값을 추가해서 길이가 4인 4-튜플을 만들어 반환하는 함수를 따로 만들어야 합니다.
+	  </p>
+	  <p>
+	    또 값이 하나뿐인 리스트는 있지만 값이 하나뿐인 튜플은 존재하지 않습니다. 왜냐하면 값이 하나뿐인 튜플은 그냥 포함된 값 그 자체와 다를 바가 없어서 사용할 이유가 없기 때문입니다.
+	  </p>
+	  <p>
+	    튜플은 포함된 값들이 모두 비교할 수 있는 값들이면 비교할 수 있다는 점에서는 리스트와 비슷합니다. 하지만 길이가 다른 두 리스트는 비교할 수 있는 것과 달리 길이가 다른 두 튜플은 비교할 수 없습니다. 이제 pair와 관련된 함수를 몇 개 살펴보겠습니다.
+	  </p>
+	  <p><span class="label function">fst</span> 함수는 pair를 하나 받아 그 첫번째 값을 반환합니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; fst (8,11)
 8
 ghci&gt; fst ("Wow", False)
 "Wow"</pre>
-<p><span class="label function">snd</span> takes a pair and returns its second component. Surprise!</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;snd&nbsp;(</span><span class="numbers">8</span><span>,</span><span class="numbers">11</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="numbers">11</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;snd&nbsp;(</span><span class="string">"Wow"</span><span>,&nbsp;</span><span class="type_constructors">False</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span><span class="type_constructors">False</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; snd (8,11)
+	  <p><span class="label function">snd</span> 함수는 pair를 하나 받아 그 두번째 값을 반환합니다.</p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; snd (8,11)
 11
 ghci&gt; snd ("Wow", False)
 False</pre>
-<div class="hintbox"><em>Note:</em> these functions operate only on pairs. They won't work on triples, 4-tuples, 5-tuples, etc. We'll go over extracting data from tuples in different ways a bit later.</div>
-<p>A cool function that produces a list of pairs: <span class="label function">zip</span>. It takes two lists and then zips them together into one list by joining the matching elements into pairs. It's a really simple function but it has loads of uses. It's especially useful for when you want to combine two lists in a way or traverse two lists simultaneously. Here's a demonstration.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;zip&nbsp;[</span><span class="numbers">1</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>]&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[(<span class="numbers">1</span><span>,</span><span class="numbers">5</span><span>),(</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>),(</span><span class="numbers">3</span><span>,</span><span class="numbers">5</span><span>),(</span><span class="numbers">4</span><span>,</span><span class="numbers">5</span><span>),(</span><span class="numbers">5</span><span>,</span><span class="numbers">5</span><span>)]&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;zip&nbsp;[</span><span class="numbers">1</span><span>&nbsp;..&nbsp;</span><span class="numbers">5</span><span>]&nbsp;[</span><span class="string">"one"</span><span>,&nbsp;</span><span class="string">"two"</span><span>,&nbsp;</span><span class="string">"three"</span><span>,&nbsp;</span><span class="string">"four"</span><span>,&nbsp;</span><span class="string">"five"</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[(<span class="numbers">1</span><span>,</span><span class="string">"one"</span><span>),(</span><span class="numbers">2</span><span>,</span><span class="string">"two"</span><span>),(</span><span class="numbers">3</span><span>,</span><span class="string">"three"</span><span>),(</span><span class="numbers">4</span><span>,</span><span class="string">"four"</span><span>),(</span><span class="numbers">5</span><span>,</span><span class="string">"five"</span><span>)]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [1,2,3,4,5] [5,5,5,5,5]
+	  <div class="hintbox"><em>Note:</em> 이 함수들은 길이가 2인 튜플, 그러니까 pair에만 사용할 수 있습니다. triple이나 4-튜플, 5-튜플 등에는 사용할 수 없습니다. 이런 튜플들에 포함된 값을 얻어오는 방법들은 조금 뒤에서 살펴봅니다.
+	  </div>
+	  <p>
+	    <span class="label function">zip</span>함수는 두 개의 리스트를 받아 pair의 리스트를 반환합니다. 받은 두 개의 리스트로부터 값들을 추출해서 각각을 pair로 묶은 리스트를 반환하는 것입니다. 꽤 간단한 함수지만 쓸모가 많습니다. 두 개의 리스트를 조합하거나 두 리스트를 동시에 순회해야 하는 경우에 특히 유용합니다. 예제를 보시죠.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [1,2,3,4,5] [5,5,5,5,5]
 [(1,5),(2,5),(3,5),(4,5),(5,5)]
 ghci&gt; zip [1 .. 5] ["one", "two", "three", "four", "five"]
-[(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]
-</pre>
-<p>It pairs up the elements and produces a new list. The first element goes with the first, the second with the second, etc. Notice that because pairs can have different types in them, <span class="fixed">zip</span> can take two lists that contain different types and zip them up. What happens if the lengths of the lists don't match?</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;zip&nbsp;[</span><span class="numbers">5</span><span>,</span><span class="numbers">3</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">7</span><span>,</span><span class="numbers">2</span><span>,</span><span class="numbers">5</span><span>,</span><span class="numbers">4</span><span>,</span><span class="numbers">6</span><span>,</span><span class="numbers">6</span><span>]&nbsp;[</span><span class="string">"im"</span><span>,</span><span class="string">"a"</span><span>,</span><span class="string">"turtle"</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[(<span class="numbers">5</span><span>,</span><span class="string">"im"</span><span>),(</span><span class="numbers">3</span><span>,</span><span class="string">"a"</span><span>),(</span><span class="numbers">2</span><span>,</span><span class="string">"turtle"</span><span>)]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [5,3,2,6,2,7,2,5,4,6,6] ["im","a","turtle"]
-[(5,"im"),(3,"a"),(2,"turtle")]
-</pre>
-<p>The longer list simply gets cut off to match the length of the shorter one. Because Haskell is lazy, we can zip finite lists with infinite lists:</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;zip&nbsp;[</span><span class="numbers">1</span><span>..]&nbsp;[</span><span class="string">"apple"</span><span>,&nbsp;</span><span class="string">"orange"</span><span>,&nbsp;</span><span class="string">"cherry"</span><span>,&nbsp;</span><span class="string">"mango"</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span>[(<span class="numbers">1</span><span>,</span><span class="string">"apple"</span><span>),(</span><span class="numbers">2</span><span>,</span><span class="string">"orange"</span><span>),(</span><span class="numbers">3</span><span>,</span><span class="string">"cherry"</span><span>),(</span><span class="numbers">4</span><span>,</span><span class="string">"mango"</span><span>)]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [1..] ["apple", "orange", "cherry", "mango"]
-[(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
-</pre>
-<img src="./starting-out_files/pythag.png" alt="look at meee" class="center" width="350" height="315">
-<p>Here's a problem that combines tuples and list comprehensions: which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24? First, let's try generating all triangles with sides equal to or smaller than 10:</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;triangles</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[&nbsp;(a,b,c)</span><span class="common_operators">&nbsp;|&nbsp;</span><span>c</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>],&nbsp;b</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>],&nbsp;a</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>]&nbsp;]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let triangles = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..10], a &lt;- [1..10] ] </pre>
-<p>We're just drawing from three lists and our output function is combining them into a triple. If you evaluate that by typing out <span class="fixed">triangles</span> in GHCI, you'll get a list of all possible triangles with sides under or equal to 10. Next, we'll add a condition that they all have to be right triangles. We'll also modify this function by taking into consideration that side b isn't larger than the hypothenuse and that side a isn't larger than side b.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;rightTriangles</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[&nbsp;(a,b,c)</span><span class="common_operators">&nbsp;|&nbsp;</span><span>c</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>],&nbsp;b</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..c],&nbsp;a</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..b],&nbsp;a^</span><span class="numbers">2</span><span class="common_operators">&nbsp;+&nbsp;</span><span>b^</span><span class="numbers">2</span><span class="common_operators">&nbsp;==&nbsp;</span><span>c^</span><span class="numbers">2</span><span>]&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let rightTriangles = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..c], a &lt;- [1..b], a^2 + b^2 == c^2] </pre>
-<p>We're almost done. Now, we just modify the function by saying that we want the ones where the perimeter is 24.</p>
-<div class="dp-highlighter nogutter"><div class="bar"></div><ol start="1" class="dp-hs"><li class="alt"><span><span class="ghci">ghci&gt;</span><span>&nbsp;</span><span class="keyword">let</span><span>&nbsp;rightTriangles'</span><span class="common_operators">&nbsp;=&nbsp;</span><span>[&nbsp;(a,b,c)</span><span class="common_operators">&nbsp;|&nbsp;</span><span>c</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..</span><span class="numbers">10</span><span>],&nbsp;b</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..c],&nbsp;a</span><span class="syntax_operators">&nbsp;&lt;-&nbsp;</span><span>[</span><span class="numbers">1</span><span>..b],&nbsp;a^</span><span class="numbers">2</span><span class="common_operators">&nbsp;+&nbsp;</span><span>b^</span><span class="numbers">2</span><span class="common_operators">&nbsp;==&nbsp;</span><span>c^</span><span class="numbers">2</span><span>,&nbsp;a+b+c</span><span class="common_operators">&nbsp;==&nbsp;</span><span class="numbers">24</span><span>]&nbsp;&nbsp;</span></span></li><li class=""><span><span class="ghci">ghci&gt;</span><span>&nbsp;rightTriangles'&nbsp;&nbsp;</span></span></li><li class="alt"><span>[(<span class="numbers">6</span><span>,</span><span class="numbers">8</span><span>,</span><span class="numbers">10</span><span>)]&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let rightTriangles' = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..c], a &lt;- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
+[(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]</pre>
+	  <p>
+	    받아온 두 리스트의 값들을 pair로 묶어 새 리스트를 반환했습니다. 두 리스트의 첫번째 값은 새 리스트의 첫번째 값, 두번째 값은 두번째 값이 되는 식이죠. 튜플은 서로 다른 타입의 값 두 개를 묶는데 사용될 수 있으므로 <span class="fixed">zip</span> 함수는 타입이 다른 두 리스트도 받을 수 있습니다. 그런데 만약 두 리스트의 길이가 다르면 어떻게 될까요?
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [5,3,2,6,2,7,2,5,4,6,6] ["im","a","turtle"]
+[(5,"im"),(3,"a"),(2,"turtle")]</pre>
+	  <p>
+	    짧은 리스트에 맞춰 긴 리스트의 뒷부분이 무시되었군요. 이런 특성과 하스켈의 게으른 속성 덕분에 이 함수에는 길이가 무한한 리스트를 줄 수도 있습니다.
+	  </p>
+
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; zip [1..] ["apple", "orange", "cherry", "mango"]
+[(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]</pre>
+	  <img src="./files/pythag.png" alt="look at meee" class="center" width="350" height="315">
+	  <p>
+	    자, 이제 마지막으로 튜플과 list comprehension을 이용해서 풀 수 있는 문제를 하나 내겠습니다. 각 변의 길이가 모두 10 이하의 정수이고 세 변의 합이 24인 직각 삼각형을 계산하려면 어떻게 할까요? 우선, 각 변의 길이가 10 이하인 모든 삼각형을 계산해 봅시다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let triangles = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..10], a &lt;- [1..10] ] </pre>
+	  <p>
+	    그냥 1부터 10까지의 정수 리스트를 주고 triple로 묶는 list comprehension식입니다. 이 <span class="fixed">triangles</span> 함수를 GHCI에서 실행해 보면 각 변의 길이가 10 이하의 정수인 모든 삼각형을 나타내는 튜플들의 리스트가 나올 것입니다. 이제 여기에 직각삼각형만 추려내는 조건을 붙여보겠습니다. 중복된 결과를 제거하기 위해 추가로 b 변이 빗변인 c보다 길지 않도록 하는 조건도 추가해 보았습니다.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let rightTriangles = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..c], a &lt;- [1..b], a^2 + b^2 == c^2] </pre>
+	  <p>
+	    거의 다 됐습니다. 이제 여기에 세 변의 합이 24라는 조건만 추가하면 되겠죠.
+	  </p>
+	  <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; let rightTriangles' = [ (a,b,c) | c &lt;- [1..10], b &lt;- [1..c], a &lt;- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
 ghci&gt; rightTriangles'
-[(6,8,10)]
-</pre>
-<p>And there's our answer! This is a common pattern in functional programming. You take a starting set of solutions and then you apply transformations to those solutions and filter them until you get the right ones.</p>
-                <div class="footdiv">
-                <ul>
-                    <li style="text-align:left">
-                                                        <a href="http://learnyouahaskell.com/introduction" class="prevlink">Introduction</a>
-                                            </li>
-                    <li style="text-align:center">
-                        <a href="http://learnyouahaskell.com/chapters">Table of contents</a>
-                    </li>
-                    <li style="text-align:right">
-                                                        <a href="http://learnyouahaskell.com/types-and-typeclasses" class="nxtlink">Types and Typeclasses</a>
-                                            </li>
-                </ul>
-            </div>
+[(6,8,10)]</pre>
+	  <p>
+	    원하던 답이 나왔습니다! 살펴보신 문제 해결 과정은 함수형 프로그래밍에서는 흔한 패턴입니다. 원하는 답의 후보를 모두 포함하는 집합에서 시작해서 그 집합에서 일부를 쳐내거나 변환해 가면서 최종 답안을 구하는 것입니다.
+	  </p>
+          <div class="footdiv">
+            <ul>
+              <li style="text-align:left">
+                <a href="http://haskell.or.kr/introduction" class="prevlink">Introduction</a>
+              </li>
+              <li style="text-align:center">
+                <a href="http://haskell.or.kr/chapters">Table of contents</a>
+              </li>
+              <li style="text-align:right">
+                <a href="http://haskell.or.kr/types-and-typeclasses" class="nxtlink">Types and Typeclasses</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    <script type="text/javascript" src="./starting-out_files/shCore.js"></script>
-    <script type="text/javascript" src="./starting-out_files/shBrushHaskell.js"></script>
-    <script type="text/javascript" src="./starting-out_files/shBrushPlain.js"></script>
-    <script type="text/javascript">
-    dp.SyntaxHighlighter.ClipboardSwf = '/sh/Scripts/clipboard.swf';
-    dp.SyntaxHighlighter.HighlightAll('code', false, false, false, 1, false);
-    </script>
-</div>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script src="./starting-out_files/ga.js" type="text/javascript"></script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-4461592-3");
-pageTracker._trackPageview();
-</script>
+	<script type="text/javascript" src="./files/shCore.js"></script>
+	<script type="text/javascript" src="./files/shBrushHaskell.js"></script>
+	<script type="text/javascript" src="./files/shBrushPlain.js"></script>
+	<script type="text/javascript">
+	  dp.SyntaxHighlighter.ClipboardSwf = '/sh/Scripts/clipboard.swf';
+	  dp.SyntaxHighlighter.HighlightAll('code', false, false, false, 1, false);
+	</script>
+      </div>
+      <script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script src="./files/ga.js" type="text/javascript"></script>
+      <script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-4461592-3");
+	pageTracker._trackPageview();
+      </script>
 
 
 </body></html>

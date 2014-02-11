@@ -120,12 +120,12 @@ fst :: (a, b) -&gt; a
 <img src="./files/classes.png" alt="class" class="right" width="210" height="158">
 <p>타입클래스란, 몇몇 행동들을 정의하는 일종의 인터페이스 같은 것입니다. 만약 어떤 타입이 한 타입클래스에 속한다는건, 이 타입이 속한 타입클래스가 정의한 행동들을 지원할 수 있도록 구현되었다는 의미입니다. 객체 지향적 프로그래밍에 익숙한 사람들이 타입클래스가 객체 언어의 클래스 같은 것인 줄 오해 하는 경우가 많습니다. 하하, 아니지요.  차라리, Java의 인터페이스 같은거라고 생각하는게 더 날겁니다.
 </p>
-<p>What's the type signature of the <span class="fixed">==</span> function?</p>
+<p><span class="fixed">==</span> 함수의 타입은 무엇일까요?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t (==)
 (==) :: (Eq a) =&gt; a -&gt; a -&gt; Bool
 </pre>
-<div class="hintbox"><em>Note</em>: the equality operator, <span class="fixed">==</span> is a function. So are <span class="fixed">+</span>, <span class="fixed">*</span>, <span class="fixed">-</span>, <span class="fixed">/</span> and pretty much all operators. If a function is comprised only of special characters, it's considered an infix function by default. If we want to examine its type, pass it to another function or call it as a prefix function, we have to surround it in parentheses.</div>
-<p>Interesting. We see a new thing here, the <span class="fixed">=&gt;</span> symbol. Everything before the <span class="fixed">=&gt;</span> symbol is called a <em>class constraint</em>. We can read the previous type declaration like this: the equality function takes any two values that are of the same type and returns a <span class="fixed">Bool</span>. The type of those two values must be a member of the <span class="fixed">Eq</span> class (this was the class constraint).</p>
+<div class="hintbox"><em>Note</em>: 동일성 연산자 <span class="fixed">==</span> 는 함수입니다. <span class="fixed">+</span>, <span class="fixed">*</span>, <span class="fixed">-</span>, <span class="fixed">/</span> 와 그 외 수많은 연산자들도 함수이고요. 만약 함수가 특수문자로만 구성되어 있다면, 기본적으로 infix 함수로 간주됩니다. 타입이 맞는지 확인하고 싶다면 해당 타입을 받는 함수에 넣어보시거나, prefix 함수처럼 호출해 보세요(괄호로 감싸야 합니다).</div>
+<p>재미있군요. 새로운 기호 <span class="fixed">=&gt;</span>가 보입니다. 기호 <span class="fixed">=&gt;</span> 이전의 것들은 <em>클래스 제약조건(class constraint)</em> 이라고 불립니다. 이전에 배웠던 타입 선언으로 다음처럼 읽을 수 있습니다.  동일성 함수 <span class="fixed">==</span>는 같은 타입의 아무 두 값을 받아서 <span class="fixed">Bool</span> 타입을 돌려주는 함수입니다. 여기서 클래스 제약조건은 인자로 받는 두 값이 반드시 <span class="fixed">Eq</span> 클래스를 지원하는 타입의 값이어야 한다는(<span class="fixed">Eq</span> 클래스의 멤버인 타입의 값이어야 한다는)것 입니다.</p>
 <p>The <span class="fixed">Eq</span> typeclass provides an interface for testing for equality. Any type where it makes sense to test for equality between two values of that type should be a member of the <span class="fixed">Eq</span> class. All standard Haskell types except for IO (the type for dealing with input and output) and functions are a part of the <span class="fixed">Eq</span> typeclass.</p>
 <p>The <span class="fixed">elem</span> function has a type of <span class="fixed">(Eq a) =&gt; a -&gt; [a] -&gt; Bool</span> because it uses <span class="fixed">==</span> over a list to check whether some value we're looking for is in it.</p>
 <p>Some basic typeclasses:</p>

@@ -9,8 +9,8 @@
 	@import url('style.css');
 </style>
 <link rel="shortcut icon" href="./favicon.png" type="image/png">
-        <link rel="prev" href="./starting-out">
-        <link rel="next" href="./syntax-in-functions">
+        <link rel="prev" href="./starting-out.html">
+        <link rel="next" href="./syntax-in-functions.html">
 <link type="text/css" rel="stylesheet" href="./files/SyntaxHighlighter.css">
 <body class="introcontent">
 <div class="bgwrapper">
@@ -126,10 +126,10 @@ fst :: (a, b) -&gt; a
 </pre>
 <div class="hintbox"><em>Note</em>: 동일성 연산자 <span class="fixed">==</span> 는 함수입니다. <span class="fixed">+</span>, <span class="fixed">*</span>, <span class="fixed">-</span>, <span class="fixed">/</span> 와 그 외 수많은 연산자들도 함수이고요. 만약 함수가 특수문자로만 구성되어 있다면, 기본적으로 infix 함수로 간주됩니다. 타입이 맞는지 확인하고 싶다면 해당 타입을 받는 함수에 넣어보시거나, prefix 함수처럼 호출해 보세요(괄호로 감싸야 합니다).</div>
 <p>재미있군요. 새로운 기호 <span class="fixed">=&gt;</span>가 보입니다. 기호 <span class="fixed">=&gt;</span> 이전의 것들은 <em>클래스 제약조건(class constraint)</em> 이라고 불립니다. 이전에 배웠던 타입 선언으로 다음처럼 읽을 수 있습니다.  동일성 함수 <span class="fixed">==</span>는 같은 타입의 아무 두 값을 받아서 <span class="fixed">Bool</span> 타입을 돌려주는 함수입니다. 여기서 클래스 제약조건은 인자로 받는 두 값이 반드시 <span class="fixed">Eq</span> 클래스를 지원하는 타입의 값이어야 한다는(<span class="fixed">Eq</span> 클래스의 멤버인 타입의 값이어야 한다는)것 입니다.</p>
-<p>The <span class="fixed">Eq</span> typeclass provides an interface for testing for equality. Any type where it makes sense to test for equality between two values of that type should be a member of the <span class="fixed">Eq</span> class. All standard Haskell types except for IO (the type for dealing with input and output) and functions are a part of the <span class="fixed">Eq</span> typeclass.</p>
-<p>The <span class="fixed">elem</span> function has a type of <span class="fixed">(Eq a) =&gt; a -&gt; [a] -&gt; Bool</span> because it uses <span class="fixed">==</span> over a list to check whether some value we're looking for is in it.</p>
-<p>Some basic typeclasses:</p>
-<p><span class="label class">Eq</span> is used for types that support equality testing. The functions its members implement are <span class="fixed">==</span> and <span class="fixed">/=</span>. So if there's an <span class="fixed">Eq</span> class constraint for a type variable in a function, it uses <span class="fixed">==</span> or <span class="fixed">/=</span> somewhere inside its definition. All the types we mentioned previously except for functions are part of <span class="fixed">Eq</span>, so they can be tested for equality.</p>
+<p><span class="fixed">Eq</span> 타입클래스는 동일성을 테스트하는 인터페이스를 제공합니다. 그리고, 동일성 테스트를 할 수 있는 타입들은 Eq 타입클래스의 멤버이어야 합니다. 하스켈에서 IO 타입(입출력을 다루는 타입입니다)을 제외한 모든 표준 타입들과 함수들은 Eq 타입클래스에 속합니다.</p>
+<p><span class="fixed">elem</span> 함수는 <span class="fixed">(Eq a) =&gt; a -&gt; [a] -&gt; Bool</span> 타입인데, 이는 리스트 안에 찾는 값이 있는지 확인하려고 <span class="fixed">==</span> 를 사용하기 때문입니다.</p>
+<p>몇 가지 기본적인 타입클래스를 살펴보겠습니다.</p>
+<p><span class="label class">Eq</span>는 동일성 테스트를 지원하는 타입들을 나타냅니다. <span class="fixed">Eq</span> 클래스의 멤버 타입들은 <span class="fixed">==</span>와 <span class="fixed">/=</span>를 구현해야 하고, 그래서 <span class="fixed">Eq</span> 클래스 제약조건을 갖는 타입 변수에 해당하는 변수에 대해서는 <span class="fixed">==</span>나 <span class="fixed">/=</span> 연산자를 이용할 수 있습니다. 함수 인자의 타입이 <span class="fixed">Eq</span< 클래스 제약조건을 갖는 타입 변수였다면, 그 함수는 그 인자에 대해 어딘가에서 <span class="fixed">==</span> 또는 <span class="fixed">/=</span>를 사용할 것입니다. 앞서 언급된 타입들 중 함수를 제외한 모든 타입은 <span class="fixed">Eq</span> 클래스를 지원하므로, 동일성 검사가 가능합니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 5 == 5
 True
 ghci&gt; 5 /= 5
@@ -142,13 +142,13 @@ ghci&gt; 3.432 == 3.432
 True
 </pre>
 <p>
-<span class="label class">Ord</span> is for types that have an ordering.</p>
+<span class="label class">Ord</span> 는 순서가 있는 타입들과 관련있습니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t (&gt;)
 (&gt;) :: (Ord a) =&gt; a -&gt; a -&gt; Bool
 </pre>
 <p>
-All the types we covered so far except for functions are part of <span class="fixed">Ord</span>. <span class="fixed">Ord</span> covers all the standard comparing functions such as <span class="fixed">&gt;</span>, <span class="fixed">&lt;</span>, <span class="fixed">&gt;=</span> and <span class="fixed">&lt;=</span>. The <span class="fixed">compare</span> function takes two <span class="fixed">Ord</span> members of the same type and returns an ordering. <span class="label type">Ordering</span> is a type that can be <span class="fixed">GT</span>, <span class="fixed">LT</span> or <span class="fixed">EQ</span>, meaning <i>greater than</i>, <i>lesser than</i> and <i>equal</i>, respectively. 
-</p><p>To be a member of <span class="fixed">Ord</span>, a type must first have membership in the prestigious and exclusive <span class="fixed">Eq</span> club.</p>
+이제까지 다뤄 온 타입들 중 함수의 타입들을 제외 하고는 모두 <span class="fixed">Ord</span>에 속합니다.  <span class="fixed">Ord</span>는 <span class="fixed">&gt;</span>, <span class="fixed">&lt;</span>, <span class="fixed">&gt;=</span>, <span class="fixed">&lt;=</span> 같은 일반적인 비교 함수들을 모두 지원합니다. <span class="fixed">compare</span> 함수는 같은 타입의 <span class="fixed">Ord</span> 값 두 개를 받아서 <span class="label type">Ordering</span> 타입의 값을 돌려줍니다. <span class="label type">Ordering</span> 은 <span class="fixed">GT</span>, <span class="fixed">LT</span> 또는 <span class="fixed">EQ</span> 가 될 수 있는 타입입니다. 각각 <i>크다</i>, <i>작다</i>, <i>같다</i>를 의미하지요.
+</p><p>어떤 타입이 <span class="fixed">Ord</span>의 멤버가 되려면 먼저 <span class="fixed">Eq</span>의 멤버여야 합니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; "Abrakadabra" &lt; "Zebra"
 True
 ghci&gt; "Abrakadabra" `compare` "Zebra"
@@ -158,7 +158,7 @@ True
 ghci&gt; 5 `compare` 3
 GT
 </pre>
-<p>Members of <span class="label class">Show</span> can be presented as strings. All types covered so far except for functions are a part of <span class="fixed">Show</span>. The most used function that deals with the <span class="fixed">Show</span> typeclass is <span class="fixed">show</span>. It takes a value whose type is a member of <span class="fixed">Show</span> and presents it to us as a string.</p>
+<p><span class="label class">Show</span> 의 값들은 문자열로 표현 될 수 있습니다. 이제까지 다뤘던 모든 타입들 중 함수들의 타입만을 제외하고는 모두 <span class="fixed">Show</span> 에 속하지요. <span class="fixed">Show</span> 타입클래스에서 제일 많이 쓰이는 함수는 <span class="fixed">show</span> 입니다. 이 함수는 <span class="fixed">Show</span> 의 값인 아무 타입의 값을 받아서 문자열로 표현하지요.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; show 3
 "3"
 ghci&gt; show 5.334
@@ -166,7 +166,7 @@ ghci&gt; show 5.334
 ghci&gt; show True
 "True"
 </pre>
-<p><span class="label class">Read</span> is sort of the opposite typeclass of <span class="fixed">Show</span>. The <span class="fixed">read</span> function takes a string and returns a type which is a member of <span class="fixed">Read</span>.</p>
+<p><span class="label class">Read</span>는 <span class="fixed">Show</span> 의 반대의 의미를 가지는 타입클래스입니다. <span class="fixed">read</span> 함수는 문자열을 받아서 <span class="fixed">Read</span> 클래스 내 타입 중 한 타입의 값을 반환합니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; read "True" || False
 True
 ghci&gt; read "8.2" + 3.8
@@ -176,19 +176,19 @@ ghci&gt; read "5" - 2
 ghci&gt; read "[1,2,3,4]" ++ [3]
 [1,2,3,4,3]
 </pre>
-<p>So far so good. Again, all types covered so far are in this typeclass. But what happens if we try to do just <span class="fixed">read "4"</span>?</p>
+<p>아직까진 괜찮은 것 같군요. 앞의 다른 타입클래스처럼, 여태까지 다룬 모든 타입 중 함수만 제외하고 모두 <span class="fixed">Read</span> 클래스의 멤버였습니다. 하지만 만약, 그냥 <span class="fixed">read "4"</span> 라고 하면 어떻게 될까요?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; read "4"
 &lt;interactive&gt;:1:0:
     Ambiguous type variable `a' in the constraint:
       `Read a' arising from a use of `read' at &lt;interactive&gt;:1:0-7
     Probable fix: add a type signature that fixes these type variable(s)
 </pre>
-<p>What GHCI is telling us here is that it doesn't know what we want in return. Notice that in the previous uses of <span class="fixed">read</span> we did something with the result afterwards. That way, GHCI could infer what kind of result we wanted out of our <span class="fixed">read</span>. If we used it as a boolean, it knew it had to return a <span class="fixed">Bool</span>. But now, it knows we want some type that is part of the <span class="fixed">Read</span> class, it just doesn't know which one. Let's take a look at the type signature of <span class="fixed">read</span>.</p>
+<p>GHCI가 무엇이라고 답해야 할지 모르겠다는군요. 이전 예제에서 <span class="fixed">read</span> 를 사용 할때는 반환된 값이 어떤 방식으로든 사용되도록 작성하였습니다. 그랬기에, GHCI가 <span class="fixed">read</span> 를 한 결과가 어떤 타입이 되어야 할지 추측할 수 있었던 것이지요. 만약 반환된 값을 불리언 처럼 사용했다면, <span class="fixed">read</span> 함수가 <span class="fixed">Bool</span> 타입을 돌려 줘야 한다는 걸 안다는 것입니다. 그러나 그냥 <span class="fixed">read "4"</span> 만 가지고는 반환되어야 할 값이 <span class="fixed">Read</span> 클래스의 멤버 타입이어야 한다는 것은 알지만, 구체적으로 어떤 타입이어야 하는지는 알 수 없기 때문에 오류가 발생한 것입니다. <span class="fixed">read</span> 함수의 타입을 확인해보지요.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t read
 read :: (Read a) =&gt; String -&gt; a
 </pre>
 <p>
-See? It returns a type that's part of <span class="fixed">Read</span> but if we don't try to use it in some way later, it has no way of knowing which type. That's why we can use explicit <em>type annotations</em>. Type annotations are a way of explicitly saying what the type of an expression should be. We do that by adding <span class="fixed">::</span> at the end of the expression and then specifying a type. Observe:
+보이세요? 리턴이 <span class="fixed">Read</span> 타입클래스에 속하는 어떤 타입이긴 한데, 어디에 쓰지를 않으니 정확히 무슨 타입인지 알 길이 없군요. 그래서 명시적으로 <em>타입 어노테이션(annotation)</em>을 쓰는 것입니다. 타입 어노테이션은 수식이 어떤 타입이 되어야 하는지 명시적으로 지정해 주는 방법입니다. 수식 뒤에 <span class="fixed">::</span> 를 붙이고, 그 다음에 어떤 타입인지 써주시면 됩니다. 아래를 보세요.
 </p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; read "5" :: Int
 5
@@ -201,8 +201,8 @@ ghci&gt; read "[1,2,3,4]" :: [Int]
 ghci&gt; read "(3, 'a')" :: (Int, Char)
 (3, 'a')
 </pre>
-<p>Most expressions are such that the compiler can infer what their type is by itself. But sometimes, the compiler doesn't know whether to return a value of type <span class="fixed">Int</span> or <span class="fixed">Float</span> for an expression like <span class="fixed">read "5"</span>. To see what the type is, Haskell would have to actually evaluate <span class="fixed">read "5"</span>. But since Haskell is a statically typed language, it has to know all the types before the code is compiled (or in the case of GHCI, evaluated). So we have to tell Haskell: "Hey, this expression should have this type, in case you don't know!".</p>
-<p><span class="label class">Enum</span> members are sequentially ordered types — they can be enumerated. The main advantage of the <span class="fixed">Enum</span> typeclass is that we can use its types in list ranges. They also have defined successors and predecesors, which you can get with the <span class="fixed">succ</span> and <span class="fixed">pred</span> functions. Types in this class: <span class="fixed">()</span>, <span class="fixed">Bool</span>, <span class="fixed">Char</span>, <span class="fixed">Ordering</span>, <span class="fixed">Int</span>, <span class="fixed">Integer</span>, <span class="fixed">Float</span> and <span class="fixed">Double</span>.</p>
+<p>수식들 중 대부분은 컴파일러가 그 수식의 타입이 무엇인지 추측 할 수 있습니다. 그러나 <span class="fixed">read "5"</span> 같은 수식에 대해서는 이게 <span class="fixed">Int</span> 인지, <span class="fixed">Float</span> 인지 알 수 없습니다. <span class="fixed">read "5"</span>가 어떤 타입의 값을 반환할 지 알려면 이 수식을 실행해보는 수 밖에 없습니다. 그러나 하스켈은 정적으로 타입이 정해지는 언어이기 때문에, 코드가 컴파일 되기 전(GHCI의 경우라면, 실행되기 전)에 무슨 타입인지 알아야만 합니다. 따라서 하스켈에게 꼭 이렇게 말해줘야 하는 것이지요. “야! 이 수식은 너가 모른다면 이런 타입이 되야해!” 라고요.</p>
+<p><span class="label class">Enum</span> 타입 클래스의 멤버 타입들은 순서대로 나열 할 수 있는, 다른말로 열거(enumerate) 할 수 있는 타입들입니다. Enum 타입클래스의 가장 큰 장점은, 클래스 안의 타입들을 리스트 범위에 사용할 수 있다는 것입니다. 또한 <span class="fixed">succ</span> 함수와 <span class="fixed">pred</span> 함수로 얻을 수 있는 정의된 후임자(successor)와 전임자(predecesor)도 있습니다.클래스 안에 <span class="fixed">()</span>, <span class="fixed">Bool</span>, <span class="fixed">Char</span>, <span class="fixed">Ordering</span>, <span class="fixed">Int</span>, <span class="fixed">Integer</span>, <span class="fixed">Float</span> and <span class="fixed">Double</span>같은 타입들이 있습니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; ['a'..'e']
 "abcde"
 ghci&gt; [LT .. GT]
@@ -212,7 +212,7 @@ ghci&gt; [3 .. 5]
 ghci&gt; succ 'B'
 'C'
 </pre>
-<p><span class="label class">Bounded</span> members have an upper and a lower bound.</p>
+<p><span class="label class">Bounded</span> 타입 클래스의 값들은 상한(upper bound)과 하한(lower bound)이 있습니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; minBound :: Int
 -2147483648
 ghci&gt; maxBound :: Char
@@ -222,16 +222,16 @@ True
 ghci&gt; minBound :: Bool
 False
 </pre>
-<p><span class="fixed">minBound</span> and <span class="fixed">maxBound</span> are interesting because they have a type of <span class="fixed">(Bounded a) =&gt; a</span>. In a sense they are polymorphic constants.</p>
-<p>All tuples are also part of <span class="fixed">Bounded</span> if the components are also in it.</p>
+<p><span class="fixed">minBound</span> 와 <span class="fixed">maxBound</span>가 흥미롭군요. 타입을 보면 <span class="fixed">(Bounded a) =&gt; a</span> 라고 나옵니다. 어떤 의미로는 다형성(polymorphic) 상수로 볼 수 있겠네요.</p>
+<p><span class="fixed">Bounded</span> 의 멤버로 구성된 모든 튜플들 또한 <span class="fixed">Bounded</span> 의 멤버입니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; maxBound :: (Bool, Int, Char)
 (True,2147483647,'\1114111')
 </pre>
-<p><span class="label class">Num</span> is a numeric typeclass. Its members have the property of being able to act like numbers. Let's examine the type of a number.</p>
+<p><span class="label class">Num</span> 은 숫자와 관련있는 타입클래스입니다. 이 타입클래스의 값들은 숫자처럼 사용될 수 있는 특징이 있습니다. 한번 숫자의 타입을 확인해 볼까요?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t 20
 20 :: (Num t) =&gt; t
 </pre>
-<p>It appears that whole numbers are also polymorphic constants. They can act like any type that's a member of the <span class="fixed">Num</span> typeclass.</p>
+<p>모든 숫자는 다형성 상수입니다. 그래서 숫자들은 상황에 맞추어 <span class="fixed">Num</span> 클래스의 멤버 타입 중 하나의 기능을 할 수 있습니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; 20 :: Int
 20
 ghci&gt; 20 :: Integer
@@ -241,29 +241,29 @@ ghci&gt; 20 :: Float
 ghci&gt; 20 :: Double
 20.0
 </pre>
-<p>Those are types that are in the <span class="fixed">Num</span> typeclass. If we examine the type of <span class="fixed">*</span>, we'll see that it accepts all numbers.</p>
+<p>위의 타입들이 <span class="fixed">Num</span> 타입클래스 내의 타입들입니다. <span class="fixed">*</span> 에 모든 숫자들이 적용되는지 확인해 볼까요?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t (*)
 (*) :: (Num a) =&gt; a -&gt; a -&gt; a
 </pre>
 <p>
-It takes two numbers of the same type and returns a number of that type. That's why <span class="fixed">(5 :: Int) * (6 :: Integer)</span> will result in a type error whereas <span class="fixed">5 * (6 :: Integer)</span> will work just fine and produce an <span class="fixed">Integer</span> because <span class="fixed">5</span> can act like an <span class="fixed">Integer</span> or an <span class="fixed">Int</span>.
+같은 타입의 두 숫자를 받아서 같은 타입의 숫자를 돌려주는군요. 그 말은 곧 <span class="fixed">5 * (6 :: Integer)</span> 는 <span class="fixed">Integer</span> 를 돌려주며 잘 동작하겠지만, <span class="fixed">(5 :: Int) * (6 :: Integer)</span> 는 타입에러가 발생한다는 것이겠지요.
 </p>
-<p>To join <span class="fixed">Num</span>, a type must already be friends with <span class="fixed">Show</span> and <span class="fixed">Eq</span>.</p>
-<p><span class="class label">Integral</span> is also a numeric typeclass. <span class="fixed">Num</span> includes all numbers, including real numbers and integral numbers, <span class="fixed">Integral</span> includes only integral (whole) numbers. In this typeclass are <span class="fixed">Int</span> and <span class="fixed">Integer</span>.</p>
-<p><span class="class label">Floating</span> includes only floating point numbers, so <span class="fixed">Float</span> and <span class="fixed">Double</span>.</p>
-<p>A very useful function for dealing with numbers is <span class="label function">fromIntegral</span>. It has a type declaration of <span class="fixed">fromIntegral :: (Num b, Integral a) =&gt; a -&gt; b</span>. From its type signature we see that it takes an integral number and turns it into a more general number. That's useful when you want integral and floating point types to work together nicely. For instance, the <span class="fixed">length</span> function has a type declaration of <span class="fixed">length :: [a] -&gt; Int</span> instead of having a more general type of <span class="fixed">(Num b) =&gt; length :: [a] -&gt; b</span>. I think that's there for historical reasons or something, although in my opinion, it's pretty stupid. Anyway, if we try to get a length of a list and then add it to <span class="fixed">3.2</span>, we'll get an error because we tried to add together an <span class="fixed">Int</span> and a floating point number. So to get around this, we do <span class="fixed">fromIntegral (length [1,2,3,4]) + 3.2</span> and it all works out.</p>
-<p>Notice that <span class="fixed">fromIntegral</span> has several class constraints in its type signature. That's completely valid and as you can see, the class constraints are separated by commas inside the parentheses.</p>
+<p><span class="fixed">Num</span> 타입클래스에 속하는 타입이 되려면 반드시 <span class="fixed">Show</span> 와 <span class="fixed">Eq</span> 를 지원해야 합니다.</p>
+<p><span class="class label">Integral</span> 또한 숫자와 관련있는 타입클래스입니다. 다만 <span class="fixed">Num</span> 의 경우는 실수, 정수 모두 포함하고 있었던 반면, <span class="fixed">Integral</span> 은 모든 정수만 포함하고 있다는 점이 다르지요. 즉 <span class="fixed">Int</span> 와 <span class="fixed">Integer</span> 만 포함합니다.</p>
+<p><span class="class label">Floating</span> 은 부동소수점 실수만 포함하고 있으니, <span class="fixed">Float</span> 과 <span class="fixed">Double</span> 이 있겠네요.</p>
+<p><span class="label function">fromIntegral</span> 함수는 숫자를 다루는데 아주 유용한 함수입니다. 이 함수의 타입을 확인해보면 <span class="fixed">fromIntegral :: (Num b, Integral a) =&gt; a -&gt; b</span> 라고 선언되어 있는데요. <span class="fixed">Integral</span>을 받아서 더 일반적인 <span class="fixed">Num</span>으로 돌려주는 것을 볼 수 있습니다. 이건 정수와 부동소수점 실수 타입을 같이 사용하는데 유용하겠군요. 예를 들어, <span class="fixed">length</span> 함수는 <span class="fixed">(Num b) =&gt; length :: [a] -&gt; b</span> 같이 더 일반적인 타입이 아닌 <span class="fixed">length :: [a] -&gt; Int</span> 타입으로 선언되어 있습니다. 제 의견입니다만, 뭐 어떤 이유가 있었는진 모르겠지만 정말 멍청한 것 같습니다. 어쨌든, 어떤 리스트의 길이에 <span class="fixed">3.2</span> 를 더하려고 할 때, <span class="fixed">Int</span> 에 부동소수점 실수를 더하면 안된다는 에러가 나올 것입니다. 그래서 이런 것을 해결하려면, <span class="fixed">fromIntegral (length [1,2,3,4]) + 3.2</span> 같은 방법을 사용하면 되는 것이지요.</p>
+<p><span class="fixed">fromIntegral</span> 함수는 타입 안에 여러 클래스 제약조건이 있다는 것을 주의하세요. 여러 개의 클래스 제약조건을 쓸 때는 괄호 안에 콤마로 구분해서 쓰면 됩니다.</p>
 
                 <div class="footdiv">
                 <ul>
                     <li style="text-align:left">
-                                                        <a href="./starting-out" class="prevlink">Starting Out</a>
+                                                        <a href="./starting-out.html" class="prevlink">Starting Out</a>
                                             </li>
                     <li style="text-align:center">
-                        <a href="./chapters">Table of contents</a>
+                        <a href="./chapters.html">Table of contents</a>
                     </li>
                     <li style="text-align:right">
-                                                        <a href="./syntax-in-functions" class="nxtlink">Syntax in Functions</a>
+                                                        <a href="./syntax-in-functions.html" class="nxtlink">Syntax in Functions</a>
                                             </li>
                 </ul>
             </div>

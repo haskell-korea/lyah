@@ -18,23 +18,23 @@
                 <div class="footdiv" style="margin-bottom:25px;">
                 <ul>
                     <li style="text-align:left">
-                                                        <a href="./starting-out" class="prevlink">Starting Out</a>
+                                                        <a href="./starting-out.html" class="prevlink">Starting Out</a>
                                             </li>
                     <li style="text-align:center">
-                        <a href="./chapters">Table of contents</a>
+                        <a href="./chapters.html">Table of contents</a>
                     </li>
                     <li style="text-align:right">
-                                                        <a href="./syntax-in-functions" class="nxtlink">Syntax in Functions</a>
+                                                        <a href="./syntax-in-functions.html" class="nxtlink">Syntax in Functions</a>
                                             </li>
                 </ul>
             </div>
-        <h1>Types and Typeclasses</h1>
-<a name="believe-the-type"></a><h2>Believe the type</h2>
+        <h1>타입과 타입클래스</h1>
+<a name="believe-the-type"></a><h2>타입을 믿습니다!</h2>
 <img src="./files/cow.png" alt="moo" class="left" width="180" height="127">
-<p>Previously we mentioned that Haskell has a static type system. The type of every expression is known at compile time, which leads to safer code. If you write a program where you try to divide a boolean type with some number, it won't even compile. That's good because it's better to catch such errors at compile time instead of having your program crash. Everything in Haskell has a type, so the compiler can reason quite a lot about your program before compiling it.</p>
-<p>Unlike Java or Pascal, Haskell has type inference. If we write a number, we don't have to tell Haskell it's a number. It can <i>infer</i> that on its own, so we don't have to explicitly write out the types of our functions and expressions to get things done. We covered some of the basics of Haskell with only a very superficial glance at types. However, understanding the type system is a very important part of learning Haskell.</p>
-<p>A type is a kind of label that every expression has. It tells us in which category of things that expression fits. The expression <span class="fixed">True</span> is a boolean, <span class="fixed">"hello"</span> is a string, etc.</p>
-<p>Now we'll use GHCI to examine the types of some expressions. We'll do that by using the <span class="fixed">:t</span> command which, followed by any valid expression, tells us its type. Let's give it a whirl.</p>
+<p>이전에 하스켈은 정적인 타입 시스템을 채택하고 있다고 소개했었습니다. 모든 expression의 타입을 컴파일 할 때 알 수 있어서 더욱 안전하게 코딩을 할 수 있지요. 만약 불리언 타입을 숫자로 나누는 코드를 작성했다면 컴파일조차 되지 않을 것입니다. 이런 에러들을 컴파일 할 때 잡을 수 있으니, 실행 하다 죽는 것 보다야 훨씬 좋겠지요. 하스켈 안의 모든 것에는 타입이 있기 때문에, 컴파일러가 프로그램에 대해 사전에 많은 것 들을 알 수 있게 됩니다.</p>
+<p>하스켈에는 Java나 Pascal에는 없는 타입 추론 기능이 있습니다. 숫자를 쓰면 따로 그게 숫자라고 알려줄 필요가 없다는 것이죠. 하스켈이 스스로 타입 추론이 가능하므로, 작성한 함수나 수식에 대해 명시적으로 타입을 지정하지 않아도 잘 동작합니다. 이제 대충 타입을 보았으니, 어느정도 하스켈의 기본을 배운 것 입니다.  그러나 타입 시스템을 이해하는 것은 하스켈을 배우는 데 있어서 아주 중요한 부분이므로 좀 더 알아보겠습니다.</p>
+<p>타입은 각 수식이 어떤 카테고리에 속하는지 표시해주는 일종의 라벨같은 것입니다. 예를 들면 <span class="fixed">True</span>라는 식은 boolean 타입, <span class="fixed">"hello"</span>라는 식은 문자열 타입, 하는 식이죠.</p>
+<p>이제 GHCI로 어떻게 수식의 타입을 알아보는지 배워보겠습니다. 단순히 <span class="fixed">:t</span> 와 수식을 같이 입력하는 것으로 확인 할 수 있습니다. 한번 해볼까요?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t 'a'
 'a' :: Char
 ghci&gt; :t True
@@ -48,29 +48,27 @@ ghci&gt; :t 4 == 5
 </pre>
 <p>
 <img src="./files/bomb.png" alt="bomb" class="right" width="171" height="144">
-Here we see that doing <span class="fixed">:t</span> on an expression prints out the expression followed by <span class="fixed">::</span> and its type. <span class="fixed">::</span> is read as "has type of". Explicit types are always denoted with the first letter in capital case. <span class="fixed">'a'</span>, as it would seem, has a type of <span class="fixed">Char</span>. It's not hard to conclude that it stands for <i>character</i>. <span class="fixed">True</span> is of a <span class="fixed">Bool</span> type. That makes sense. But what's this? Examining the type of <span class="fixed">"HELLO!"</span> yields a <span class="fixed">[Char]</span>. The square brackets denote a list. So we read that as it being <i>a list of characters</i>. Unlike lists, each tuple length has its own type. So the expression of <span class="fixed">(True, 'a')</span> has a type of <span class="fixed">(Bool, Char)</span>, whereas an expression such as <span class="fixed">('a','b','c')</span> would have the type of <span class="fixed">(Char, Char, Char)</span>. <span class="fixed">4 == 5</span> will always return <span class="fixed">False</span>, so its type is <span class="fixed">Bool</span>.
-</p>
+<span class="fixed">:t</span> 와 수식을 입력하면 "수식 <span class="fixed">::</span> 타입" 형태로 출력되는 것을 볼 수 있습니다. <span class="fixed">::</span> 는 “~라는 타입을 갖는다”로 해석할 수 있겠네요. 명시적 타입은 항상 첫 글자를 대문자로 표현합니다. 보시다시피, <span class="fixed">'a'</span> 는 <span class="fixed">Char</span> 타입을 갖습니다. <span class="fixed">Char</span>가 <i>문자(Character)</i>의 준말을 의미한다는 건 쉽게 떠올릴 수 있습니다. <span class="fixed">True</span> 는 <span class="fixed">Bool</span> 타입입니다. 이해가 되네요.  음...  그럼 이런 경우는 어떨까요? <span class="fixed">"HELLO!"</span> 의 타입을 물어보면 <span class="fixed">[Char]</span> 라고 알려줍니다. 대괄호는 리스트를 의미하니, 이것을 <i>문자의 리스트</i>라고 읽을 수 있겠네요. 리스트와는 달리 튜플은 길이가 다르면 다른 타입을 갖습니다. 그러므로 <span class="fixed">(True, 'a')</span> 의 타입은 <span class="fixed">(Bool, Char)</span> 이고, <span class="fixed">('a','b','c')</span> 는 <span class="fixed">(Char, Char, Char)</span> 타입이라고 할 수 있겠네요. <span class="fixed">4 == 5</span> 는 언제나 <span class="fixed">False</span> 를 나타내므로 타입은 <span class="fixed">Bool</span> 입니다.</p>
 <p>
-Functions also have types. When writing our own functions, we can choose to give them an explicit type declaration. This is generally considered to be good practice except when writing very short functions. From here on, we'll give all the functions that we make type declarations. Remember the list comprehension we made previously that filters a string so that only caps remain? Here's how it looks like with a type declaration.
-</p>
+함수도 타입이 있습니다. 함수를 작성할 때 명시적으로 타입을 선언 할 수 있습니다. 이건 매우 짧은 함수를 작성 할 때를 제외하고는, 대체로 좋은 습관으로 볼 수 있습니다.  여기서부터 작성하는 모든 함수에는 타입을 지정하도록 하겠습니다. 이전에 List Comprehension을 이용해 문자열에서 대문자만 걸러내는 함수를 만들었던 것을 기억하시나요? 거기에 타입 선언을 추가하면 아래처럼 됩니다.</p>
 
 <pre name="code" class="haskell: hs" style="display: none;">removeNonUppercase :: [Char] -&gt; [Char]
 removeNonUppercase st = [ c | c &lt;- st, c `elem` ['A'..'Z']] 
 </pre>
 <p>
-<span class="fixed">removeNonUppercase</span> has a type of <span class="fixed">[Char] -&gt; [Char]</span>, meaning that it maps from a string to a string. That's because it takes one string as a parameter and returns another as a result. The <span class="fixed">[Char]</span> type is synonymous with <span class="fixed">String</span> so it's clearer if we write <span class="fixed">removeNonUppercase :: String -&gt; String</span>. We didn't have to give this function a type declaration because the compiler can infer by itself that it's a function from a string to a string but we did anyway. But how do we write out the type of a function that takes several parameters? Here's a simple function that takes three integers and adds them together:
+<span class="fixed">removeNonUppercase</span> 는 <span class="fixed">[Char] -&gt; [Char]</span> 타입을 갖는데요, 이것은 문자열을 받아서 문자열로 매핑 해준다는 뜻입니다. 이 함수는 문자열을 받아 문자열을 돌려주는 함수이기 때문이지요. <span class="fixed">[Char]</span> 타입은 <span class="fixed">String</span> 타입과 똑같으니, <span class="fixed">removeNonUppercase :: String -&gt; String</span> 이렇게 쓰는 것이 더 명확해 보입니다. 타입 선언을 명시적으로 하긴 했지만, 컴파일러가 이 함수의 타입을 추론 할 수 있기 때문에 사실 명시적인 지정을 하지 않아도 됩니다. 그런데, 여러 개의 인자를 받는 함수인 경우는 어떻게 타입을 선언해야 할까요? 아래에 3개의 정수 인자를 받아 더하는 간단한 함수 예제가 있습니다.
 </p>
 <pre name="code" class="haskell: hs" style="display: none;">addThree :: Int -&gt; Int -&gt; Int -&gt; Int
 addThree x y z = x + y + z
 </pre>
-<p>The parameters are separated with <span class="fixed">-&gt;</span> and there's no special distinction between the parameters and the return type. The return type is the last item in the declaration and the parameters are the first three. Later on we'll see why they're all just separated with <span class="fixed">-&gt;</span> instead of having some more explicit distinction between the return types and the parameters like <span class="fixed">Int, Int, Int -&gt; Int</span> or something.
+<p>인자들 간에는 <span class="fixed">-&gt;</span> 로 구분이 되고, 리턴 타입도 똑같이 <span class="fixed">-&gt;</span> 로 구분됩니다. 마지막에 있는 것이 리턴 타입이니, 처음 세 타입이 인자의 타입이겠네요. 왜 인자와 리턴 타입 사이를 <span class="fixed">Int, Int, Int -&gt; Int</span> 와 같이 명시적으로 표현하지 않고, 모두 똑같이 <span class="fixed">-&gt;</span>로만 구분하는지는 나중에 알아보도록 하겠습니다.
 </p>
-<p>If you want to give your function a type declaration but are unsure as to what it should be, you can always just write the function without it and then check it with <span class="fixed">:t</span>. Functions are expressions too, so <span class="fixed">:t</span> works on them without a problem.</p>
-<p>Here's an overview of some common types.</p>
+<p>만약 작성한 함수의 타입을 선언하고 싶은데, 어떤 타입인지 잘 모르겠다면 작성한 함수를 <span class="fixed">:t</span> 로 체크해보면 됩니다. 함수도 수식이니까 <span class="fixed">:t</span> 가 문제없이 잘 동작 할 것입니다.</p>
+<p>몇 가지 일반적인 타입들을 훑어봅시다.</p>
 <p>
-<span class="label type">Int</span> stands for integer. It's used for whole numbers. <span class="fixed">7</span> can be an <span class="fixed">Int</span> but <span class="fixed">7.2</span> cannot. <span class="fixed">Int</span> is bounded, which means that it has a minimum and a maximum value. Usually on 32-bit machines the maximum possible <span class="fixed">Int</span> is 2147483647 and the minimum is -2147483648.
+<span class="label type">Int</span> 는 정수(Integer)의 준말입니다. 숫자 전체에 쓰일 수 있지요. 그러나, <span class="fixed">7</span> 은 <span class="fixed">Int</span> 가 될 수 있지만, <span class="fixed">7.2</span> 는 될 수 없습니다. <span class="fixed">Int</span> 는 바운드된(bounded) 타입입니다. 즉 최소값과 최대값이 있다는 뜻입니다. 보통 32비트 머신에서 <span class="fixed">Int</span> 의 최대값은 2147483647, 최소값은 -2147483648 입니다.
 </p>
-<p><span class="label type">Integer</span> stands for, er … also integer. The main difference is that it's not bounded so it can be used to represent really really big numbers. I mean like really big. <span class="fixed">Int</span>, however, is more efficient.
+<p><span class="label type">Integer</span> 는 에.. 또 정수(Integer)를 의미합니다. 그러나 Int 와의 큰 차이점은 이건 바운드(bounded)되지 않았다는 것이지요. 그래서, 아~주 아주 큰 숫자도 사용 할 수 있습니다. 하지만, <span class="fixed">Int</span> 는 더 효율적이지요.
 </p>
 <pre name="code" class="haskell: hs" style="display: none;">factorial :: Integer -&gt; Integer
 factorial n = product [1..n]
@@ -78,14 +76,14 @@ factorial n = product [1..n]
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; factorial 50
 30414093201713378043612608166064768844377641568960512000000000000
 </pre>
-<p><span class="label type">Float</span> is a real floating point with single precision.</p>
+<p><span class="label type">Float</span> 는 single precision의 부동 소수점 실수입니다.</p>
 <pre name="code" class="haskell: hs" style="display: none;">circumference :: Float -&gt; Float
 circumference r = 2 * pi * r
 </pre>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; circumference 4.0
 25.132742
 </pre>
-<p><span class="label type">Double</span> is a real floating point with double the precision!</p>
+<p><span class="label type">Double</span> 은 double precision의 부동 소수점 실수이지요.</p>
 <pre name="code" class="haskell: hs" style="display: none;">circumference' :: Double -&gt; Double
 circumference' r = 2 * pi * r
 </pre>
@@ -93,34 +91,34 @@ circumference' r = 2 * pi * r
 25.132741228718345
 </pre>
 <p>
-<span class="label type">Bool</span> is a boolean type. It can have only two values: <span class="fixed">True</span> and <span class="fixed">False</span>.
+<span class="label type">Bool</span> 은 불리언 타입으로서, <span class="fixed">True</span> 와 <span class="fixed">False</span> 두가지 값 밖에 없습니다.
 </p>
 <p>
-<span class="label type">Char</span> represents a character. It's denoted by single quotes. A list of characters is a string.
+<span class="label type">Char</span> 타입은 문자를 의미합니다. 작은 따옴표와 함께 표현되지요. 문자의 리스트는 문자열(string)입니다.
 </p>
-<p>Tuples are types but they are dependent on their length as well as the types of their components, so there is theoretically an infinite number of tuple types, which is too many to cover in this tutorial. Note that the empty tuple <span class="label type">()</span> is also a type which can only have a single value: <span class="fixed">()</span></p>
-<a name="type-variables"></a><h2>Type variables</h2>
+<p>튜플도 타입이지만 길이와 구성 요소에 따라 달라지기 때문에, 이론적으로 무한한 튜플 타입이 가능합니다. 비어있는 튜플 <span class="label type">()</span> 도 오직 <span class="fixed">()</span> 라는 값을 가지는  타입입니다.</p>
+<a name="type-variables"></a><h2>타입 변수</h2>
 <p>
-What do you think is the type of the <span class="fixed">head</span> function? Because <span class="fixed">head</span> takes a list of any type and returns the first element, so what could it be? Let's check!
+<span class="fixed">head</span>함수의 타입을 생각해보세요. <span class="fixed">head</span>는 특정 타입의 리스트를 받아 첫 번째 값을 돌려주는 함수였습니다. 무엇일까요? 한번 봅시다!
 </p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t head
 head :: [a] -&gt; a
 </pre>
 <p>
 <img src="./files/box.png" alt="box" class="left" width="130" height="93">
-Hmmm! What is this <span class="fixed">a</span>? Is it a type? Remember that we previously stated that types are written in capital case, so it can't exactly be a type. Because it's not in capital case it's actually a <em>type variable</em>. That means that <span class="fixed">a</span> can be of any type. This is much like generics in other languages, only in Haskell it's much more powerful because it allows us to easily write very general functions if they don't use any specific behavior of the types in them. Functions that have type variables are called <em>polymorphic functions</em>. The type declaration of <span class="fixed">head</span> states that it takes a list of any type and returns one element of that type.
+흠… 이 <span class="fixed">a</span> 가 뭐지요? 이게 타입인가요? 이전에 타입은 대문자로 시작한다고 했기 때문에 이건 정확히 타입은 아닐 것입니다. 이것은 사실 <em>타입 변수</em>라는 것이지요. 타입 변수라는 말은 즉, <span class="fixed">a</span> 가 어떠한 타입도 될 수 있다는 뜻입니다. 타입 변수는 다른 언어의 제네릭(generic)과 유사합니다. 타입 변수를 사용하는 함수들을 <em>다형 함수(polymorphic function)</em>라고 부릅니다. 어찌되었든 <span class="fixed">head</span> 의 타입은 특정 타입의 리스트를 받아서 첫 번째 값을 돌려주는 것이니 리턴 타입은 그 값의 타입이겠네요.
 </p>
-<p>Although type variables can have names longer than one character, we usually give them names of a, b, c, d …</p>
-<p>Remember <span class="fixed">fst</span>? It returns the first component of a pair. Let's examine its type.</p>
+<p>타입 변수 이름을 1글자 이상으로도 사용할 수 있지만, 보통 a, b, c, d 처럼 한 글자로 지정합니다.</p>
+<p>타입을 한번 확인해보지요. <span class="fixed">fst</span> 함수를 기억하시나요? 페어의 첫 번째 값을 돌려주는 함수였습니다.</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t fst
 fst :: (a, b) -&gt; a
 </pre>
 <p>
-We see that <span class="fixed">fst</span> takes a tuple which contains two types and returns an element which is of the same type as the pair's first component. That's why we can use <span class="fixed">fst</span> on a pair that contains any two types. Note that just because <span class="fixed">a</span> and <span class="fixed">b</span> are different type variables, they don't have to be different types. It just states that the first component's type and the return value's type are the same.
+<span class="fixed">fst</span>가 두 타입으로 이루어진 튜플을 받아서, 첫 번째 값과 같은 타입으로 돌려주는 것을 볼 수 있습니다. 이게 어떤 타입의 튜플에도 <span class="fixed">fst</span>함수를 쓸 수 있었던 이유입니다. <span class="fixed">a</span> 와 <span class="fixed">b</span> 는 단지 두 개의 타입 변수인 것일 뿐, 꼭 다른 타입일 필요는 없다는 것에 주의하세요. 리턴 타입이 첫 번째 값의 타입과 같다는 것을 나타내기 위해 저렇게 표현한 것 입니다.
 </p>
-<a name="typeclasses-101"></a><h2>Typeclasses 101</h2>
+<a name="typeclasses-101"></a><h2>타입클래스 101</h2>
 <img src="./files/classes.png" alt="class" class="right" width="210" height="158">
-<p>A typeclass is a sort of interface that defines some behavior. If a type is a part of a typeclass, that means that it supports and implements the behavior the typeclass describes. A lot of people coming from OOP get confused by typeclasses because they think they are like classes in object oriented languages. Well, they're not. You can think of them kind of as Java interfaces, only better.
+<p>타입클래스란, 몇몇 행동들을 정의하는 일종의 인터페이스 같은 것입니다. 만약 어떤 타입이 한 타입클래스에 속한다는건, 이 타입이 속한 타입클래스가 정의한 행동들을 지원할 수 있도록 구현되었다는 의미입니다. 객체 지향적 프로그래밍에 익숙한 사람들이 타입클래스가 객체 언어의 클래스 같은 것인 줄 오해 하는 경우가 많습니다. 하하, 아니지요.  차라리, Java의 인터페이스 같은거라고 생각하는게 더 날겁니다.
 </p>
 <p>What's the type signature of the <span class="fixed">==</span> function?</p>
 <pre name="code" class="haskell: ghci" style="display: none;">ghci&gt; :t (==)

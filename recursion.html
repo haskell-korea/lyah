@@ -30,12 +30,12 @@
         <h1 style="margin-left:-2px">재귀</h1>
 <a name="hello-recursion"></a><h2>재귀야 안녕?</h2>
 <img src="./files/recursion.png" alt="SOVIET RUSSIA" class="left" width="250" height="179">
-<p>이번 챕터에서는 재귀에 대해 더 자세히 알아보고, 하스켈에서 재귀가 왜 중요한지,  문제를 재귀적으로 접근해서 간결하고 우아하게 해결하는 법 등을 알아보도록 하겠습니다.</p>
-<p>만약 아직도 재귀가 뭔지 잘 모르겠다면 이 문장을 다시 읽어보세요. 하하~ 농담입니다. 사실 재귀는 함수를 정의하는 방법 중 하나로써, 함수 정의 안에서 자기를 다시 호출하는 함수를 말합니다. 수학에서의 정의들도 종종 재귀의 형태를 보입니다. 예를 들면, 피보나치 수열이 재귀적으로 정의 되어있지요. 우선, 처음 두 숫자는 재귀적이지 않게 정의되어 있습니다. 이를 <i>F(0) = 0, F(1) = 1</i> 라고 표현합니다. 0번째, 1번째 피보나치 숫자는 각각 0, 1이라는 것을 의미하지요. 다음으로, 이제 다른 아무 자연수에 대해서는 앞의 두 피보나치 수의 합이라고 정의합시다. 그럼 <i>F(n) = F(n-1) + F(n-2)</i> 라고 쓸 수 있겠네요. 그러므로, <i>F(3)</i> 은 <i>F(2) + F(1)</i>이 되고, 다시 <i>(F(1) + F(0)) + F(1)</i> 이 되겠습니다. 이제 재귀적이지 않은 피보나치 수만 모였으므로, <i>F(3)</i> 은 2라고 도출 할 수 있습니다. 재귀적이지 않게 정의된 한 두가지 정도의 (예제에서는 <i>F(0)</i>, <i>F(1)</i> 같은 경우) 경우를 <em>edge condition</em> 이라 부릅니다. 재귀 함수에서 이 부분이 호출의 끝이 되므로 아주 중요하지요. 만약 예제에서 <i>F(0)</i>과 <i>F(1)</i>을 따로 정의하지 않았다면, 함수는 음수까지 계속되면서 끝나지 않았을 것입니다. 만약 갑자기, <i>F(-2000)</i> 는 <i>F(-2001) + F(-2002)</i> 이라고 한다면 끝이 보이지 않겠지요!</p>
-<p>여타 명령형 언어와는 달리, 하스켈에서 재귀는 아주 중요합니다. because unlike imperative languages, you do computations in Haskell by declaring what something <i>is</i> instead of declaring <i>how</i> you get it. 그렇기 때문에 하스켈에서는 while이나 for 루프가 없고, 대신 재귀를 사용하게 되는 것입니다.</p>
+<p>이번 챕터에서는 재귀에 대해 더 자세히 알아보고, 하스켈에서 재귀가 왜 중요한지, 문제를 재귀적으로 접근해서 간결하고 우아하게 해결하는 법 등을 알아보도록 하겠습니다.</p>
+<p>혹시 아직도 재귀가 뭔지 잘 모르겠다면 이 문장을 다시 읽어보세요. 하하~ 농담입니다. 사실 재귀는 함수를 정의하는 방법 중 하나로써, 함수 정의 안에서 자기를 다시 호출하는 함수를 말합니다. 수학에서의 정의들도 종종 재귀의 형태를 보입니다. 예를 들면, 피보나치 수열이 재귀적으로 정의 되어있지요. 우선, 처음 두 숫자는 재귀적이지 않게 정의되어 있습니다. 이를 <i>F(0) = 0, F(1) = 1</i> 라고 표현합니다. 0번째, 1번째 피보나치 숫자는 각각 0, 1이라는 것을 의미하지요. 다음으로, 이제 다른 아무 자연수에 대해서는 앞의 두 피보나치 수의 합이라고 정의합시다. 그럼 <i>F(n) = F(n-1) + F(n-2)</i> 라고 쓸 수 있겠네요. 그러므로, <i>F(3)</i> 은 <i>F(2) + F(1)</i>이 되고, 다시 <i>(F(1) + F(0)) + F(1)</i> 이 되겠습니다. 이제 재귀적이지 않은 피보나치 수만 모였으므로, <i>F(3)</i> 은 2라고 도출 할 수 있습니다. 재귀적이지 않게 정의된 한 두가지 정도의 (예제에서는 <i>F(0), F(1)</i> 같은 경우) 경우를 <em>edge condition</em> 이라 부릅니다. 재귀 함수에서 이 부분이 호출의 끝이 되므로 아주 중요하지요. 만약 예제에서 <i>F(0)</i>과 <i>F(1)</i>을 따로 정의하지 않았다면, 함수는 음수까지 계속되면서 끝나지 않았을 것입니다. 혹시라도, <i>F(-2000)</i> 는 <i>F(-2001) + F(-2002)</i> 이라고 한다면 끝이 보이지 않겠지요!</p>
+<p>여타 명령형 언어와는 달리, 하스켈에서 재귀는 아주 중요합니다. 하스켈에서는 어떤 계산을 할 때, 그것을 <i>어떻게</i> 얻을 지가 아닌, 그게 <i>무엇인지</i>를 정의하여 얻기 때문이지요. 그렇기 때문에 하스켈에서는 while이나 for 루프가 없고, 대신 재귀를 사용하게 되는 것입니다.</p>
 <a name="maximum-awesome"></a><h2>Maximum awesome</h2>
 <p><span class="fixed">maximum</span> 함수는 정렬 될 수 있는(<span class="fixed">Ord</span> 타입클래스에 속해 있는) 것들의 리스트를 받아서 최대값을 돌려주는 함수입니다. 이걸 명령형 방식으로는 어떻게 구현할까요? 아마 저장해 놓을 변수를 선언해놓고, 리스트를 돌면서 저장해 놓은 값보다 더 크다면 변수에 저장하는 식이겠지요. 리스트를 다 탐색하고 나면 선언한 변수의 값이 최대값이 되겠네요. 휴! 이 간단한 알고리즘을 설명하는데 이렇게 많은 말이 필요하네요.</p>
-<p>그럼 제귀적으로는 어떻게 정의하는지 봅시다. 우선 "멤버가 한개만 있는 리스트의 최대값은 그 멤버"라는 Edge Condition을 정의합시다. 더 긴 리스트의 경우는 머리(head)가 꼬리(tail)의 최대값보다 크면 최대값이라고 정의합니다. 꼬리쪽의 최대값이 크다면 꼬리쪽이라고 하고요. 다 됐습니다! 이제 하스켈에서 어떻게 구현했는지 보시지요.</p>
+<p>그럼 제귀적으로는 어떻게 정의하는지 봅시다. 우선 "멤버가 한개만 있는 리스트의 최대값은 그 멤버"라는 Edge Condition을 정의합시다. 더 긴 리스트의 경우는 머리(head)가 꼬리(tail)의 최대값보다 크면 최대값이라고 정의합니다. 꼬리쪽의 최대값이 크다면 꼬리쪽이라고 하고요. 자 이게 답니다! 이제 하스켈에서 어떻게 구현했는지 보시지요.</p>
 <pre name="code" class="haskell:hs" style="display: none;">maximum' :: (Ord a) =&gt; [a] -&gt; a
 maximum' [] = error "maximum of empty list"
 maximum' [x] = x
@@ -44,8 +44,8 @@ maximum' (x:xs)
     | otherwise = maxTail
     where maxTail = maximum' xs
 </pre>
-<p>보시다시피, 패턴 매칭과 재귀가 기가 막히게 잘 들어맞네요! 대부분의 명령형 언어에는 패턴 매칭이 없어서, edge condition을 체크하려면 if else 문으로 도배를 해야합니다. 그러나 하스켈에서는 단순히 패턴을 정의하면 되지요. 첫번째 edge condition은 비어있는 리스트면 에러를 내라고 하네요. 비어있는 리스트에서 최대값을 구할 수 없으니 맞는 말 아닐까요? 흠, 잘 모르겠습니다. 두번째 패턴 또한 edge condition입니다. 멤버 하나짜리 리스트면 그냥 그 멤버를 돌려주라는 얘기네요.</p>
-<p>세번째 패턴이 바로 중요한 알고리즘이 구현되는 곳입니다. 리스트를 머리(head)와 꼬리(tail)로 나누기 위해 패턴 매칭을 사용했습니다. 재귀적으로 리스트를 다룰 때, 보통 관습적으로 이렇게 표현하니 익숙해지시기 바랍니다. <span class="fixed">maxTail</span> 이 나머지 부분(꼬리)에서의 최대값이라는 걸 정의 하기 위해 <i>where</i>를 썼습니다. 그럼 머리(head)가 나머지 부분의 최대값보다 큰지 확인해서 맞으면 머리, 아니면 나머지 리스트의 최대값을 돌려주면 되겠네요.</p>
+<p>보시다시피, 패턴 매칭과 재귀가 기가 막히게 잘 들어맞네요! 대부분의 명령형 언어에는 패턴 매칭이 없어서, edge condition을 체크하려면 if else 문으로 도배를 해야합니다. 그러나 하스켈에서는 단순히 패턴을 정의하면 되지요. 첫 번째 edge condition은 비어있는 리스트면 에러를 내라고 하네요. 비어있는 리스트에서 최대값을 구할 수 없으니 맞는 말 아닐까요? 흠, 잘 모르겠습니다. 두 번째 패턴 또한 edge condition입니다. 길이가 하나 짜리인 리스트면 그냥 그 멤버를 돌려주라는 얘기네요.</p>
+<p>세 번째 패턴이 바로 중요한 알고리즘이 구현되는 곳입니다. 리스트를 머리(head)와 꼬리(tail)로 나누기 위해 패턴 매칭을 사용했습니다. 리스트를 재귀적으로 다룰 때 흔히 이런 표현을 사용하니 익숙해지시기 바랍니다. <span class="fixed">maxTail</span> 이 나머지 부분(꼬리)에서의 최대값이라는 걸 정의 하기 위해 <i>where</i>를 썼습니다. 그럼 머리(head)가 나머지 부분의 최대값보다 큰지 확인해서 맞으면 머리, 아니면 나머지 리스트의 최대값을 돌려주면 되겠네요.</p>
 <p>예제를 보면서 어떻게 작동하는지 확인해 봅시다. <span class="fixed">[2,5,1]</span> 라는 리스트가 있고, 이것을 인자로 <span class="fixed">maximum'</span>을 호출해 봅시다. 그러면 처음 두 패턴은 일치하지 않겠지요. 세번째 패턴에서 리스트는 <span class="fixed">2</span>와 <span class="fixed">[5,1]</span>로 쪼개질 것입니다. <span class="fixed">where</span>절에서 <span class="fixed">[5,1]</span> 의 최대값을 알고 싶어하니 따라가봅시다.  또 세번째 패턴과 일치하니, <span class="fixed">5</span>와 <span class="fixed">[1]</span>로 쪼개지겠군요. 또 다시 <i>where</i> 절에서 <span class="fixed">[1]</span> 의 최대값을 구하려합니다. 이것은 두번째 패턴인 edge condition이니 <span class="fixed">1</span> 이겠군요. 마지막으로, 다시 한 단계 전으로 돌아가 비교해보면 <span class="fixed">[5,1]</span>의 최대값은 <span class="fixed">5</span> 가 되고, 다시 한 단계 전으로 돌아가 <span class="fixed">2</span>와 비교하면 전체의 최대값은 <span class="fixed">5</span>가 됩니다.</p>
 <p><span class="fixed">max</span>라는 함수를 사용하면 더 깔끔하게 구현할 수 있습니다. <span class="fixed">max</span>는 두 숫자를 받아서 더 큰 수를 돌려주는 함수인 것을 기억하시지요? 아래에 <span class="fixed">max</span>를 사용하여 <span class="fixed">maximum'</span>을 다시 작성해 보았습니다.</p>
 <pre name="code" class="haskell:hs" style="display: none;">maximum' :: (Ord a) =&gt; [a] -&gt; a
@@ -56,14 +56,14 @@ maximum' (x:xs) = max x (maximum' xs)
 <p>정말 우아하네요! 전체 리스트의 최대값은 첫번째 멤버와 나머지 리스트의 최대값 중 더 큰 수라는 알고리즘은 동일합니다.</p>
 <img src="./files/maxs.png" alt="max" class="center" width="651" height="267">
 <a name="a-few-more-recursive-functions"></a><h2>재귀 함수들을 좀 더 만나봅시다</h2>
-<p>이제 재귀적으로 생각하는 법을 배웠으니, 재귀 함수들을 좀 더 만들어봅시다.처음으로는 <span class="fixed">replicate</span>함수를 만들어 보겠습니다. <span class="fixed">replicate</span>함수는 <span class="fixed">Int</span> 타입의 인자 두 개를 받아, 첫 번째 인자가 두 번째 인자 만큼 복제되어 들어있는 리스트를 돌려줍니다. 예를 들어 <span class="fixed">replicate 3 5</span> 은 <span class="fixed">[5,5,5]</span>을 돌려주지요. Edge Condition이 무엇이 될 지 생각해봅시다. 아마 0 이하일때 라는 조건일 것 같은데요. 어떤 것을 0번 복제하려고 하면 비어있는 리스트를 돌려줘야 하겠지요. 또한 음수 번 복제하는 것도 말이 안 되니 음수에 대해서도 빈 리스트를 돌려줘야겠네요.</p>
+<p>이제 재귀적으로 생각하는 법을 배웠으니, 재귀 함수들을 좀 더 만들어봅시다. 처음으로는 <span class="fixed">replicate</span>함수를 만들어 보겠습니다. <span class="fixed">replicate</span>함수는 <span class="fixed">Int</span> 타입의 인자 두 개를 받아, 첫 번째 인자가 두 번째 인자 만큼 복제되어 들어있는 리스트를 돌려줍니다. 예를 들어 <span class="fixed">replicate 3 5</span> 은 <span class="fixed">[5,5,5]</span>을 돌려주지요. Edge Condition이 무엇이 될 지 생각해봅시다. 아마 0 이하일때 라는 조건일 것 같은데요. 어떤 것을 0번 복제하려고 하면 비어있는 리스트를 돌려줘야 하겠지요. 또한 음수 번 복제하는 것도 말이 안 되니 음수에 대해서도 빈 리스트를 돌려줘야겠네요.</p>
 <pre name="code" class="haskell:hs" style="display: none;">replicate' :: (Num i, Ord i) =&gt; i -&gt; a -&gt; [a]
 replicate' n x
     | n &lt;= 0    = []
     | otherwise = x:replicate' (n-1) x
 </pre>
 <p>여기서는 불리언 조건을 확인하면 되므로 패턴 매칭 대신 가드를 사용했습니다. <span class="fixed">n</span>이 0보다 작거나 같으면 빈 리스트를 돌려줍니다. 그렇지 않은 경우는 <span class="fixed">x</span>를 첫번째 멤버로 가지면서, 나머지 꼬리를 n-1번 복제된 <span class="fixed">x</span>로 채운 리스트를 돌려줍니다. 결국 <span class="fixed">(n-1)</span>부분이 edge condition에 도달 할 때까지 함수를 호출 하겠네요.</p>
-<div class="hintbox"><em>Note:</em> <span class="fixed">Num</span>은 <span class="fixed">Ord</span>의 서브클래스가 아닙니다. 그 말은 즉, 숫자로 된 부분이 꼭 순서가 있는 것이 아닐 수도 있다는 것입니다. 그래서 같은 이유로 더하거나 빼거나 비교를 할 때 <span class="fixed">Num</span>과 <span class="fixed">Ord</span> 타입 조건을 같이 걸어주는 것입니다.</div>
+<div class="hintbox"><em>Note:</em> <span class="fixed">Num</span>은 <span class="fixed">Ord</span>의 서브클래스가 아닙니다(예를 들면 복소수는 정렬 될 수 없습니다). 그 말은 즉, 숫자로 된 부분이 꼭 순서가 있는 것이 아닐 수도 있다는 것입니다. 그래서 같은 이유로 더하거나 빼거나 비교를 할 때 <span class="fixed">Num</span>과 <span class="fixed">Ord</span> 타입 조건을 같이 걸어주는 것입니다.</div>
 <p>다음으로 <span class="fixed">take</span> 함수를 만들어 보겠습니다. 리스트에서 특정 개수만큼 멤버를 얻어내는 함수이지요. 예를 들면 <span class="fixed">take 3 [5,4,3,2,1]</span>는 <span class="fixed">[5,4,3]</span>를 돌려줍니다. 만약 0이나 그보다 작은 개수만큼 리스트에서 얻어내려고 하면, 빈 리스트를 받게 됩니다. 또한 빈 리스트에서 멤버를 얻어오려 해도 빈 리스트가 나오겠지요. 이 두 경우가 edge condition입니다. 그럼 아래에 이 함수를 작성 해보겠습니다.</p>
 <pre name="code" class="haskell:hs" style="display: none;">take' :: (Num i, Ord i) =&gt; i -&gt; [a] -&gt; [a]
 take' n _
@@ -72,25 +72,25 @@ take' _ []     = []
 take' n (x:xs) = x : take' (n-1) xs
 </pre>
 <img src="./files/painter.png" alt="painter" class="right" width="350" height="276">
-<p>첫번째 패턴은 숫자 인자가 0 또는 음수인 경우에 대해서는 빈 리스트를 돌려주라는 것입니다. 이 경우 리스트 인자로서 무엇이 와도 상관 없으니 <span class="fixed">_</span>라고 표현 되었습니다. 가드를 사용했는데 <span class="fixed">otherwise</span>부분이 안보이네요. 그 말은 <span class="fixed">n</span> 이 0 보다 큰 게 확인되면 다음 패턴으로 넘어간다는 것입니다. 두번째 패턴은 빈 리스트에 대해 얻으려고(take) 하면 몇 개를 가져오든 빈 리스트를 받는다는 것입니다. 세번째 패턴은 리스트를 머리와 꼬리로 분리합니다. 그 후, 리스트에서 n 개의 멤버를 얻는(take) 것은, <span class="fixed">x</span> 를 머리로 하고 꼬리 <span class="fixed">xs</span>에서 <span class="fixed">n-1</span> 개를 얻은 것을 다시 꼬리로 하는 리스트와 같다고 해줍니다. Try using a piece of paper to write down how the evaluation would look like if we try to take, say, 3 from <span class="fixed">[4,3,2,1]</span>. [[생략해도될듯]]</p>
-<p><span class="fixed">reverse</span> 함수는 단순히 리스트를 뒤집습니다. Edge condition이 무엇일지 생각해보세요. ...바로 빈 리스트지요! 빈 리스트를 뒤집은 것은 그대로 빈 리스트이겠지요. 좋습니다. 그럼 다른 리스트들은 어떻게 해야 할까요? 그냥 머리랑 꼬리로 나눴을 때, 뒤집은 리스트는 뒤집은 꼬리 뒤에 머리를 붙인것이라고 정의하면 되겠네요.</p>
+<p>첫 번째 패턴은 숫자 인자가 0 또는 음수인 경우에 대해서는 빈 리스트를 돌려주라는 것입니다. 이 경우 리스트 인자로서 무엇이 와도 상관 없으니 <span class="fixed">_</span>라고 표현 되었습니다. 가드를 사용했는데 <span class="fixed">otherwise</span>부분이 안보이네요? 그 말은 <span class="fixed">n</span> 이 0 보다 큰 게 확인되면 다음 패턴으로 넘어간다는 것입니다. 두 번째 패턴은 빈 리스트가 주어졌을 때는 가져가려는 값의 수가 몇개인지에 상관 없이 빈 리스트를 반환합니다. 세 번째 패턴은 리스트를 머리 <span class="fixed">x</span> 와 꼬리 <span class="fixed">xs</span> 로 분리해서 <span class="fixed">x</span>와 <span class="fixed">xs</span>에서 n-1 개를 취한 것을 연결한 리스트를 반환합니다.</p>
+<p><span class="fixed">reverse</span> 는 단순히 리스트를 뒤집는 함수입니다. Edge condition이 무엇일지 생각해보세요. ...바로 빈 리스트지요! 빈 리스트를 뒤집은 것은 그대로 빈 리스트이겠지요. 좋습니다. 그럼 다른 리스트들은 어떻게 해야 할까요? 그냥 머리랑 꼬리로 나눴을 때, 뒤집은 리스트는 뒤집은 꼬리 뒤에 머리를 붙인 것이라고 정의하면 되겠네요.</p>
 <pre name="code" class="haskell:hs" style="display: none;">reverse' :: [a] -&gt; [a]
 reverse' [] = []
 reverse' (x:xs) = reverse' xs ++ [x]
 </pre>
 <p>좋군요!</p>
-<p> 하스켈이 무한한 리스트를 지원하기 때문에, 사실 재귀 함수를 작성시 edge condition을 꼭 정의해야 할 필요는 없습니다. 다만 edge condition이 없다면 어떤 걸 무한히 조작하거나[[churn 휘젓다]], 무한 리스트같은 어떤 무한한 데이타 구조체를 만들 것입니다. 다행히도 무한한 리스트에서 좋은 점은 원하는 지점에서 자를 수 있다는 것입니다. <span class="fixed">repeat</span> 함수는 어떤 것을 받아서 그것을 무한히 반복하는 리스트를 돌려주는 함수입니다. 이 함수의 재귀적 구현은 엄청 쉽습니다. 아래를 보시지요.</p>
+<p> 하스켈이 무한한 리스트를 지원하기 때문에, 사실 재귀 함수를 작성시 edge condition을 꼭 정의해야 할 필요는 없습니다. 다만 edge condition이 없다면 무한히 반복되는 연산을 의미하게 되거나 무한한 데이타 구조체(무한한 리스트와 같은)를 만들 것입니다. 다행히도 무한한 리스트에서 좋은 점은 원하는 지점에서 자를 수 있다는 것입니다. <span class="fixed">repeat</span> 함수는 어떤 것을 받아서 그것을 무한히 반복하는 리스트를 돌려주는 함수입니다. 이 함수의 재귀적 구현은 엄청 쉽습니다. 아래를 보시지요.</p>
 <pre name="code" class="haskell:hs" style="display: none;">repeat' :: a -&gt; [a]
 repeat' x = x:repeat' x
 </pre>
-<p><span class="fixed">repeat 3</span> 이라고 호출하면 <span class="fixed">3</span> 으로 시작하면서 무한히 <span class="fixed">3</span>이 반복되는 꼬리를 가진 리스트를 돌려줄 것입니다. 그러므로 <span class="fixed">repeat 3</span>은 다시 <span class="fixed">3:repeat 3</span> 이 되고, 또 <span class="fixed">3:(3:repeat 3)</span> 이 되고, 또 <span class="fixed">3:(3:(3:repeat 3))</span> 이 되고, 이런 식으로 계속 반복 되겠네요.반면에 <span class="fixed">take 5 (repeat 3)</span> 는 다섯 개의 3으로 이루어진 리스트를 줍니다. <span class="fixed">replicate 5 3</span> 와 같은 결과겠네요.</p>
+<p><span class="fixed">repeat 3</span> 이라고 호출하면 <span class="fixed">3</span>이 무한히 반복되는 리스트를 돌려줄 것입니다. <span class="fixed">repeat 3</span>은 <span class="fixed">3:repeat 3</span> 이 되고, 또 <span class="fixed">3:(3:repeat 3)</span> 이 되고, 또 <span class="fixed">3:(3:(3:repeat 3))</span> 이 되고, 이런 식으로 계속 반복 되겠네요.반면에 <span class="fixed">take 5 (repeat 3)</span> 는 다섯 개의 3으로 이루어진 리스트를 줍니다. <span class="fixed">replicate 5 3</span> 와 같은 결과겠네요.</p>
 <p><span class="fixed">zip</span> 함수는 두 리스트를 받아서 묶어줍니다. <span class="fixed">zip [1,2,3] [2,3]</span> 는 <span class="fixed">[(1,2),(2,3)]</span> 를 돌려주는데요, 이는 길이가 작은 리스트에 맞추어 큰 쪽이 잘리기 때문입니다. 그러면 빈 리스트로 zip을 시도하면 어떻게 될까요? 뭐, 빈 리스트가 나오겠지요. 그럼 이게 edge condition 이겠군요. 근데 사실 <span class="fixed">zip</span> 함수는 리스트 두 개를 인자로 받으므로, 두 개의 edge condition이 있습니다.</p>
 <pre name="code" class="haskell:hs" style="display: none;">zip' :: [a] -&gt; [b] -&gt; [(a,b)]
 zip' _ [] = []
 zip' [] _ = []
 zip' (x:xs) (y:ys) = (x,y):zip' xs ys
 </pre>
-<p>처음 두 패턴은 두 인자 중에 빈 리스트가 있다면 빈 리스트를 돌려주라는 의미군요. 세번째 패턴은 두 리스트를 묶은 것은, 각각의 머리로 만든 페어를 각각의 꼬리끼리 묶은 리스트 앞에 붙인 것과 같다는 의미입니다. <span class="fixed">[1,2,3]</span> 과 <span class="fixed">['a','b']</span> 을 묶는다면, 결국 <span class="fixed">[3]</span> 을 <span class="fixed">[]</span> 으로 묶으려는 상황이 오겠지요. 이건 edge condition에 걸리므로 결과는 <span class="fixed">(1,'a'):(2,'b'):[]</span> 되고, 결국 <span class="fixed">[(1,'a'),(2,'b')]</span> 이 되는 것입니다.</p>
+<p>처음 두 패턴은 두 인자 중에 빈 리스트가 있다면 빈 리스트를 돌려주라는 의미군요. 세 번째 패턴은 두 리스트를 zip한다는 것이, 각각의 머리로 만든 페어 뒤에 각각의 꼬리끼리 zip한 리스트를 붙인 것과 같다는 의미입니다. <span class="fixed">[1,2,3]</span> 과 <span class="fixed">['a','b']</span> 을 묶는다면, 결국 <span class="fixed">[3]</span> 을 <span class="fixed">[]</span> 으로 묶으려는 상황이 오겠지요. 이건 edge condition에 걸리므로 결과는 <span class="fixed">(1,'a'):(2,'b'):[]</span> 되고, 결국 <span class="fixed">[(1,'a'),(2,'b')]</span> 이 되는 것입니다.</p>
 <p>표준 라이브러리 함수를 하나 더 구현해봅시다. 바로 <span class="fixed">elem</span> 함수인데요. 이 함수는 멤버와 리스트를 받아서, 멤버가 리스트안에 속하는지를 판별합니다. 재귀에서 리스트를 다룰 때 대부분처럼, 이것 또한 edge condition이 빈 리스트입니다. 빈 리스트에는 아무 멤버도 없으므로, 찾으려는 어떤 멤버도 속하지 않은 것이 분명합니다.</p>
 <pre name="code" class="haskell:hs" style="display: none;">elem' :: (Eq a) =&gt; a -&gt; [a] -&gt; Bool
 elem' a [] = False
@@ -99,10 +99,10 @@ elem' a (x:xs)
     | otherwise = a `elem'` xs 
 </pre>
 <p>매우 단순명료하네요. 만약 찾으려는 멤버와 머리가 같지 않다면, 꼬리쪽에서 찾게합니다. 빈 리스트에 다다르면, 결과는 <span class="fixed">False</span> 가 되겠네요.</p>
-<a name="quick-sort"></a><h2>퀵 정렬!</h2>
-<p>정렬 될 수 있는 멤버들이 들어있는 리스트가 있다고 가정합시다. 그럼 그 멤버들의 타입은 <span class="fixed">Ord</span> 타입클래스에 속해있겠군요. 이제 이걸 정렬하고 싶습니다. 무엇으로 어떻게 할까요? 퀵 정렬이라고 하는 아주 멋진 알고리즘이 있답니다. 아주 영리한 정렬 방법이지요.[[칭찬이 넘 길다]] 명령형 언어에서 퀵 정렬을 구현하려면, 대략 10줄 이상의 코드를 작성하지만, 하스켈에서는 훨씬 짧고 우아하게 구현 할 수 있습니다. 퀵 정렬은 하스켈에서 아주 전형적인 함수입니다. 그러므로 이미 많은 구현물이 있음에도 불구하고 여기서 작성해보도록 하겠습니다.[[열라 줄여씀]]</p>
+<a name="quick-sort"></a><h2>퀵 소트!</h2>
+<p>정렬 될 수 있는 멤버들이 들어있는 리스트가 있다고 가정합시다. 그럼 그 멤버들의 타입은 <span class="fixed">Ord</span> 타입클래스에 속해있겠군요. 이제 이걸 정렬하고 싶습니다. 무엇으로 어떻게 할까요? 퀵 소트라고 하는 아주 멋진 알고리즘이 있답니다. 아주 영리한 정렬 방법이지요. 명령형 언어에서 퀵 소트를 구현하려면 대략 10줄 이상의 코드를 작성하지만, 하스켈에서는 훨씬 짧고 우아하게 구현 할 수 있습니다. 퀵 소트를 이토록 짧고 우아하게 쓸 수 있다는 것은 하스켈의 큰 자랑거리 중 하나입니다. 그러므로 이미 많은 구현물이 있음에도 불구하고 여기서 작성해보도록 하겠습니다.</p>
 <img src="./files/quickman.png" alt="quickman" class="left" width="180" height="235">
-<p>우선, 타입은 <span class="fixed">quicksort :: (Ord a) =&gt; [a] -&gt; [a]</span> 가 되겠네요. 딱히 특별할게 없습니다. Edge condition은 어떨까요? 뭐 빈 리스트가 되겠지요. 정렬된 빈 리스트는, 빈 리스트이니까요. 이제 본격적인 알고리즘입니다. <em>정렬된 리스트는, 머리보다 작거나 같은 정렬된 리스트에 머리를 붙이고, 머리보다 큰 정렬된 리스트를 붙인 것입니다.</em> 서술부에 <i>정렬된</i>이 두번 쓰인걸 보세요. 고로, 재귀 호출을 두번 할 것입니다. 또한 알고리즘을 정의한 방식이 <em>이거 해라, 저거 해라</em> 같은 식이 아닌 <em>~는</em> 이라는 것도 유의하세요. 이게 바로 명령형 프로그래밍의 아름다움입니다! 그런데, 어떻게 리스트의 머리보다 작거나 큰 멤버만 걸러 낼 수 있을까요? List Comprehension을 쓰면 됩니다! 그럼, 이 함수를 정의해 볼까요?</p>
+<p>우선, 타입은 <span class="fixed">quicksort :: (Ord a) =&gt; [a] -&gt; [a]</span> 가 되겠네요. 딱히 특별할게 없습니다. Edge condition은 어떨까요? 뭐 빈 리스트가 되겠지요. 빈 리스트를 정렬 해봐야 빈 리스트이니까요. 이제 본격적인 알고리즘입니다. <em>정렬된 리스트에서는 각각의 멤버값들에 대해서, 그 멤버의 앞에 위치한 값들은 그 멤버값보다 작거나 같아야 하고, 그 멤버의 뒤에 위치한 값들은 그 멤버값보다 크거나 같아야 합니다. 그리고 당연히, 앞에 위치한 값들의 리스트도 정렬되어 있어야 하고, 뒤에 위치한 값들의 리스트도 정렬되어 있어야 하죠.</em> 앞 문장에서 <i>“정렬되어”</i>가 두 번 쓰인걸 보세요. 고로, 재귀 호출을 두 번 할 것입니다. 또한 알고리즘을 정의한 방식이 <em>이거 해라, 저거 해라</em> 같은 식이 아닌 <em>~는</em> 이라는 것도 유의하세요. 이게 바로 함수형 프로그래밍의 아름다움입니다! 그런데, 어떻게 리스트의 머리보다 작거나 큰 멤버만 걸러 낼 수 있을까요? List Comprehension을 쓰면 됩니다! 그럼, 이 함수를 정의해 볼까요?</p>
 <pre name="code" class="haskell:hs" style="display: none;">quicksort :: (Ord a) =&gt; [a] -&gt; [a]
 quicksort [] = []
 quicksort (x:xs) = 
@@ -116,15 +116,17 @@ quicksort (x:xs) =
 ghci&gt; quicksort "the quick brown fox jumps over the lazy dog"
 "        abcdeeefghhijklmnoooopqrrsttuuvwxyz"
 </pre>
-<p>야호! That's what I'm talking about! [[생략할까]] 만약, 리스트 <span class="fixed">[5,1,9,4,6,7,3]</span> 이 있고 이걸 퀵 소트르 정렬한다면, 처음엔 머리인 <span class="fixed">5</span> 를 꺼네서 작은 리스트와 큰 리스트 사이에 넣을 것입니다. 그러다 So at one point[[ 어느 시점에? 왜지?]], <span class="fixed">[1,4,3] ++ [5] ++ [9,6,7]</span> 의 형태가 될 것입니다. 왼쪽의 세 멤버는 5보다 작고, 오른쪽의 세 멤버는 5보다 크니, 완전히 정렬된 후에도 <span class="fixed">5</span>는 네 번째에 자리함을 미리 알 수 있습니다. 이제 <span class="fixed">[1,4,3]</span> 와 <span class="fixed">[9,6,7]</span> 를 정렬하면, 정렬된 리스트가 완성됩니다! 두 리스트는 다시 같은 함수를 사용해서 정렬하는 것이지요. 결국, 계속 정렬하다보면 빈 리스트가 될테고, 빈 리스트는 비어있으니 이미 정렬 된 상태입니다.[[이상한데]] 아래에 이 과정을 묘사한 그림이 있습니다.</p>
+<p>야호! 잘 되네요. 만약, 리스트 <span class="fixed">[5,1,9,4,6,7,3]</span> 이 있고 이걸 퀵 소트르 정렬한다면, 처음엔 머리인 <span class="fixed">5</span> 를 꺼네서 작은 리스트와 큰 리스트 사이에 넣을 것입니다. 그러다 특정 시점에, <span class="fixed">[1,4,3] ++ [5] ++ [9,6,7]</span> 의 형태가 될 것입니다. 왼쪽의 세 멤버는 5보다 작고, 오른쪽의 세 멤버는 5보다 크니, 완전히 정렬된 후에도 <span class="fixed">5</span>는 네 번째에 자리함을 미리 알 수 있습니다. 이제 <span class="fixed">[1,4,3]</span> 와 <span class="fixed">[9,6,7]</span> 를 정렬하면, 정렬된 리스트가 완성됩니다! 두 리스트는 다시 같은 함수를 사용해서 정렬하는 것이지요. 결국, 계속 정렬하다보면 빈 리스트가 될테고, 빈 리스트는 이미 정렬 된 상태입니다. 이 과정을 묘사한 그림이 있습니다.</p>
 <img src="./files/quicksort.png" alt="quicksort" class="center" width="799" height="332">
-<p><span style="color:#FF6600;font-weight:bold;">오렌지색</span>으로 표현된 멤버들은 표시된 위치에서 더 이상 이동하지 않을 것 입니다. 이 멤버들을 왼쪽에서 오른쪽 방향으로 읽어보면 정렬 된 리스트가 보입니다. 작성한 알고리즘에서는 머리를 기준으로 비교하도록 했지만, 사실 다른 어떤 멤버를 선택해도 상관 없습니다. 퀵 소트에서 이 비교 대상이되는 멤버를 피벗(pivot)이라고 부릅니다. 그림에서는 <span style="color:#009900;font-weight:bold">초록색</span>으로 표시되어 있습니다. 작성한 함수에서는 패턴매칭으로 고르기 쉽기에 머리를 사용하였습니다. 피벗보다 작은 멤버들은 <span style="color:#0f0;font-weight:bold">밝은 녹색</span>으로 표시하였고, 피벗보다 큰 멤버들은 <span style="color:#030;font-weight:bold">어두운 녹색</span>으로 표시하였습니다. 노란 그라데이션[[원문이 gradient인데 이상하군]]으로 표시된 부분은 퀵 소트가 적용된 부분입니다.</p>
+<p><span style="color:#FF6600;font-weight:bold;">오렌지색</span>으로 표현된 멤버들은 표시된 위치에서 더 이상 이동하지 않을 것 입니다. 이 멤버들을 왼쪽에서 오른쪽 방향으로 읽어보면 정렬 된 리스트가 보입니다. 작성한 알고리즘에서는 머리를 기준으로 비교하도록 했지만, 사실 다른 어떤 멤버를 선택해도 상관 없습니다. 퀵 소트에서 이 비교 대상이되는 멤버를 피벗(pivot)이라고 부릅니다. 그림에서는 <span style="color:#009900;font-weight:bold">초록색</span>으로 표시되어 있습니다. 작성한 함수에서는 패턴매칭으로 고르기 쉽기에 머리를 사용하였습니다. 피벗보다 작은 멤버들은 <span style="color:#0f0;font-weight:bold">밝은 녹색</span>으로 표시하였고, 피벗보다 큰 멤버들은 <span style="color:#030;font-weight:bold">어두운 녹색</span>으로 표시하였습니다. 노란색으로 표시된 부분은 퀵 소트가 적용된 부분입니다.</p>
 <a name="thinking-recursively"></a><h2>재귀적으로 생각하기</h2>
-<p>이제까지 꽤나 많은 재귀 예제들을 보아왔는데요, 그래서 아마 눈치 채셨겠지만 여기엔 패턴이 있습니다. Usually you define a function that does something between some element and the function applied to the rest. 보통 Edge case를 정의하고, [[몇 멤버들과 나머지 부분에 걸쳐 적용되는 함수를 정의합니다]]. 리스트 뿐만 아니라, 트리 또는 기타 어떤 자료구조더라도 상관없습니다. 리스트의 합계는 첫 멤버 더하기 리스트의 나머지의 합계이겠지요. 리스트의 곱은 첫 멤버 곱하기 나머지 리스트의 곱입니다. 리스트의 길이는 1 더하기 나머지 리스트의 길이입니다, 등등...[[재귀의 느낌이 안사는 번역이다]]</p><p>
+<p>이제까지 꽤나 많은 재귀 예제들을 보아왔는데요, 그래서 아마 눈치 채셨겠지만 여기엔 패턴이 있습니다. 보통 Edge case를 정의하고, 나머지 부분에 걸쳐 적용되는 함수를 정의합니다. 전체 문제의 일부분을 제외하고 나머지 부분에 대해 함수를 재귀적으로 사용하는 것이죠 (역자 주: 예를 들면, 퀵소트에서 리스트의 머리를 피벗으로 제외하고 나머지 부분에 대해 다시 퀵소트를 호출했던 것처럼 말이죠). 리스트 뿐만 아니라, 트리 또는 기타 어떤 자료구조여도 상관없습니다. 리스트의 합계는 첫 멤버 더하기 리스트의 나머지의 합계이겠지요. 리스트의 곱은 첫 멤버 곱하기 나머지 리스트의 곱입니다. 리스트의 길이는 1 더하기 나머지 리스트의 길이입니다, 등등...</p>
+<p>
 <img src="./files/brain.png" alt="brain" class="left" width="250" height="219">
-</p><p>물론, 이것들 또한 edge case가 있습니다. 보통 edge case는 재귀를 적용하기에 이상한 곳입니다.[[번역이 이상한 곳입니다]] 보통 리스트를 다루는 경우에는 빈 리스트가 edge case가 됩니다. 트리를 다루는 경우에는 보통 자식이 없는 노드가 edge case가 되지요.</p>
-<p>숫자를 재귀적으로 다룰 때에도 이와 유사합니다. Usually it has to do with some number and the function applied to that number modified. 예전 챕터에서 팩토리얼 함수를 만들었던 것을 기억해보면, 어떤 숫자의 팩토리얼은 해당 숫자 곱하기 그 숫자에서 1을 뺀 수의 팩토리얼이었지요. 이런 재귀 과정에서 0까지 곱한다는건 말이 안되겟지요? 왜냐하면 팩토리얼은 양의 정수에만 적용되니까요. 가끔 edge case로의 값이 identity[[한국어로머냐 항등원인가 번역도 안깔끔하듯]]가 되는 경우도 있습니다. 곱셈의 identity는 1이지요, 뭐든지 1을 곱하면 같은 수가 나오니까요. 또한 리스트의 합을 구할 때에도, 빈 리스트의 합은 0이라고 정합니다. 그 0은 덧셈에 대한 identity이지요. 퀵정렬에서 edge case는 빈 리스트이고, identity 또한 빈 리스트입니다. 어떤 리스트에 빈 리스트를 더해도 같은 리스트가 나오기 때문이지요.</p>
-<p>그래서 재귀적으로 문제를 해결 할 때에는, 재귀적 로직[[???머라고해야하지 과정?]]이 적용되지 않는 곳에서, 그걸 edge case로 사용 할 수 있는지, identity 인지, 함수의 인자를 분리 해야 할지(예를 들어, 리스트는 보통 패턴 매칭을 이용하여 머리와 꼬리로 분리합니다), 그리고 어느 부분에서 재귀 호출ㅇㄹ 해야 할지를 생각해보세요. [[망햇.. 정리다시해야겟다]]</p>
+</p>
+<p>물론, 이것들 또한 edge case가 있습니다. 보통 edge case는 재귀를 적용하기에 이상한 곳입니다. 보통 리스트를 다루는 경우에는 빈 리스트가 edge case가 됩니다. 트리를 다루는 경우에는 보통 자식이 없는 노드가 edge case가 되지요.</p>
+<p>숫자를 재귀적으로 다룰 때에도 이와 유사합니다. 보통 어떤 숫자를 변경하면서 함수가 적용되지요. 예전 챕터에서 팩토리얼 함수를 만들었던 것을 기억해보면, 어떤 숫자의 팩토리얼은 해당 숫자 곱하기 그 숫자에서 1을 뺀 수의 팩토리얼이었지요. 이런 재귀 과정에서 0까지 곱한다는건 말이 안되겟지요? 왜냐하면 팩토리얼은 양의 정수에만 적용되니까요. 종종 edge case로 항등원이 됩니다. 곱셈의 항등원은 1이지요, 뭐든지 1을 곱하면 같은 수가 나오니까요. 또한 리스트의 합을 구할 때에도, 빈 리스트의 합은 0이라고 정합니다. 그 0은 덧셈에 대한 항등원이지요. 퀵 소트에서 edge case는 빈 리스트이고, 항등원 또한 빈 리스트입니다. 어떤 리스트에 빈 리스트를 더해도 같은 리스트가 나오기 때문이지요.</p>
+<p> 그래서 재귀적으로 문제를 해결 할 때에는, 문제를 더 작게 쪼개서 재귀적으로 해결할 수 없는 상황을 찾고, 그걸 edge case로 사용 할 수 있는지, 항등원은 무엇인지, 함수의 인자를 분리 해야 할지(예를 들어, 리스트는 보통 패턴 매칭을 이용하여 머리와 꼬리로 분리합니다), 그리고 어느 부분에서 재귀 호출을 해야 할지등을 생각해보세요.</p>
 
                 <div class="footdiv">
                 <ul>
